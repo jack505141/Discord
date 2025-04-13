@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Parameter_Set>
+<KMS_INFO>
+
+    <ftp_ip>FtpIp</ftp_ip>
+    <ftp_port>21</ftp_port>
+    <ftp_userid>fonticket</ftp_userid>
+    <ftp_userpwd>fonticket!123</ftp_userpwd>
+    <server_path>UploadFile</server_path>
+
+    <kiosk_register_id>KioskRegisterId</kiosk_register_id>
+    <kiosk_path>C:\\ITKiosk\\</kiosk_path>
+    <kiosk_kill>C:\\ITKiosk\\Tool\\KillMainApModule.exe</kiosk_kill>
+    <kiosk_start>C:\\ITKiosk\\EXE_KIOSK.BAT</kiosk_start>
+    <getjob>FtpIp/API/GetSyncFileList.ashx</getjob>
+    <updatejob>FtpIp/API/UpdateSyncFileList.ashx</updatejob>
+
+    <kiosk_type>2</kiosk_type>
+    <kiosk_id>1</kiosk_id>
+    <kiosk_monitor>http://218.32.44.153/CGMHPAY/Report/kioskMonitor</kiosk_monitor>
+
+</KMS_INFO>
+</Parameter_Set>

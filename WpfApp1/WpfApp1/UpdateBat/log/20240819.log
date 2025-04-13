@@ -1,0 +1,8 @@
+[2024-08-19 09:47:27.026] SetKioskIdAndIP START 
+[2024-08-19 09:47:27.026] SetKioskIdAndIP END -- [KioskId: ca53e3cb-16fd-467e-91ec-e0774d33c3d7, apiBackEnd: http://35.234.59.99/FontripTicketingWeb/] 
+[2024-08-19 16:07:45.368] SetKioskIdAndIP START 
+[2024-08-19 16:07:45.368] SetKioskIdAndIP END -- [KioskId: 2d6f3563-7c17-4827-b743-62d9fd7cb747, apiBackEnd: https://kms.fonticket.com/] 
+[2024-08-19 16:10:13.342] SetKioskIdAndIP START 
+[2024-08-19 16:10:13.342] SetKioskIdAndIP END -- [KioskId: 2d6f3563-7c17-4827-b743-62d9fd7cb747, apiBackEnd: http://35.234.59.99/FontripTicketingWeb/] 
+[2024-08-19 16:18:39.892] SetKioskIdAndIP START 
+[2024-08-19 16:18:39.892] SetKioskIdAndIP END -- [KioskId: ca53e3cb-16fd-467e-91ec-e0774d33c3d7, apiBackEnd: http://35.234.59.99/FontripTicketingWeb/] 

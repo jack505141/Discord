@@ -1,0 +1,6 @@
+D:\release\WpfApp1.exe
+D:\release\WpfApp1.dll
+D:\release\WpfApp1.deps.json
+D:\release\WpfApp1.runtimeconfig.json
+D:\release\WpfApp1.pdb
+D:\release\WpfAnimatedGif.dll
