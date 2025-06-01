@@ -1,0 +1,1 @@
+var kiosk=kiosk||{};kiosk.ads = {"2ndMonitorAds":[{"ADID":10,"AdKeyword":"影片","AdName":"2ndMonitorAds-Test2","AdType":2,"media":"\\html\\Content\\201802.mp4","StartDate":"2018-01-01T00:00:00","EndDate":"2020-12-31T00:00:00","component":"component.2ndMonitorAds"}]}

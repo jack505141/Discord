@@ -1,0 +1,70 @@
+<script type="text/x-template" id="template-ProductDescription-main">
+  <div class="container-fluid">
+    <div class="row my-3">
+      <div class="col-4">
+        <div class="product">
+          <div class="product-con">
+            <div class="con-img">
+              <img :src="imgUri.replace('.webp', '.jpg') + '?a=' + moment().unix()" alt="">
+            </div>
+            <div class="con-text">
+
+              <div class="TicketTitle">
+                <h3>{{saleProductName}}</h3>
+              </div>
+
+              <div class="DetailDate">
+                <!-- <p>■ 2021/4/1-2021/11/14</p> -->
+                <div class="swiper-Detail p_detail"
+                  style="width:100%;overflow: hidden; margin-top:0px; position: relative; padding-right: 10px;">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                      <template v-for="featureStr in features">
+                        {{featureStr}}<br>
+                      </template>
+                    </div>
+                  </div>
+                  <div class="swiper-scrollbar" style=""></div>
+                </div>
+              </div>
+
+              <!--  -->
+              <!-- <div @mousedown="kiosk.API.goToNext('ProductDescription')" class="btn btn-detail btn-lg text-light">商品詳情</div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="productDes" style="left: 400px; top: 0px; width: 900px;">
+          <div class="productDesHid">
+            <h3 style="height: 35px; margin-bottom: 0px;">{{model.Description}}</h3>
+            <div class="swiper-ProductDescription" style="height: 520px; overflow: hidden; position: relative;">
+              <div class="swiper-wrapper" style="height: 500px;">
+                <div class="swiper-slide">
+                  <div v-for="(item,index) in ticketType" class="desContain">
+                    <div class="desContainL">
+                      <p>{{item.ticketTypeName}}</p>
+                    </div>
+                    <div class="desContainR">
+                      <p v-for="(rules, index) in item.ticketTypeRules">▲{{rules}}</p>
+                      <span v-for="(bundles, index) in item.bundleProductList" style="display: flex;">
+                        <p style="padding-right: 10px; color: green;">{{bundles.bundleModeName}}</p>
+                        <p>{{bundles.productName}} - </p>
+                        <p>{{bundles.ticketTypeName}} x </p>
+                        <p>{{bundles.quantity}}</p>
+                        <p v-if="bundles.inventory === 0">{{model.SoldOut}}</p>
+                      </span>
+
+                      <!-- <p class="font-weight-bold">[ 水起台灣 14:00~14:40 ]</p> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-scrollbar" style=""></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>

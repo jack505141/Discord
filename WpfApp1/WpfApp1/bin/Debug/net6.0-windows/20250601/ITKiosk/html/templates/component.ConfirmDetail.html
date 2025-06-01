@@ -1,0 +1,139 @@
+<script type="text/x-template" id="template-ConfirmDetail-main">
+  <!-- <div class="content" style="font-size: 22px;">
+
+    <div class="detail-slide" style="position: absolute;margin-top: 280px; margin-left: 640px; position: absolute;">
+      <div class="slidelogo">
+
+      </div>
+    </div> -->
+  <div class="row">
+    <div class="col-6">
+      <div class="billInfo">
+        <div class="billTitle">{{model.PurchaseDetails}}，共{{kiosk.status.ticketTotalNum}}張</div>
+        <div class="billProduct">
+          <div class="homelogo"><img src="./img/Group.png" alt=""></i></div>
+          <div>
+            <div class="billProductName">{{buyProduct.saleProductName}}</div>
+            <div class="billProductTime">
+              {{decText}}
+            </div>
+          </div>
+        </div>
+        <div class="billTable">
+          <table class="table table-striped ">
+            <tr>
+              <th width="48%" style="padding: 10px 0 0 0">
+                <!-- 商品規格 -->
+                {{model.ProductType}}
+              </th>
+              <th width="20%" style="padding: 10px 0 0 0">
+                <!-- 票價 -->
+                {{model.Price}}
+              </th>
+              <th width="12%" style="padding: 10px 0 0 0">
+                <!-- 數量 -->
+                {{model.Quantity}}
+              </th>
+              <th width="20%" style="padding: 10px 0 0 0">
+                <!-- 合計 -->
+                {{model.Total}}
+              </th>
+            </tr>
+          </table>
+          <div class="swiper-ConfirmDetail" style=" overflow: hidden; height: calc(100% - 60px);">
+            <div class="swiper-wrapper" style=" ">
+              <div class="swiper-slide">
+                <table class="table table-striped ">
+                  <template v-for="pd in buyProduct.orderItemList">
+                    <tr v-for="item in pd.ticketItem">
+                      <td width="48%" class="TicketName">{{item.ticketTypeName}}</td>
+                      <td width="20%" class="TicketPay" style="text-align: center;">NT${{item.salePrice}}</td>
+                      <td width="12%" class="TicketNumber" style="text-align: center;">{{item.quantity}}</td>
+                      <td width="20%" class="TicketPrice" style="text-align: center;">
+                        NT${{item.salePrice * item.quantity}}</td>
+                    </tr>
+                  </template>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="billInvoice" style="position: fixed;">
+          <template v-if="kiosk.status.invoice && kiosk.status.invoice.invoiceDeviceType">
+            {{model.Mode}} :
+            <template v-if="kiosk.status.invoice && (kiosk.status.invoice.invoiceDeviceType === 'MOBILE')">
+              {{model.CarrierTitle}}<br>
+            </template>
+            <template v-if="kiosk.status.invoice && (kiosk.status.invoice.invoiceDeviceType === 'DONATE')">
+              {{model.DonationTitle}}<br>
+            </template>
+            <template v-if="kiosk.status.invoice && (kiosk.status.invoice.invoiceDeviceType === 'PAPER')">
+              {{model.UniformTitle}}<br>
+            </template>
+          </template>
+          <template v-else>
+            <!-- {{model.Mode}} : {{model.UniformTitle}} -->
+          </template>
+          <template v-if="kiosk.status.invoice && (kiosk.status.invoice.invoiceDeviceCode || kiosk.status.invoice.invoiceVatNumber)">
+            <template v-if="kiosk.status.invoice && (kiosk.status.invoice.invoiceDeviceType === 'MOBILE')">
+              {{model.Carrier}} : {{kiosk.status.invoice.invoiceDeviceCode}}
+            </template>
+            <template v-if="kiosk.status.invoice && (kiosk.status.invoice.invoiceDeviceType === 'DONATE')">
+              {{model.Donation}} : {{kiosk.status.invoice.invoiceDonateCode}}
+            </template>
+            <template v-if="kiosk.status.invoice && (kiosk.status.invoice.invoiceDeviceType === 'PAPER')">
+              {{model.Uniform}} : {{kiosk.status.invoice.invoiceVatNumber}}
+            </template>
+            <!-- <br>{{model.Uniform}}：{{kiosk.status.invoice.invoiceDeviceCode}} -->
+          </template>
+          <template v-if="kiosk.status.invoiceCode">
+            {{model.Uniform}}：{{kiosk.status.invoiceCode}}
+          </template>
+        </div>
+        <div class="billPayment" style="color:#FF2D55">
+          <p style="font-size:34px;">
+            <!-- 支付總額 -->
+            {{model.PayTotal}}
+          </p>
+          <p class="billPrice">NT${{kiosk.status.ticketTotalAmt}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="paymentInfo ">
+        <div class="paymentTitle">
+          <!-- 請選擇付款方式 -->
+          {{model.ChiocePayType}}
+        </div>
+        <div class="paymentType ml-4">
+          <div v-for="(oit, index) in OKPayTypes" @mousedown="goPayment(oit)" class="paymentFunc">
+            <img :src="'img/' + oit.FTPayTypeCode + '.png?a=' + moment().unix()" alt="">
+            <p>{{oit.CorporationPayTypeName}}</p>
+          </div>
+          <!-- <div @mousedown="goNext()" class="paymentFunc credit">
+                <img src="img/credit.png" alt="">
+                <p>信用卡</p>
+              </div> -->
+          <!-- <div @mousedown="goNext()" class="paymentFunc linepay">
+                <img src="img/linepay.png" alt="">
+                <p>LINEPAY</p>
+              </div>
+              <div @mousedown="goNext()" class="paymentFunc etc">
+                <img src="img/ecc.png" alt="">
+                <p>悠遊卡</p>
+              </div>
+              <div @mousedown="goNext()" class="paymentFunc twpay">
+                <img src="img/twpay.png" alt="">
+                <p>台灣PAY</p>
+              </div>
+              <div @mousedown="goNext()" class="paymentFunc jieko">
+                <img src="img/jieko.png" alt="">
+                <p>街口支付</p>
+              </div> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+</script>

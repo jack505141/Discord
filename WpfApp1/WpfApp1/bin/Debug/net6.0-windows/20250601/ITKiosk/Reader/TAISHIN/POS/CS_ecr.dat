@@ -1,0 +1,18 @@
+Com Port:COM4
+Baud Rate:115200
+Trans Bit:8
+Parity:N
+Stop Bit:1
+Time Out:60
+Error Times:3
+Delay Time:100
+Data Length:400
+Backup Day:90
+Debug Mode:0
+Show Log:0
+Record Log:1
+Language:1
+AutoDebug:1
+ACKWaitSecond:2
+CardNoMask:0
+ErrorCodeFilename:CS_ErrorCode.dat

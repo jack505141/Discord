@@ -1,0 +1,70 @@
+<script type="text/x-template" id="template-Payment-main">
+  <div class="container">
+    <div class="processInfo d-flex flex-column" id="scanner" @keydown="scanKeyDown">
+      <div class="processTitle">
+        <p>
+          <!-- 訂單編號：{{orderListSerial}} -->
+          {{model.OrderNo}}：{{orderListSerial}}
+        </p>
+        <p>
+          <!-- 付款方式：{{payName}} -->
+          {{model.PaymentMethod}}：{{payName}}
+        </p>
+      </div>
+      <div class="processContent flex-fill d-flex flex-column">
+        <p style="line-height: 50px;" v-if="viewType === 'B'">{{model.PaymentMethodDesc}}</p>
+        <p style="line-height: 50px;" v-if="viewType === 'C' && !fontPayProc">{{model.FonPay}}</p>
+        <p style="line-height: 50px;" v-if="viewType === 'C' && fontPayProc">{{model.FonPayProcess}}</p>
+        <p style="line-height: 50px;" v-if="viewType === 'D'">{{model.CashPaymentMethodDesc}}</p>
+
+        <div class="row flex-fill ">
+          <div class="col-4">
+            <div class="d-flex flex-column justify-content-end h-100" style="padding-bottom: 40px;">
+              <button v-if="viewType === 'C'"
+                @click="PaymentCancel()"
+                class="btn btn-outline-success" style="font-size: 30px;">
+                {{model.QuitPay}}
+              </button>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="d-flex flex-column h-100 justify-content-between">
+              <img v-if="viewType === 'B' && (showImgType === 'N' || showImgType === 'E')" src="img/p_pay.png" alt="" style="align-self: center; width: 313px;" @click="byPass()">
+              <img v-if="viewType === 'C'" src="img/p_scan.png" alt="" @click="byPass()">
+              <img v-if="viewType === 'D'" src="img/p_ictcash.png" alt="" style="align-self: center; width: 313px;" @click="byPass()">
+              <div v-if="viewType === 'D'" class="processDetail d-flex flex-column justify-content-around h-100" style="align-self: center; width: 313px; padding: 20px 0;">
+                <div class="d-flex justify-content-between" style="align-self: center; width: 100%; padding-top: 5px; color: #003F7B;"><p>{{model.CashPayTotal}}</p> <p>NT${{kiosk.status.ticketTotalAmt}}</p></div>
+                <div class="d-flex justify-content-between" style="align-self: center; width: 100%; padding-top: 5px;"><p>{{model.CashPaid}}</p> <p>NT${{kiosk.status.cashPaid}}</p></div>
+                <div class="d-flex justify-content-between" style="align-self: center; width: 100%; padding-top: 5px; color: #003F7B;"><p>{{model.ExpectedCash}}</p> <p>NT${{kiosk.status.expectedCash}}</p></div>
+              </div>
+              <div class="d-flex flex-column justify-content-end h-100" style="">
+                <button v-if="viewType === 'D' && IsShowCancelBtn"
+                @click="PaymentCancel()"
+                class="btn btn-outline-success" style="font-size: 30px;">
+                {{model.QuitPay}}
+                </button>
+                <button v-if="viewType === 'D' && !IsShowCancelBtn"
+                class="btn" style="font-size: 30px; border: 1px solid transparent; background-color: transparent; color: transparent;" disabled>
+                {{model.QuitPay}}
+                </button>
+              </div>
+              <p class="processTime">
+                <!-- <i class="icon-back" aria-hidden="true"></i> -->
+                <img src="img/Timer.png" alt="" style="width: 24px; padding: 10px 0; margin-right: 10px;">{{showTime}}
+              </p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="processDetail d-flex flex-column justify-content-end h-100" style="padding-bottom: 40px;">
+              <p>
+                <!-- 支付總額 -->
+                {{model.PayTotal}}
+              </p>
+              <p class="billPrice">NT${{kiosk.status.ticketTotalAmt}}</p>
+            </div>
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</script>

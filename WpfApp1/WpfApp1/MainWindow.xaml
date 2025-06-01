@@ -18,7 +18,9 @@
             <RowDefinition Height="Auto"/>
             <!-- Buttons -->
             <RowDefinition Height="*"/>
-            <!-- Status Section -->
+            <!-- Status -->
+            <RowDefinition Height="Auto"/>
+            <!-- Footer: Back button -->
         </Grid.RowDefinitions>
 
         <!-- Header Section -->
@@ -26,6 +28,13 @@
             <TextBlock Text="Git 安裝更新工具" FontSize="20" FontWeight="Bold" Foreground="#3F51B5"/>
             <Separator Margin="0,10,0,10"/>
         </StackPanel>
+        <TextBlock x:Name="CurrentJsonLabel"
+                   Grid.Row="0"
+                   Text="目前未載入儲存檔案"
+                   Margin="0,45,10,10"
+                   Foreground="Gray"
+                   FontSize="12"
+                   FontStyle="Italic" Grid.RowSpan="2"/>
 
         <!-- Input Section -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,20">
@@ -50,15 +59,17 @@
                     Margin="5" Click="Assemble_Click"/>
             <Button x:Name="AssembleKiosk" Content="📦 一鍵更新" Width="150" Height="40" FontSize="14"
                     Background="Red" Foreground="White" BorderThickness="0" Cursor="Hand"
-                    Margin="5" Click="ALL_Assemble_Click" Visibility="Collapsed"/>
+                    Margin="5" Click="ALL_Assemble_Click" />
             <Button x:Name="ModifyReg" Content="備份kiosk" Width="150" Height="40" FontSize="14"
                     Background="Gray" Foreground="White" BorderThickness="0" Cursor="Hand"
                     Margin="5" Click="Backup_Click"/>
             <Button x:Name="modifyconfig" Content="更改kiosk Config" Width="150" Height="40" FontSize="14"
                     Background="pink" Foreground="White" BorderThickness="0" Cursor="Hand"
                     Margin="5" Click="Modifyconfig_Click"/>
+            <Button x:Name="ModifyReg1" Content="更新歷史紀錄" Width="150" Height="40" FontSize="14"
+                    Background="DarkGreen" Foreground="White" BorderThickness="0" Cursor="Hand"
+                    Margin="5" Click="History_Search"/>
         </WrapPanel>
-      
 
         <!-- Status Section -->
         <StackPanel Grid.Row="3" Margin="0,20,0,0">
@@ -67,8 +78,27 @@
                      IsReadOnly="True" VerticalScrollBarVisibility="Auto"
                      Padding="10" BorderBrush="#BDBDBD" BorderThickness="1"/>
         </StackPanel>
+
+        <!-- 回上一頁 -->
+        <StackPanel Orientation="Horizontal"
+            Grid.Row="4"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            Margin="0,10,0,10">
+
+            <Button Content="儲存Config"
+            Width="100" Height="30"
+            Margin="0,0,10,0"
+            Click="SaveCurrentSelection_Click"/>
+
+            <ComboBox x:Name="JsonSelector"
+              Width="200"
+             />
+        </StackPanel>
+
+        <!-- 遮罩處理中 -->
         <Grid Name="LoadingOverlay" Background="#AA000000"
-          Visibility="Collapsed" Panel.ZIndex="999" Margin="-17,-14,-18,-19" Grid.RowSpan="4">
+              Visibility="Collapsed" Panel.ZIndex="999" Margin="-17,-14,-18,-19" Grid.RowSpan="5">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="處理中，請稍候..." FontSize="16" Foreground="White"/>
                 <ProgressBar IsIndeterminate="True" Width="200"/>
@@ -76,6 +106,3 @@
         </Grid>
     </Grid>
 </Window>
-
-
-

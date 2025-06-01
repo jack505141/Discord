@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Parameter_Set>
+<KMS_INFO>
+
+    <ftp_ip>http://35.234.59.99/FontripTicketingWeb/</ftp_ip>
+    <ftp_port>21</ftp_port>
+    <ftp_userid>fonticket</ftp_userid>
+    <ftp_userpwd>fonticket123</ftp_userpwd>
+    <server_path>UploadFile</server_path>
+
+    <kiosk_register_id>ca53e3cb-16fd-467e-91ec-e0774d33c3d7</kiosk_register_id>
+    <kiosk_path>C:\\ITKiosk\\</kiosk_path>
+    <kiosk_kill>C:\\ITKiosk\\Tool\\KillMainApModule.exe</kiosk_kill>
+    <kiosk_start>C:\\ITKiosk\\EXE_KIOSK.BAT</kiosk_start>
+    <getjob>http://35.234.59.99/FontripTicketingWeb/API/GetSyncFileList.ashx</getjob>
+    <updatejob>http://35.234.59.99/FontripTicketingWeb/API/UpdateSyncFileList.ashx</updatejob>
+
+    <kiosk_type>2</kiosk_type>
+    <kiosk_id>1</kiosk_id>
+    <kiosk_monitor>http://218.32.44.153/CGMHPAY/Report/kioskMonitor</kiosk_monitor>
+
+</KMS_INFO>
+</Parameter_Set>

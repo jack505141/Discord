@@ -1,0 +1,98 @@
+<script type="text/x-template" id="template-mainMenu-main">
+  <div>
+      <template v-if="((kiosk.systemSetting && kiosk.systemSetting.Maintenance) || overWorkTime)">
+          <div >
+              <div  @touchstart="handleTouch" @keydown="handleTouch">
+              <div class="SFNAV">
+                  <header>
+                      <!-- <div v-if="!CONNECTSTATUS" class="networkStatusPrompt">網路不穩中，請稍候再試</div> -->
+                      <!-- <div v-if="!CONNECTSTATUS" class="networkStatusPrompt">網路不穩中，請稍候再試</div> -->
+                      <div class="d-flex" style="width: 250px; visibility: hidden;">
+                          <i class="icon-back" aria-hidden="true"></i>
+                          BACK
+                      </div>
+                      <div class="logo">
+                          <img height="52px" src="img/logo.png">
+                      </div>
+                      <div class="d-flex" style="width: 250px;">
+                          <div class="text-right">
+                              <div>{{clockT}}</div>
+                              <div class="date">{{clockD}}</div>
+                          </div>
+                          <i style="visibility: hidden;"
+                             @mousedown="goHome()" class="icon-home" aria-hidden="true"></i>
+                      </div>
+                  </header>
+              </div>
+              <div class="Main" style='background: no-repeat url("./img/pic_outofservice.png")'>
+                  <input @click="goAdmin()" value="" readonly
+                         style="position:absolute;border:0px solid white;height:60px; width:60px;top:0px;left:0px;background-color:transparent;z-index:2" />
+
+                  <div class="d-flex flex-column justify-content-start text-right">
+                      <!-- <p v-if="kiosk.status.APIresponse.posEnablePayment" class="my-0 mr-4" style="font-size: 28px; color: white;">
+                    #{{kiosk.status && kiosk.status.APIresponse.posEnablePayment && kiosk.status.APIresponse.posEnablePayment.apiLogId}}
+                </p> -->
+                      <p v-if="ReveivePrinter" class="my-0 mr-4" style="font-size: 28px; color: white;">
+                          {{ReveivePrinter}}
+                      </p>
+                      <p v-if="TicketPrinter" class="my-0 mr-4" style="font-size: 28px; color: white;">
+                          {{TicketPrinter}}
+                      </p>
+                      <p v-if="Details" class="my-0 mr-4" style="font-size: 28px; color: white;">
+                          {{Details}}
+                      </p>
+                      <p v-if="Invoice" class="my-0 mr-4" style="font-size: 28px; color: white;">
+                          {{Invoice}}
+                      </p>
+                      <p v-if="Ticket" class="my-0 mr-4" style="font-size: 28px; color: white;">
+                          {{Ticket}}
+                      </p>
+                      <p v-if="Network" class="my-0 mr-4" style="font-size: 28px; color: white;">
+                          {{Network}}
+                      </p>
+                      <!-- <div style="font-size: 52px; font-weight: 600; color: #ECECEC;" class="align-self-center mt-3">請至鄰近櫃檯購票</div>
+                <div style="font-size: 52px; font-weight: 600; color: #ECECEC;" class="align-self-center mb-3">Please buy tickets at the near counter.</div>
+                <div style="font-size: 42px; font-weight: 600; color: #ECECEC;" class="align-self-center">售票機停止服務</div>
+                <div style="font-size: 42px; font-weight: 600; color: #ECECEC;" class="align-self-center mb-3">Out Of Service</div>
+                <img style="height: 145px; width: 168px;" class="align-self-center my-3" src="img/warning.png" alt="">
+                <div style="font-size: 28px; font-weight: 600; color: #ECECEC;" class="my-2">錯誤代碼:#123-4567890</div> -->
+                  </div>
+               </div>
+              </div>
+          </div>
+          <!--<div v-else>
+              
+              <div style="background-color: black; height: 100vh; width: 100vw; position: fixed; top: 0; left: 0; z-index: 9999;">
+                  
+                
+                 
+              </div>
+          </div>-->
+      </template>
+      <template v-else>
+          <div class="Main Bg">
+              <input @click="goAdmin()" value="" readonly
+                  style="position:absolute;border:0px solid white;height:60px; width:60px;top:0px;left:0px;background-color:transparent;z-index:2" />
+              <!-- <input @click="kiosk.API.idle.GoHome()" value="" readonly
+                  style="position:absolute;border:0px solid white;height:30px; width:30px;top:0px;right:0px;background-color:red;z-index:2" /> -->
+              <div class="WelcomeTitle">
+                  <div class="TicktVending">
+                      歡迎使用電子售票機<br>
+                      E-TICKET VENDING MACHINE
+                  </div>
+              </div>
+              <div class="ChioceLanguage">
+                  <div class="LanguageLogo">
+                      <img src="./img/image 18.png" alt="">
+                  </div>
+                  <div class="Language">
+                      <div @mousedown="changeLanguage(1)" class="Language_btn Language_btnPadding ">開始購票</div>
+                      <div @mousedown="changeLanguage(2)" class="Language_btn Language_btnCN">Buy Tickets</div>
+                      <div @mousedown="changeLanguage(3)" class="Language_btn ">チケット購入</div>
+                      <div @mousedown="changeLanguage(4)" class="Language_btn Language_btnPadding ">티켓구매</div>
+                  </div>
+              </div>
+          </div>
+      </template>
+  </div>
+</script>

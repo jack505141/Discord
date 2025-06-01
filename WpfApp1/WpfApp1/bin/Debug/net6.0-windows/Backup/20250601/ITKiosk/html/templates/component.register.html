@@ -1,0 +1,40 @@
+<script type="text/x-template" id="template-register-main">
+
+<div class="register">
+    <header>
+        <div class="Ticket-logo">
+            <img src="./img/FonTicket_p22 1.png" alt="123">
+        </div>
+    </header>
+    <div class="container">
+        <div class="section d-flex justify-content-center align-items-center flex-column system-con "
+            style="width: 718; height: 348px;">
+            <div class="card w-100" style=" border-radius: 20px;">
+                <div class="card-header  text-center bg-color" style="border-radius: 20px 20px 0 0;">
+                    <h2 class="text-white font-weight-bold mb-0 ">請依照下列步驟設定你的設備</h2>
+                </div>
+                <div class="card-body ">
+                    <h4 class="card-title title-color">1. 登入系統後台</h4>
+                    <h4 class="card-title title-color">2. 選擇所在的銷售「<span class="text-color font-weight-bold">站點</span>」
+                    </h4>
+                    <h4 class="card-title title-color">3. 選擇所在的銷售「<span class="text-color font-weight-bold">群組</span>」
+                    </h4>
+                    <h4 class="card-title title-color">4. 新增自動售票機設備, 並輸入序號「
+                        <span class="text-color font-weight-bold word-wrap">{{checkDevice.merchantDeviceList[0].device.authCode}}</span>」
+                    </h4>
+                    <h4 class="card-title title-color">5. 重新驗證</h4>
+                </div>
+            </div>
+            <div @mousedown="goNext()" class="btn btn-block bg-color font-weight-bold py-3 mt-4 mb-0"
+                style="border-radius: 20px;">
+                <h2 class="font-weight-bold mb-0 text-white" style="margin-bottom: 65px;">進行驗證</h2>
+            </div>
+            <div class="text-center">
+                <h4 class="font-weight-bold mt-4 mb-0 notify" style="color:#FF2D55;">尚未綁定,
+                    請再確認已通知相關人員設定後再按下按鈕</h4>
+            </div>
+        </div>
+    </div>
+    <footer></footer>
+</div>
+</script>

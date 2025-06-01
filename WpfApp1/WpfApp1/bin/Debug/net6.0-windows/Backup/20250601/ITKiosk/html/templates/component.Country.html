@@ -1,0 +1,36 @@
+<script type="text/x-template" id="template-Country-main">
+  <div class="d-flex mt-2 justify-content-center">
+    <div class="CountryBox">
+      <div class="Please mt-2 mb-2">{{model.Title}}</div>
+      <div class="swiper-Country" style="width:100%;overflow: hidden; height: 500px; position: relative;">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <template v-for="(item, index) in Country[kiosk.systemSetting.lang]">
+              <p class="State">{{item.title}}</p>
+              <div class="">
+                <div class="row justify-content-start">
+                  <template v-for="(country, index) in item.countrys">
+                    <div class="Country p-3" @mousedown="selCountry(country)">
+                      <!-- <div>
+                        ASDAS
+                      </div> -->
+                      <!-- <img :src="'./img/country/' + country.imgName" alt="">
+                      <span>ASDASDASD </span> -->
+                      <div 
+                      class="d-flex justify-content-center align-items-center"
+                      style="background-repeat: no-repeat; background-size: cover; width: 408px; height: 66px;"
+                      :style="'background-image: url(./img/country/' + country.imgName + ')'">
+                        {{country.text}}
+                      </div>
+                    </div>
+                  </template>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+        <div class="swiper-scrollbar" style=""></div>
+      </div>
+    </div>
+  </div>
+</script>

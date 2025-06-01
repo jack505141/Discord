@@ -1,0 +1,236 @@
+﻿<THERMAL_TEMPLATE>  
+  <THERMAL_PRINT id="Ticket">
+    <THERMAL_PAGE>
+	<THERMAL_BITMAP file="C:\ITKiosk\html\img\Ticket.bmp" alignment="center" size="400"></THERMAL_BITMAP>
+	<THERMAL_TEXT>\r\n</THERMAL_TEXT>
+    <THERMAL_QRCODE alignment="center">{{redeemCode}}</THERMAL_QRCODE>
+    <THERMAL_TEXT alignment="center">\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT alignment="center">{{productName}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT alignment="center" bold='true' wide_character="2">{{ticketTypeName}}\r\n\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT alignment="center" bold='true'>{{paymentSettingListName}} NT${{salePriceStr}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT alignment="center">{{printDate}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>{{generateStr}}</THERMAL_TEXT>
+	<THERMAL_TEXT alignment="center">----------------------------------\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>{{memoStr}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT alignment="center">{{ticketNumber}} | {{redeemCode}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT alignment="center">{{now}}印[序{{serialNum}}]{{recall}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>\r\n\r\n\r\n\r\n</THERMAL_TEXT>
+    </THERMAL_PAGE>
+  </THERMAL_PRINT>
+  
+  <THERMAL_PRINT id="Payment">
+    <THERMAL_PAGE>
+	<THERMAL_BITMAP file="C:\ITKiosk\html\img\Payment.bmp" alignment="center" size="400"></THERMAL_BITMAP>
+    <THERMAL_TEXT alignment="center">\r\n入場憑證:\r\n</THERMAL_TEXT>
+    <THERMAL_QRCODE alignment="center">{{paymentRedeemCode}}</THERMAL_QRCODE>
+	<THERMAL_TEXT alignment="center">\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT alignment="center">使用期限 : 以現場公告為準\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>{{generateStr}}</THERMAL_TEXT>
+	<THERMAL_TEXT>----------------------------------\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>{{memoStr}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>----------------------------------\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT alignment="center">交易明細\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>訂單編號 : {{paymentNumber}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>交易日期 : {{paidDate}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>出票設備 : {{saleDeviceCode}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>付款方式 : {{paymentSettingListName}} ${{paymentSettingListPrice}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>買方統編 : {{Unified}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>發票號碼 : {{invoiceNumber}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>載具類型 : {{invoiceDeviceTypeName}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>==================================</THERMAL_TEXT>
+	<THERMAL_TEXT>  品項                 $單價/數量  </THERMAL_TEXT>
+	<THERMAL_TEXT>==================================</THERMAL_TEXT>
+	<THERMAL_TEXT>{{DgenerateStr}}</THERMAL_TEXT>
+	<THERMAL_TEXT>----------------------------------</THERMAL_TEXT>
+	<THERMAL_TEXT>合計 {{totalCount}} 項 | 應收總額 ${{totalPrice}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>{{taxInfo}}</THERMAL_TEXT>
+	<THERMAL_TEXT>==================================\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>{{kioskInvoice}}</THERMAL_TEXT>
+	<THERMAL_TEXT alignment="center">{{paymentNumber}} | {{paymentRedeemCode}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT alignment="center">{{now}}印[序{{serialNum}}]{{recall}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>\r\n\r\n\r\n\r\n</THERMAL_TEXT>
+    </THERMAL_PAGE>
+  </THERMAL_PRINT>
+  
+  <THERMAL_PRINT id="Payment-NoDetail">
+    <THERMAL_PAGE>
+	<THERMAL_BITMAP file="C:\ITKiosk\html\img\Payment.bmp" alignment="center" size="400"></THERMAL_BITMAP>
+    <THERMAL_TEXT alignment="center">\r\n入場憑證:\r\n</THERMAL_TEXT>
+    <THERMAL_QRCODE alignment="center">{{paymentRedeemCode}}</THERMAL_QRCODE>
+	<THERMAL_TEXT alignment="center">\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT alignment="center">使用期限 : 以現場公告為準\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>{{generateStr}}</THERMAL_TEXT>
+	<THERMAL_TEXT>----------------------------------\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>{{memoStr}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>==================================\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>{{kioskInvoice}}</THERMAL_TEXT>
+	<THERMAL_TEXT alignment="center">{{paymentNumber}} | {{paymentRedeemCode}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT alignment="center">{{now}}印[序{{serialNum}}]{{recall}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>\r\n\r\n\r\n\r\n</THERMAL_TEXT>
+    </THERMAL_PAGE>
+  </THERMAL_PRINT>
+
+  <THERMAL_PRINT id="Details">
+    <THERMAL_PAGE>
+    <THERMAL_TEXT alignment="center">{{merchantName}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT alignment="center">交易明細\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>訂單編號 : {{paymentNumber}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>交易日期 : {{paidDate}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>出票設備 : {{saleDeviceCode}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>付款方式 : {{paymentSettingListName}} ${{paymentSettingListPrice}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>買方統編 : {{Unified}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>發票號碼 : {{invoiceNumber}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>載具類型 : {{invoiceDeviceTypeName}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT alignment="center">================================\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>品項                    $單價/數量\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT alignment="center">================================\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>{{generateStr}}</THERMAL_TEXT>
+	<THERMAL_TEXT alignment="center">--------------------------------\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>合計 {{totalCount}} 項 | 應收總額 ${{totalPrice}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>{{taxInfo}}</THERMAL_TEXT>
+	<THERMAL_TEXT alignment="center">================================\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT alignment="center">{{kioskInvoice}}</THERMAL_TEXT>
+	<THERMAL_TEXT alignment="center">{{now}}印 {{recall}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>\r\n\r\n\r\n\r\n</THERMAL_TEXT>
+    </THERMAL_PAGE>
+  </THERMAL_PRINT>
+  
+  <THERMAL_PRINT id="PrintLogoutReport">
+    <THERMAL_PAGE>
+    <THERMAL_TEXT alignment="center">換班交接表\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>----------------------------------\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>{{dateTimeRange}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>操作人員 : {{userName}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>----------------------------------\r\n</THERMAL_TEXT>
+	
+	<THERMAL_TEXT>{{generateStrPrice}}</THERMAL_TEXT>
+	
+
+	<THERMAL_TEXT>----------------------------------\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>----------------------------------\r\n</THERMAL_TEXT>
+
+	<THERMAL_TEXT>{{generateStr}}</THERMAL_TEXT>
+	<THERMAL_TEXT>繳款人 : ____________________\r\n\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>經辦   : ____________________\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT alignment="center">{{deviceName}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT alignment="center">{{now}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>\r\n\r\n\r\n\r\n</THERMAL_TEXT>
+    </THERMAL_PAGE>
+  </THERMAL_PRINT>
+
+  <THERMAL_PRINT id="PrintTodayReport">
+    <THERMAL_PAGE>
+    <THERMAL_TEXT alignment="center">今日帳務報表\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>----------------------------------\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>{{dateTimeRange}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>操作人員 : {{userName}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>----------------------------------\r\n</THERMAL_TEXT>
+	
+	<THERMAL_TEXT>{{generateStrPrice}}</THERMAL_TEXT>
+	
+	<THERMAL_TEXT>----------------------------------\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>----------------------------------\r\n</THERMAL_TEXT>
+
+	<THERMAL_TEXT>{{generateStr}}</THERMAL_TEXT>
+	
+	<THERMAL_TEXT alignment="center">{{deviceName}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT alignment="center">{{now}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>\r\n\r\n\r\n\r\n</THERMAL_TEXT>
+    </THERMAL_PAGE>
+  </THERMAL_PRINT>
+
+  <THERMAL_PRINT id="Refund">
+    <THERMAL_PAGE>
+    <THERMAL_TEXT alignment="center">電子發票銷貨退回、進貨退出或折讓證明單\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT alignment="center">{{RefundDate}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>賣方統編:{{SellerUniformNum}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>賣方名稱:{{SellerName}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>發票開立日:{{RefundInvoiceDate}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>發票號碼:{{RefundInvoiceNum}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>買方統編:{{BuyerUniformNum}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>買方名稱:{{BuyerName}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT>{{generateStr}}</THERMAL_TEXT>
+	<THERMAL_TEXT>列印日期:{{PrintDate}}</THERMAL_TEXT>
+	<THERMAL_TEXT>\r\n\r\n\r\n\r\n</THERMAL_TEXT>
+    </THERMAL_PAGE>
+  </THERMAL_PRINT>
+  
+  <THERMAL_PRINT id="CreditCardReceipt-Fossil">
+    <THERMAL_PAGE>
+    <THERMAL_TEXT wide_character="2" bold='true'>{{credit_type}}\r\n</THERMAL_TEXT>
+	<THERMAL_TEXT alignment="center" bold='true'>{{bank_name}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT alignment="center" bold='true'>{{CorporationName}}\r\n\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT alignment="center" wide_character="2" bold='true'>-----------------\r\n\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT bold='true'>{{card_type}}顧客收執聯\r\n\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>卡別：{{card_type}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>商店代號：{{store_type}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>端末機號：{{terminal}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>{{card_type}}卡號：{{card_no}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>授權號碼：{{approval_code}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>交易日期：{{trans_date}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>交易時間：{{trans_time}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>調閱編號：{{invoice_no}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>交易序號：{{ref_no}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>交易前餘額：NT${{balance_before}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>自動加值金額：NT${{autoload_amt}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>交易金額：NT${{trans_amt}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>交易後餘額：NT${{balance_after}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT alignment="center">\r\n***客戶收據 Customer Copy ***\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>{{remark}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>\r\nI AGREE TO PAY TOTAL AMOUNT\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>ACCORDING TO CARD ISSUER AGREEMENT\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>NO SIGNATURE REQUIRED\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT alignment="center">----------------------------------\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>列印時間：{{print_time}}\r\n</THERMAL_TEXT>
+    <THERMAL_TEXT>\r\n\r\n\r\n\r\n</THERMAL_TEXT>
+    </THERMAL_PAGE>
+  </THERMAL_PRINT>
+  
+  <THERMAL_PRINT id="CreditCardSignature">
+    <THERMAL_PAGE>
+      <THERMAL_BITMAP file="C:\ITKiosk\html\img\bank.bmp" alignment="center" size="200"></THERMAL_BITMAP>
+      <THERMAL_TEXT wide_character="2" bold='true' alignment="center">\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT wide_character="2" bold='true' alignment="center">-----------------\r\n\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT bold='true' alignment="center">信用卡顧客收執聯\r\n\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>卡別：{{card_name}}\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>商店代號：{{merchant_id}}\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>端末機號：{{terminal}}\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>信用卡號：{{card_no}}\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>交易類別：{{trans_type}}\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>授權號碼：{{approval_code}}\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>交易日期：{{trans_date}}\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>交易時間：{{trans_time}}\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>調閱編號：{{invoice_no}}\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>交易序號：{{ref_no}}\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>交易金額：NT${{trans_amt}}\r\n\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>***客戶收據 Customer Copy ***\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>----------------------------------\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>\r\nI AGREE TO PAY TOTAL AMOUNT\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>ACCORDING TO CARD ISSUER AGREEMENT\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>----------------------------------\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>列印時間：{{print_time}}\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>\r\n\r\n\r\n\r\n</THERMAL_TEXT>
+    </THERMAL_PAGE>
+  </THERMAL_PRINT>
+
+  <THERMAL_PRINT id="CashBalanceRecordChart">
+    <THERMAL_PAGE>
+      <THERMAL_TEXT alignment="center">現金水位紀錄表\r\n</THERMAL_TEXT>
+	    <THERMAL_TEXT alignment="center">================================\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>結帳時間 : {{currentTime}}\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>\r\n</THERMAL_TEXT>
+	    <THERMAL_TEXT>小計 : {{cashTotal}}\r\n</THERMAL_TEXT>
+	    <THERMAL_TEXT>1元 : {{cc1_stock_now}} 枚 ({{cc1Total}}元)\r\n</THERMAL_TEXT>
+	    <THERMAL_TEXT>5元 : {{cc5_stock_now}} 枚 ({{cc5Total}}元)\r\n</THERMAL_TEXT>
+	    <THERMAL_TEXT>10元 : {{cc10_stock_now}} 枚 ({{cc10Total}}元)\r\n</THERMAL_TEXT>
+	    <THERMAL_TEXT>50元 : {{cc50_stock_now}} 枚 ({{cc50Total}}元)\r\n</THERMAL_TEXT>
+	    <!--<THERMAL_TEXT>100元 : {{nd_stock_now}} 枚 ({{ndTotal}}元)\r\n</THERMAL_TEXT>-->
+      <THERMAL_TEXT>\r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>\r\n</THERMAL_TEXT>
+		  <THERMAL_TEXT>還款人 : _____________________ \r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>\r\n</THERMAL_TEXT>
+		  <THERMAL_TEXT>經  辦 : _____________________ \r\n</THERMAL_TEXT>
+      <THERMAL_TEXT>\r\n\r\n\r\n\r\n</THERMAL_TEXT>
+    </THERMAL_PAGE>
+  </THERMAL_PRINT>
+</THERMAL_TEMPLATE>

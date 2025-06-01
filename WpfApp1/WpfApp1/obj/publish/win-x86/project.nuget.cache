@@ -1,11 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "5OVZW5hmS5pKhB8b6isOfpL4PrIMnuCiJ9ppy0z+XnjcQsRJgX6ZjIIWw0nGzhi94j1UNQ4N7qSmBsd4Po2X8Q==",
+  "dgSpecHash": "1jU02z/Etgb2eeQeB49iQckRF4lI6I/0btDlnAGzjAtc5QkKVSvuo0T49+ffLijm6P5mCV6MVr9ckvgDWmopFg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Administrator\\Desktop\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\libgit2sharp\\0.31.0\\libgit2sharp.0.31.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\libgit2sharp.nativebinaries\\2.0.323\\libgit2sharp.nativebinaries.2.0.323.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.web.webview2\\1.0.3124.44\\microsoft.web.webview2.1.0.3124.44.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\system.reactive\\6.0.1\\system.reactive.6.0.1.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\system.reactive.windows.forms\\6.0.1\\system.reactive.windows.forms.6.0.1.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\system.windows.forms.ribbon35\\3.5.8\\system.windows.forms.ribbon35.3.5.8.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\wpfanimatedgif\\2.0.2\\wpfanimatedgif.2.0.2.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x86\\6.0.32\\microsoft.netcore.app.runtime.win-x86.6.0.32.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x86\\6.0.32\\microsoft.windowsdesktop.app.runtime.win-x86.6.0.32.nupkg.sha512",
@@ -19,6 +24,26 @@
       "warningLevel": 1,
       "message": "已使用 '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' 而非專案目標架構 'net6.0-windows7.0' 還原了套件 'LibGit2Sharp 0.31.0'。此套件與您的專案並非完全相容。",
       "libraryId": "LibGit2Sharp",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "已使用 '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' 而非專案目標架構 'net6.0-windows7.0' 還原了套件 'System.Reactive.Windows.Forms 6.0.1'。此套件與您的專案並非完全相容。",
+      "libraryId": "System.Reactive.Windows.Forms",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "已使用 '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' 而非專案目標架構 'net6.0-windows7.0' 還原了套件 'System.Windows.Forms.Ribbon35 3.5.8'。此套件與您的專案並非完全相容。",
+      "libraryId": "System.Windows.Forms.Ribbon35",
       "targetGraphs": [
         "net6.0-windows7.0"
       ]

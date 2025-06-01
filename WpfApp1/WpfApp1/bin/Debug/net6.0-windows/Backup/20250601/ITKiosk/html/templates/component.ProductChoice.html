@@ -1,0 +1,61 @@
+<script type="text/x-template" id="template-ProductChoice-main">
+  <div class="content">
+    <span @click="initSwiper()" class="PJTitle" style="color: white; font-size: 44px;">{{model.SelectProduct}}</span>
+    <div class="d-flex m-2">
+      <div class="swiper-sessionItemSp" style="width: 100%; overflow: hidden; margin-top: 0px; position: relative;">
+        <div class="swiper-wrapper d-flex my-2">
+          <div class="swiper-slide categorys" v-for="item in posSaleProductListCategory" style="width: auto;">
+            <!-- <div class="d-flex my-3 mx-0 categorys"> -->
+            <!-- :class="{active: item.name === defaultCategory}"
+              @click="changeCategory(item)"-->
+            <button :class="{active: item.name === defaultCategory}" @click="changeCategory(item)"
+            :style="{'width': item.name === 'ALL' ? '182px' :'270px'}"
+              >{{item.name}}</button>
+            <!-- </div> -->
+          </div>
+          <!-- TEST START -->
+          <!-- TEST E N D -->
+        </div>
+        <div class="swiper-scrollbar" style=""></div>
+      </div>
+    </div>
+
+    <!-- <div class="slide">
+      <i class="icon-slide" aria-hidden="true"></i>
+    </div> -->
+
+    <div class="swiper-posMainMenu" style="width:100%;overflow: hidden; height: 500px; position: relative;">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <ul class="itemsG">
+            <li @mousedown="posChooseProduct(item)" v-for="item in productListForView">
+              <img :src="item.mainPhotoPath.replace('.webp', '.jpg') + '?a=' + moment().unix()" alt="">
+              <div class="posTitle">
+                <p class="itemTitle">{{item.saleProductName}}</p>
+              </div>
+              <div class="posPrice">
+                <!-- <p class="price">NT 200,000</p> inventory -->
+                <template v-if="item.isSoldOut">
+                  <p class="price" style="color: red;">
+                    {{model.SoldOut}}
+                  </p>
+                </template>
+                <template v-else>
+                  <template>
+                    <p class="price" v-if="item.minSalePrice === item.maxSalePrice">
+                      NT {{item.minSalePrice}}
+                    </p>
+                    <p class="price" v-if="item.minSalePrice !== item.maxSalePrice">
+                      NT {{item.minSalePrice}} ~ NT {{item.maxSalePrice}}
+                    </p>
+                  </template>
+                </template>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="swiper-scrollbar" style=""></div>
+    </div>
+  </div>
+</script>

@@ -1,0 +1,106 @@
+<script type="text/x-template" id="template-MuseumID-main">
+  <div class="d-flex mt-2 justify-content-center">
+    <div class="box" id="scannerQuery" @keydown="scanKeyDown">
+      <div class="title">
+        <p class="IDtitle pt-2">{{model.Title}}</p>
+      </div>
+      <div class="Input">
+
+        <p class="InputPrompt">{{model.InputPrompt}} <span class="InputPrompt2">{{model.InputPromptText}}</span></p>
+        <input :type="maskInput?'password':'text'" class="IDinput pl-3 shadow-none" placeholder="" v-model='keyinValue' unselectable="on">
+        <img v-if="!maskInput" @click="switchMask()" src="img/icon_show.png" class="position-absolute"
+        style="right:450px;top:200px;z-index:5;">
+        <img v-if="maskInput" @click="switchMask()" src="img/icon_hide.png" class="position-absolute"
+        style="right:450px;top:200px;z-index:5;">
+
+      </div>
+      <div class="row justify-content-center">
+        <div class="keyboard row align-items-start">
+          <div class="keyboard__left">
+
+            <div v-if="currentCase === 'uppercase'">
+              <div class="key" @mousedown='keyin'>Q</div>
+              <div class="key" @mousedown='keyin'>W</div>
+              <div class="key" @mousedown='keyin'>E</div>
+              <div class="key" @mousedown='keyin'>R</div>
+              <div class="key" @mousedown='keyin'>T</div>
+              <div class="key" @mousedown='keyin'>Y</div>
+              <div class="key" @mousedown='keyin'>U</div>
+              <div class="key" @mousedown='keyin'>I</div>
+              <div class="key" @mousedown='keyin'>O</div>
+              <div class="key" @mousedown='keyin'>P</div>
+            </div>
+
+            <div v-if="currentCase === 'uppercase'">
+              <div class="key" @mousedown='keyin'>A</div>
+              <div class="key" @mousedown='keyin'>S</div>
+              <div class="key" @mousedown='keyin'>D</div>
+              <div class="key" @mousedown='keyin'>F</div>
+              <div class="key" @mousedown='keyin'>G</div>
+              <div class="key" @mousedown='keyin'>H</div>
+              <div class="key" @mousedown='keyin'>J</div>
+              <div class="key" @mousedown='keyin'>K</div>
+              <div class="key" @mousedown='keyin'>L</div>
+              <!-- <div class="key" @mousedown='keyin'>.</div> -->
+            </div>
+
+            <div v-if="currentCase === 'uppercase'">
+              <div class="key" @mousedown='keyin'>Z</div>
+              <div class="key" @mousedown='keyin'>X</div>
+              <div class="key" @mousedown='keyin'>C</div>
+              <div class="key" @mousedown='keyin'>V</div>
+              <div class="key" @mousedown='keyin'>B</div>
+              <div class="key" @mousedown='keyin'>N</div>
+              <div class="key" @mousedown='keyin'>M</div>
+              <!-- <div class="key" @mousedown='keyin'>(</div>
+                      <div class="key" @mousedown='keyin'>)</div>
+                      <div class="key" @mousedown='keyin'>_</div> -->
+            </div>
+
+            <div class="keyboard__bottom-line mt-2">
+              <div class="key keyboard__backspace clear" @mousedown='keyin' style="font-size: 40px;">{{model.Clear}}</div>
+              <!-- <div class="key keyboard__space" @mousedown='spaceKeyin'>&#32;</div> -->
+              <div class="key keyboard__backspace ml-2 delete" @mousedown='keyin' style="font-size: 40px;">{{model.Del}}</div>
+            </div>
+          </div>
+          <div class="keyboard__right">
+            <div>
+              <div class="key" @mousedown='keyin'>7</div>
+              <div class="key" @mousedown='keyin'>8</div>
+              <div class="key" @mousedown='keyin'>9</div>
+            </div>
+            <div>
+              <div class="key" @mousedown='keyin'>4</div>
+              <div class="key" @mousedown='keyin'>5</div>
+              <div class="key" @mousedown='keyin'>6</div>
+            </div>
+            <div>
+              <div class="key" @mousedown='keyin'>1</div>
+              <div class="key" @mousedown='keyin'>2</div>
+              <div class="key" @mousedown='keyin'>3</div>
+            </div>
+            <div>
+              <div class="key" @mousedown='keyin'>0</div>
+
+            </div>
+            <!-- <div>
+                      <div style="width:190px" v-if="currentCase === 'uppercase'" @mousedown='switchCase();'
+                          class="key-num keyboard__backspace">切英文小寫</div>
+                      <div style="width:190px" v-if="currentCase === 'lowercase'" @mousedown='switchCase();'
+                          class="key-num keyboard__backspace">切英文大寫</div>
+                  </div> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="GOnextBtn d-flex justify-content-center mt-5">
+        <div class="Cancel" @click="goBack()">
+          {{model.Cancel}}
+        </div>
+        <div class="Gonext ml-5" @click="goNext()">
+          {{model.Confirm}}
+        </div>
+      </div>
+    </div>
+  </div>
+</script>

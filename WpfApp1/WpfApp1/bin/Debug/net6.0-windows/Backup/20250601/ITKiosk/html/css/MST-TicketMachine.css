@@ -1,0 +1,489 @@
+/* ------------------------------------ */
+/* $Global Catalog */
+/* ------------------------------------ */
+/*
+ * $Reset
+ * $Font Import
+ * $Color
+ * $Components
+ */
+
+
+/* ------------------------------------ */
+/* $Page Catalog*/
+/* ------------------------------------ */
+/*
+ * $1ChoseLanguageStartToBuy
+ * $2ProductChoice
+
+*/
+
+
+/* ------------------------------------ */
+/* $Global Catalog Start*/
+/* ------------------------------------ */
+ /* ------------------------------ */
+/* $Reset */
+/* ------------------------------ */
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--font-en-regular), var(--font-ch-bold);
+    position: relative;
+    box-sizing: border-box;    
+}
+
+ /* ------------------------------ */
+/* $Font Import & size*/
+/* ------------------------------ */
+@font-face {
+    font-family: 'yugothib';
+    src:  url('../fonts/yugothib.woff') format("woff"),
+            url('../fonts/yugothib.woff2') format("woff2"),
+            url('../fonts/yugothib.ttf') format("truetype"),
+            url('../fonts/yugothib.eot') format("embedded-opentype"),
+            url('../fonts/yugothib.svg') format("svg");
+}
+@font-face {
+    font-family: 'yugothic';
+    src:  url('../fonts/yugothic.woff') format("woff"),
+            url('../fonts/yugothic.woff2') format("woff2"),
+            url('../fonts/yugothic.ttf') format("truetype"),
+            url('../fonts/yugothic.eot') format("embedded-opentype"),
+            url('../fonts/yugothic.svg') format("svg");
+}
+@font-face {
+    font-family: 'sf-ui-display-regular';
+    src:  url('../fonts/sf-ui-display-regular.woff') format("woff"),
+            url('../fonts/sf-ui-display-regular.woff2') format("woff2"),
+            url('../fonts/sf-ui-display-regular.ttf') format("truetype"),
+            url('../fonts/sf-ui-display-regular.eot') format("embedded-opentype"),
+            url('../fonts/sf-ui-display-regular.svg') format("svg");
+}
+@font-face {
+    font-family: 'sf-ui-display-bold';
+    src:  url('../fonts/sf-ui-display-bold.woff') format("woff"),
+            url('../fonts/sf-ui-display-bold.woff2') format("woff2"),
+            url('../fonts/sf-ui-display-bold.ttf') format("truetype"),
+            url('../fonts/sf-ui-display-bold.eot') format("embedded-opentype"),
+            url('../fonts/sf-ui-display-bold.svg') format("svg");
+}
+
+
+:root {
+    /* fonts */
+
+    /* 
+    游黑體 缺碰您 字重 300 600
+    yugothic
+    yugothib
+
+    設計圖使用的字體 San Francisco 只有英文
+    sf-ui-display-regular
+    sf-ui-display-bold
+
+    最方便完整 單用 補字用
+    Noto Sans TC 
+    */
+
+    /* 套用區 */
+    --font-ch-regular: 'yugothic';
+    --font-ch-bold: 'yugothib';
+    --font-en-regular: 'sf-ui-display-regular';
+    --font-en-bold: 'sf-ui-display-bold';
+}
+
+.font-size-big{ font-size: 52px; }
+
+
+/* ------------------------------ */
+/* $Color */
+/* ------------------------------ */
+:root{
+    /* Colors: */
+    --primary-color-7D0000: #003f7b;
+    --secondary-color: #fff;
+    --check-color: #7AC943;
+    --notice-color: #FF2D55;
+    --dark: #000;
+    --darkGray: #3b3a39;
+    --middleGray: #666;
+    --lightGray: #c4c4c4;
+    --light: #fff;
+}
+
+.font-primary-color{ color: #003f7b; }
+.font-secondary-color{ color: #fff; }
+.font-check-color{ color: #7AC943; }
+.font-notice-color{ color: #FF2D55; }
+.font-dark-color{ color: #000; }
+.font-darkGray-color{ color: #3b3a39; }
+.font-middleGray-color{ color: #666; }
+.font-lightGray-color{ color: #c4c4c4; }
+.font-light-color{ color: #fff; }
+
+
+ /* ------------------------------ */
+/* $Components */
+/* ------------------------------ */
+/* $ProductChoiceTicket */
+/* $moneyAndNext */
+/* $button */
+/* $Pop up components */
+/* ------------------------------ */
+.wrap{
+    width: 1366px;
+    height: 768px;
+    border: 1px solid black;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column;
+    background-color: var(--primary-color-7D0000);
+}
+
+.slide{
+    width: 5px;
+    height: 350px;
+    position: absolute;
+    top: 200px;
+    right: 40px;    
+    background-color: #fff;
+    border-radius: 100px;
+}
+.slide .icon-slide{
+    position: relative;
+    z-index: 100;
+    font-size: 48px;
+    right: -35px;
+    bottom: -370px;
+    color: #fff;
+}
+
+header{
+    height: 80px;
+    padding: 22px 30px 22px 20px;
+    background-color: var(--secondary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #666;
+}
+.backG{
+    display: flex;
+    align-items: center;
+}
+.backG i{
+    font-size: 24px;
+    margin-right: 15px;
+}
+.logo{
+    width: 390px;
+    height: 55px;
+    margin-left: 125px;
+    background-color: var(--primary-color-7D0000);
+}
+.dateAndHomeG{
+    display: flex;
+}
+.dateG{
+    text-align: right;
+}
+.date{
+    font-size: 20px;
+}
+i{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.icon-home{
+    margin-left: 35px;
+    font-size: 42px;
+}
+
+.productTypesG{
+    padding: 15px 0 0 30px;
+    overflow: hidden;
+}
+.productTypesG p{
+    margin-bottom: 15px;
+    font-size: 44px;
+    font-weight: 600;
+    color: #fff;
+}
+.typesG{
+    display: flex;
+    float: left;
+    margin-bottom: 20px;
+}
+.productTypesG button{
+    width: 350px;
+    padding: 10px 0;
+    background-color: var(--primary-color-7D0000);
+    border: 5px solid #fff;
+    color: #fff;
+    font-size: 30px;
+    border-radius: 20px;
+    box-sizing: content-box;
+}
+.productTypesG button:active{
+    background-color: #fff;
+    color: #666;
+}
+.typesG button + button{
+    margin-left: 10px;
+}
+.product{
+    padding: 20px;
+    background-color: #fff;
+    display: flex;
+    flex-flow: column;
+    border-radius: 20px;
+}
+.product img{
+    height: 240px;
+    width: 360px;
+    margin-bottom: 5px;
+}
+.product h3{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+.product .exhibitionDate{
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+.product .introductionText{
+    width: 355px;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.itemsG{
+    padding: 0 70px 0 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.itemsG .item{
+    width: 395px;
+    height: 390px;
+    margin-bottom: 25px;
+    padding: 20px 15px;
+    border-radius: 20px;
+    background-color: #fff;
+    color: #666;
+    display: flex;
+    flex-flow: column;
+}
+.itemsG .item:nth-child(3n-1), .item:nth-child(3n){
+    margin-left: 35px;
+}
+.item img{
+    width: 360px;
+    height: 240px;
+}
+.item .itemTitle{
+    font-size: 30px;
+}
+.item .price{
+    align-self: flex-end;
+    color: var(--primary-color-7D0000);
+    font-size: 28px;
+    font-weight: bold;
+}
+.contentainer{
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+/* ------------ $ProductChoiceTicket ------------*/
+.choiceTicketG{
+    margin-left: 25px;
+    margin-right: 50px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.ticketItemG{
+    width: 812px;
+    height: 483px;
+    padding: 3px 24px 3px 26px;
+
+    background-color: var(--secondary-color);
+    border-radius: 20px;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+    color: #666;
+}
+.ticketItem{
+    width: 100%;
+    height: 80px;
+    padding: 16px 0 15px 0;
+    background-color: inherit;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px dashed #666;
+}
+.ticketItem:last-child{
+    border: none;
+}
+.ticketNameG{
+    width: 100%;
+    text-align: left;
+}
+.ticketName{
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: -0.48px;
+    font-family: var(--font-en-bold), var(--font-ch-bold);
+}
+.ticketExplaination{
+    font-size: 14px;
+    line-height: 12px;
+    margin-top: 10px;
+    font-weight: 100;
+    letter-spacing: .3px;
+    font-family: var(--font-en-regular), 'Noto Sans TC';
+    font-family: var(--font-en-regular), var(--font-ch-regular);
+}
+
+.priceQuantityG{
+    font-size: 28px;
+    display: flex;
+    justify-content: space-between;
+}
+.ticketPrice{
+    font-family: var(--font-en-bold);
+}
+.choseTicketQuantityG{
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+}
+/* ------------ $moneyAndNext ------------*/
+.priceG{
+    display: flex;
+    font-size: 34px;
+    background-color: var(--check-color);
+    padding: 20px 0;
+    border-radius: 20px;
+}
+.moneyAndNextG{
+    width: 50%;
+    text-align: right;
+    margin-right: 25px;
+}
+.priceG button{
+    width: 50%;
+    background-color: var(--check-color);
+    border: none;
+    font-size: 34px;
+    color: var(--secondary-color);
+}
+.totalTicket, .totalMoney{
+    font-weight: 600;
+    font-family: var(--font-en-bold), var(--font-ch-bold);
+    color: var(--secondary-color);
+}
+.totalTicket{
+    font-size: 26px;
+}
+.totalMoney{
+    font-size: 34px;
+}
+
+/* ------------ $button ------------*/
+.btn{
+    width: 150px;
+    height: 65px;
+    margin-bottom: 10px;
+    border: 2px solid var(--unnamed-color-999999);
+    border-radius: 20px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    line-height: 28px;
+    font-family: var(--font-ch-regular);
+    letter-spacing: 1.2px;
+    font-weight: 300;
+}
+.btn-confirm{
+    width: 210px;
+    height: 50px;
+    background-color: var(--check-color);
+    border: none;
+    border-radius: 100px;
+    font-size: 24px;
+    font-family: var(--font-ch-bold);
+    color: var(--secondary-color);
+    align-self: center;
+}
+
+/* ------------ $pop up components ------------*/
+.networkStatusPrompt{
+    width: 520px;
+    padding: 5px;
+    background-color: #fff;
+    border: 1px solid red;
+    box-shadow: 5px 5px 15px rgba(0,0,0,.5);
+    text-align: center;
+    position: absolute;
+    top: 0;
+    right: 50%;
+    transform: translateX(50%);
+    z-index: 100;
+    border-radius: 0 0 20px 20px;
+}
+
+
+
+
+/* ------------------------------------ */
+/* $Global Catalog End*/
+/* ------------------------------------ */
+
+
+
+
+
+
+
+
+
+
+
+ /* ------------------------------------ */
+/* $Page Catalog Start*/
+/* ------------------------------------ */
+
+ /* ------------------------------ */
+/* $1ChoseLanguageStartToBuy */
+/* ------------------------------ */
+.startText{
+    width: 100%;
+    height: 125px;
+
+    font-size: 52px;
+    text-align: center;
+    line-height: 125px;
+}
+.LogoStarttobuyG{
+
+}
+
+
+ /* ------------------------------------ */
+/* $Page Catalog End*/
+/* ------------------------------------ */

@@ -1,0 +1,71 @@
+<script type="text/x-template" id="template-PaySuccess-main">
+  <div class="container">
+    <div class="processInfo d-flex flex-column">
+      <div class="processTitle">
+        <p>
+          <!-- 訂單編號：{{orderListSerial}} -->
+          {{model.OrderNo}}：{{orderListSerial}}
+        </p>
+        <p>
+          <!-- 付款方式：{{payName}} -->
+          {{model.PaymentMethod}}：{{payName}}
+        </p>
+      </div>
+      <div class="processContent flex-fill d-flex flex-column">
+        <template v-if="isDone">
+          <p style="line-height: 50px;">
+            <!-- 票券印製完成 -->
+            {{model.TicketPrinted}}
+            <br>
+            <!-- 請記得取票 -->
+            {{model.TicketPrintedDesc}}
+          </p>
+        </template>
+        <template v-else>
+          <p style="line-height: 50px;">
+            <!-- 付款成功 -->
+            {{model.PaymentPaid}}
+            <br>
+            <!-- 票卷列印中請稍候 -->
+            {{model.TicketPrinting}}
+          </p>
+        </template>
+
+        <div class="row flex-fill ">
+          <div class="col-4">
+            <div v-if="kiosk.status.posPayType.PayTypeAction.startsWith('ICTCash')" class="processDetail d-flex flex-column justify-content-end h-100" style="padding-bottom: 40px;">
+              <p>
+                <!-- 找零金額 -->
+                {{model.ChangeTotal}}
+              </p>
+              <p class="billPrice">NT${{changeAmt}}</p>
+            </div>
+            <div v-else class="d-flex flex-column justify-content-end h-100" style="padding-bottom: 40px;">
+              <p style="line-height: 50px;">
+              </p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="d-flex flex-column h-100 justify-content-between">
+              <img src="img/bg_ticket_out.png" alt=""style="align-self: center; width: 200px;">
+              <button v-if="isDone"
+                @click="BuyContinue()"
+                class="btn btn-outline-success" style="font-size: 30px;">
+                {{model.Continue}}
+              </button>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="processDetail d-flex flex-column justify-content-end h-100" style="padding-bottom: 40px;">
+              <p>
+                <!-- 支付總額 -->
+                {{model.PayTotal}}
+              </p>
+              <p class="billPrice">NT${{subTotalCash}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>

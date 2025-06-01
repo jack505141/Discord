@@ -1,0 +1,62 @@
+//使用規格:請將參數放置於":"後中間不可有空格，參數後也不可有空格
+
+//"Com Port"可放置字串或數字 ex:COM1或1；一般RS232 Com Port只要填入數字即可，但一些特殊格式如USB轉RS232或許就需要填寫Com Port的名稱
+//Windows:放置字串時請填寫Com Port名稱如COM1、COM2...；填寫數字時，程式已預先寫入"COM"3個字母，所以只要填寫Com Port代號即可
+//Linux:放置字串時請填寫Com Port名稱如/dev/ttyS0、/dev/ttyS1...等絕對路徑；填寫數字時，程式已預先寫入"/dev/ttyS"等字串，
+//所以只要填寫Com Port代號即可，如果RS232所在位置不在此路徑下請勿填寫數字，請填寫絕對路徑
+Com Port:3
+
+//RS232傳輸頻率，此為固定值不須更動
+Baud Rate:115200
+
+//此為固定值不須更動
+Trans Bit:8
+
+//此為固定值不須更動
+Parity:N
+
+//此為固定值不須更動
+Stop Bit:1
+
+//從收銀機傳送交易電文開始到刷卡機回傳的交易電文為止的等待時間(單位Sec)
+Time Out:90
+
+//電文傳送接收過程中所能接受的最大錯誤次數,超過此次數則結束此次交易
+Error Times:3
+
+//接收電文的等待時間(單位ms),設太短會造成電文接收不完整
+Delay Time:100
+
+//通訊電文的資料長度，此為固定值不須更動
+Data Length:400
+
+//設定LOG儲存天數(設定0或1時只儲存當天)
+Backup Day:90
+
+//設定是否紀錄Debug訊息(1:紀錄Debug訊息； 0:不紀錄Debug訊息)，需搭配iShowFalg，iLogFalg使用，單獨開啟沒有效果。
+Debug Mode:0
+
+//設定是否在畫面顯示訊息(1:顯示； 0:不顯示)
+Show Log:1
+
+//設定是否儲存LOG(1:紀錄LOG； 0:不紀錄LOG)
+Record Log:1
+
+//設定語言(1:中文；0:英文)
+Language:1
+
+//自動增加除錯電文，系統自動修改，無須更動
+AutoDebug:1
+
+ACKWaitSecond:2
+
+CardNoMask:0
+
+//設定是否自動添加通訊電文的資料長度(1:添加；0:不添加)
+Add Data Length:1
+
+//用幾個Bytes表示電文的資料長度(Add Data Length有設定添加才有意義)
+Data Length Bytes:6
+
+//版本 1:代表KIOSK D220使用
+Version:1

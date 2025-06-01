@@ -12,6 +12,12 @@
     <Compile Update="BranchSelectionWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="FoldConfig.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="History.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Instal.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -21,6 +27,12 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="BranchSelectionWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="FoldConfig.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="History.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Instal.xaml">

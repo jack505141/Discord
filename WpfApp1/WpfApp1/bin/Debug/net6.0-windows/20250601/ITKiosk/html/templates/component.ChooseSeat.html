@@ -1,0 +1,183 @@
+<script type="text/x-template" id="template-ChooseSeat-main">
+  <div class="container-fluid" style="min-width: 100%;" culture="1">
+    <div class="row my-3">
+      <div class="col-4">
+        <div class="product">
+          <div class="product-con h-100">
+            <div class="con-text d-flex flex-column justify-content-between align-items-center h-100">
+
+              <div class="w-100 pb-2" style="border-bottom-style: solid; border-bottom-color: #aaa">
+                <div class="TicketTitle">
+                  <h3 class="h-auto" style="font-size: 26px;">{{saleProductName}}</h3>
+                </div>
+
+                <div class="TicketTitle" style="font-weight:bold; line-height: 24px; font-size: 24px; color: #aaa">{{bookingSpecName}}
+                    <!-- 化石清修達人秀 -->
+                </div>
+
+                <div class="TicketTitle" style="font-weight:bold; line-height: 24px; font-size: 24px; color: #aaa">
+                    {{queryDate}}&nbsp;{{sessionStartTime}}
+                    <!-- 2022/12/02 08:00 -->
+                </div>
+              </div>
+
+              <div class="chooseSeatcontainer w-100" style="height: 365px; overflow: hidden;">
+                <div class="swiper-wrapper h-100">
+                  <div class="swiper-slide h-auto">
+                    <div class="" v-for="pd in orderList">
+                      <div v-for="(oit,index) in pd.orderItemList" class="">
+                        <div v-for="(ti,index) in oit.ticketItem" class="">
+                          <div class="" style="">
+                            <div class="d-flex justify-content-start align-items-center" style="font-size: 20px;">
+                              {{ti.ticketTypeName}} NT${{ti.salePrice}} * {{ti.quantity}}
+                            </div>
+                            <div v-if="ti.seatDataList.length != 0" v-for="(seatData, index) in ti.seatDataList">
+                              <div v-if="seatData.coordinate && seatData.seatNumber" class="d-flex justify-content-start align-items-center font-weight-bold pl-3" style="align-self: center;">
+                                <img src="img/seat_small.png" alt="">
+                                <div class="ml-2" style="font-size: 18px;">{{seatData.seatNumber}}</div>
+                              </div>
+                              <div v-else class="d-flex justify-content-start align-items-center font-weight-bold pl-3" style="align-self: center; color: #c6035c;">
+                                <img src="img/seat_small.png" alt="">
+                                <div class="ml-2" style="font-size: 18px;">{{model.NotSelected}}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="w-100 my-4">
+                <div @mousedown="showTutorial()" class="btn btn-detail btn-lg text-light m-0">
+                  {{model.HowToSelect}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="ticketItemG">
+          <div class="ticketWrap p-0">
+
+
+            <div class="d-block h-100 pb-1">
+              <div class="row h-100 w-100 m-0">
+                <div class="col-12 py-0 px-2 d-flex flex-column justify-content-between">
+
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="posSelItem_Title1" style="font-size: 24px;">
+                      {{model.ChooseSeats}}
+                    </div>
+                    <div class="" style="width: 1200px; background-color: #F5F5F5;margin-right: 69px">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center my-2 mx-1" style="font-size: 18px;">
+                                <div class="legend seatSold"></div>
+                                <div class="mx-2">{{model.Booked}}</div>
+                            </div>
+                            <div class="d-flex align-items-center my-2" style="font-size: 18px;">
+                                <div class="legend seatAvailable"></div>
+                                <div class="mx-2">{{model.Available}}</div>
+                            </div>
+                            <div class="d-flex align-items-center my-2" style="font-size: 18px;">
+                                <div class="legend seatChosen"></div>
+                                <div class="mx-2">{{model.Selected}}</div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div style="width: 759px; background-color:#666666">
+                      <div class="posSelItem_stage">
+                          舞台Stage/螢幕Screen
+                      </div>
+                  </div>
+
+                  <div class="ChooseSeat-v-Container d-blcok h-100 w-100" style="overflow: hidden">
+                    <div class="swiper-wrapper A2">
+                      <div class="swiper-slide B2 h-auto">
+                        <div class="row m-0">
+                          <div class="col-11 p-0">
+                            <div>
+                              <div class="ChooseSeat-h-Container h-100" style="overflow: hidden;">
+                                <div class="swiper-wrapper A1">
+                                  <div class="swiper-slide B1 w-auto">
+
+                                    <div class="d-flex justify-content-center align-items-center text-dark bg-white" style="width: 759px; height: 55px; font-size: 25px; margin-top: 398px; position: fixed;">
+                                      <div class="d-flex justify-content-between align-items-center w-100 px-2" style="z-index: 2;">
+                                        <img style="transform: rotate(-90deg);" draggable="false" src="./img/triup.png">
+                                        <img draggable="false" src="./img/Hand-OneFinger-Scroll-Horizontal.png">
+                                        <img style="transform: rotate(-90deg);" draggable="false" src="./img/tri.png">
+                                      </div>
+                                    </div>
+
+                                    <div class="seatroom seatroom_xxls d-flex flex-column justify-content-between align-items-center" style="padding-bottom: 55px">
+                                      <div v-for="(rowArr, indexRow) in seatMap">
+                                        <div>
+                                          <div class="seatgroups">
+                                            <div v-if="rowArr[0].rowTag != ''" class="seatbtn rowTag">{{rowArr[0].rowTag}}</div>
+                                            <div v-else class="seatbtn aisle">{{rowArr[0].rowTag}}</div>
+                                            <div v-for="(seatData, indexSeat) in rowArr">
+                                              <div v-if="seatData.seatStatus == 0" class="seatbtn aisle" @click="chooseSeat(seatData)" :id="seatData.coordinate">
+                                                {{seatData.columnTag}}
+                                              </div>
+                                              <div v-else-if="seatData.seatStatus == 1" @click="chooseSeat(seatData)" :id="seatData.coordinate" class="seatbtn seat seatAvailable">
+                                                {{seatData.columnTag}}
+                                              </div>
+                                              <div v-else-if="seatData.seatStatus == 2 || seatData.seatStatus == 3" @click="chooseSeat(seatData)" :id="seatData.coordinate" class="seatbtn seat seatSold">
+                                                {{seatData.columnTag}}
+                                              </div>
+                                              <div v-else @click="chooseSeat(seatData)" :id="seatData.coordinate" class="seatbtn aisle">
+                                                {{seatData.columnTag}}
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-1 d-flex flex-column justify-content-center align-items-between text-dark p-0 pt-1" style="width: 55px; height: 440px; font-size: 25px; position: fixed;margin-left: 12px">
+                            <div class="d-flex flex-column justify-content-between align-items-center h-100 py-2" style="margin-bottom: 40px">
+                              <img draggable="false" alt="" src="./img/triup.png">
+                              <img draggable="false" src="./img/Hand-OneFinger-Scroll-Vertical.png">
+                              <img draggable="false" alt="" src="./img/tri.png">
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+        <div class="priceG d-flex flex-column justify-content-center">
+          <div class="row m-0">
+            <div class="col-6 p-0">
+              <div class="totalTicketAndMoneyG">
+                <div class="totalTicket">{{model.TotalTickets}}：{{kiosk.status.ticketTotalNum}}</div>
+                <div class="totalMoney">{{model.TotalPrice}}：NT${{kiosk.status.ticketTotalAmt}}</div>
+              </div>
+            </div>
+            <div class="col-6 p-0 align-self-center text-center">
+              <span @mousedown="goNext()">{{model.Check}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</script>

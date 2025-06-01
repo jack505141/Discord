@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 using Path = System.IO.Path;
 using WpfAnimatedGif;
 using System.Reflection;
+using WpfApp1.ModuelFactory;
+using System.Text.Json;
 
 namespace WpfApp1
 {
@@ -25,6 +27,7 @@ namespace WpfApp1
         private gitlibrary gitLibrary = new gitlibrary();
         private static MainWindow instance;
         Rigister rigister = new Rigister();
+        private List<string> updatedFiles = new();
         public MainWindow()
         {
             //if (!LoginWindow.IsAuthenticated)
@@ -40,9 +43,13 @@ namespace WpfApp1
             //}
 
             //instance = this; // **將當前視窗設為單例**
+            CommandManager.RegisterModule("Kiosk", new UpdateModel());
             CommandManager.OnLog = msg => AppendStatus(msg);
-            InitializeComponent();
            
+            InitializeComponent();
+            LoadCurrentConfigName();
+            LoadJsonMenu();
+
         }
 
         protected override void OnClosed(EventArgs e)
@@ -127,11 +134,11 @@ namespace WpfApp1
                     }
 
                     // 複製檔案和資料夾，排除 .vs、.git 和 .gitignore
-                    CopyDirectory("C:/kioskclientbase", targetPath, exclude: new[] { ".vs", ".git", ".gitignore" });
-                    CopyDirectory("C:/kioskclientconfig", targetPath, exclude: new[] { ".vs", ".git", ".gitignore" });
-                    CopyDirectory("C:/kioskclienthtml", targetPath, exclude: new[] { ".vs", ".git", ".gitignore" });
-                    CopyDirectory("C:/kioskclientcontent", targetPath, exclude: new[] { ".vs", ".git", ".gitignore" });
-
+                    InnerCopy("C:/kioskclientbase", targetPath, exclude: new[] { ".vs", ".git", ".gitignore" },null);
+                    InnerCopy("C:/kioskclientconfig", targetPath, exclude: new[] { ".vs", ".git", ".gitignore" }, null);
+                    InnerCopy("C:/kioskclienthtml", targetPath, exclude: new[] { ".vs", ".git", ".gitignore" }, null);
+                    InnerCopy("C:/kioskclientcontent", targetPath, exclude: new[] { ".vs", ".git", ".gitignore" }, null);
+                    SaveUpdateLog(updatedFiles);
                     Dispatcher.Invoke(() => AppendStatus("🚀 複製完成！"));
                 });
             }
@@ -148,45 +155,93 @@ namespace WpfApp1
 
         private void CopyDirectory(string sourceDir, string destinationDir, string[] exclude)
         {
-            // 確認來源目錄是否存在
+            // 讀取 config 名稱
+            string configNamePath = Path.Combine(AppContext.BaseDirectory, "Config", "last_config.txt");
+            if (!File.Exists(configNamePath))
+            {
+                MessageBox.Show("找不到 last_config.txt，請先指定設定檔");
+                return;
+            }
+
+            string configName = File.ReadAllText(configNamePath).Trim();
+            string jsonPath = Path.Combine(AppContext.BaseDirectory, "Storage", configName);
+
+            if (!File.Exists(jsonPath))
+            {
+                MessageBox.Show($"找不到設定內容檔案：{jsonPath}");
+                return;
+            }
+
+            // 讀取 JSON 清單
+         
+           
+            var rawPaths = JsonSerializer.Deserialize<List<string>>(File.ReadAllText(jsonPath));
+          
+            var allowedSet = new HashSet<string>(rawPaths, StringComparer.OrdinalIgnoreCase);
+
+            // 開始複製
+            InnerCopy(sourceDir, destinationDir, exclude, allowedSet);
+        }
+        private void InnerCopy(string sourceDir, string destinationDir, string[] exclude, HashSet<string> allowedSet)
+        {
             if (!Directory.Exists(sourceDir))
-            {
                 throw new DirectoryNotFoundException($"來源目錄不存在: {sourceDir}");
-            }
 
-            // 確保目標目錄存在
             if (!Directory.Exists(destinationDir))
-            {
                 Directory.CreateDirectory(destinationDir);
-            }
 
-            // 複製檔案
+            // ✅ 第一段：處理該目錄下的檔案
             foreach (var file in Directory.GetFiles(sourceDir))
             {
-                string fileName = Path.GetFileName(file);
+                string fileName = Path.GetFileName(file); // ✅ 統一小寫比對
 
-                // 檢查是否需要排除
                 if (ShouldExclude(fileName, exclude)) continue;
 
-                string destFile = Path.Combine(destinationDir, fileName);
-                File.Copy(file, destFile, overwrite: true);
+                // ❌ 如果檔名在 allowedSet 中，就不要更新（跳過）
+                if (allowedSet != null && allowedSet.Contains(fileName.ToLower()))
+                {
+                    continue;
+                }
 
+                string destFile = Path.Combine(destinationDir, fileName);
+
+                try
+                {
+                    if(allowedSet!=null)
+                    {
+                        Common.BackupPathWithStructure(destFile);
+                    }
+                    
+                    File.Copy(file, destFile, overwrite: true);
+                }
+                catch (IOException)
+                {
+                    try
+                    {
+                        File.Delete(destFile);
+                        File.Copy(file, destFile, overwrite: true);
+                    }
+                    catch (Exception ex)
+                    {
+                        // 可以選擇記錄錯誤訊息
+                        MessageBox.Show($"複製失敗（已嘗試刪除原始檔案）：{fileName}，錯誤訊息：{ex.Message}");
+                        continue;
+                    }
+                }
+
+                updatedFiles.Add(destFile); // ✅ 強制更新成功才加入
             }
 
-            // 複製子目錄
+            // ✅ 第二段：進入每個子資料夾遞迴
             foreach (var dir in Directory.GetDirectories(sourceDir))
             {
-                string dirName = Path.GetFileName(dir);
+                if (ShouldExclude(Path.GetFileName(dir), exclude)) continue;
 
-                // 檢查是否需要排除
-                if (ShouldExclude(dirName, exclude)) continue;
-
-                string destDir = Path.Combine(destinationDir, dirName);
-
-                // ✅ 遞迴時確保 UI 更新在 UI 執行緒
-                CopyDirectory(dir, destDir, exclude);
+                string destDir = Path.Combine(destinationDir, Path.GetFileName(dir));
+                InnerCopy(dir, destDir, exclude, allowedSet); // 🔁 遞迴呼叫
             }
         }
+
 
         private void ShowLoading()
         {
@@ -219,73 +274,84 @@ namespace WpfApp1
 
         public async void ALL_Assemble_Click(object sender, RoutedEventArgs e)
         {
-            ShowLoading();
-            await Task.Delay(100); // 讓 UI 有時間刷新 Loading 畫面
-
-            string[] requiredPaths = { "C:/kioskclientbase", "C:/kioskclientcontent", "C:/kioskclientconfig", "C:/kioskclienthtml" };
-            string targetPath = "C:/ITKiosk";
-            bool allSucceeded = true;
-
-            Dispatcher.Invoke(() => AppendStatus("準備更新---------------------------"));
-
-            await Task.Run(async () =>
+            try
             {
-                foreach (var path in requiredPaths)
+                ShowLoading();
+                await Task.Delay(100); // 讓 UI 有時間刷新 Loading 畫面
+
+                string[] requiredPaths = { "C:/kioskclientbase", "C:/kioskclientcontent", "C:/kioskclientconfig", "C:/kioskclienthtml" };
+                string targetPath = "C:/ITKiosk";
+                bool allSucceeded = true;
+
+                Dispatcher.Invoke(() => AppendStatus("準備更新---------------------------"));
+
+                await Task.Run(async () =>
                 {
-                    if (!System.IO.Directory.Exists(path))
+                    foreach (var path in requiredPaths)
                     {
-                        Dispatcher.Invoke(() => AppendStatus($"❌ 缺少必要的目錄: {path}"));
-                        allSucceeded = false;
-                        continue;
+                        if (!System.IO.Directory.Exists(path))
+                        {
+                            Dispatcher.Invoke(() => AppendStatus($"❌ 缺少必要的目錄: {path}"));
+                            allSucceeded = false;
+                            continue;
+                        }
+
+                        Dispatcher.Invoke(() => AppendStatus($"🔄 開始更新資料夾: {path}"));
+
+                        bool fetch = await gitLibrary.PullAsync(path);
+                        Dispatcher.Invoke(() => AppendStatus($"開始抓repo: {fetch}"));
+
+                        bool success = await gitLibrary.PullAsync(path);
+
+                        Dispatcher.Invoke(() =>
+                        {
+                            if (success)
+                            {
+                                AppendStatus($"✅ 資料夾更新成功: {path}");
+                            }
+                            else
+                            {
+                                AppendStatus($"❌ 資料夾更新失敗: {path}");
+                                allSucceeded = false;
+                            }
+                        });
                     }
-
-                    Dispatcher.Invoke(() => AppendStatus($"🔄 開始更新資料夾: {path}"));
-
-                    bool fetch = await gitLibrary.PullAsync(path);
-                    Dispatcher.Invoke(() => AppendStatus($"開始抓repo: {fetch}"));
-
-                    bool success = await gitLibrary.PullAsync(path);
 
                     Dispatcher.Invoke(() =>
                     {
-                        if (success)
+                        if (allSucceeded)
                         {
-                            AppendStatus($"✅ 資料夾更新成功: {path}");
+                            AppendStatus("🎉 所有資料夾已成功同步完成！");
                         }
                         else
                         {
-                            AppendStatus($"❌ 資料夾更新失敗: {path}");
-                            allSucceeded = false;
+                            AppendStatus("⚠️ 部分資料夾同步失敗，已跳過檔案複製！");
                         }
                     });
-                }
 
-                Dispatcher.Invoke(() =>
-                {
+                    // **✅ 只有 Git 更新完全成功，才進行檔案複製**
                     if (allSucceeded)
                     {
-                        AppendStatus("🎉 所有資料夾已成功同步完成！");
-                    }
-                    else
-                    {
-                        AppendStatus("⚠️ 部分資料夾同步失敗，已跳過檔案複製！");
+                        Dispatcher.Invoke(() => AppendStatus("📂 開始複製檔案..."));
+
+                        CopyDirectory("C:/kioskclientbase", targetPath, exclude: new[] { ".vs", ".git", ".gitignore" });
+                        CopyDirectory("C:/kioskclienthtml", targetPath, exclude: new[] { ".vs", ".git", ".gitignore" });
+                        CopyDirectory("C:/kioskclientcontent", targetPath, exclude: new[] { ".vs", ".git", ".gitignore" });
+                        CopyDirectory("C:/kioskclientbase", targetPath, exclude: new[] { ".vs", ".git", ".gitignore" });
+                        SaveUpdateLog(updatedFiles);
+                        Dispatcher.Invoke(() => AppendStatus("🚀 Kiosk 更新完成！"));
                     }
                 });
 
-                // **✅ 只有 Git 更新完全成功，才進行檔案複製**
-                if (allSucceeded)
-                {
-                    Dispatcher.Invoke(() => AppendStatus("📂 開始複製檔案..."));
+                HideLoading(); // **確保 Loading 一定會關閉**
+            }
+            catch (Exception ex)
+            {
 
-                    CopyDirectory("C:/kioskclientbase", targetPath, exclude: new[] { ".vs", ".git", ".gitignore" });
-                    CopyDirectory("C:/kioskclienthtml", targetPath, exclude: new[] { ".vs", ".git", ".gitignore" });
-                    CopyDirectory("C:/kioskclientcontent", targetPath, exclude: new[] { ".vs", ".git", ".gitignore" });
-
-                    Dispatcher.Invoke(() => AppendStatus("🚀 Kiosk 更新完成！"));
-                }
-            });
-
-            HideLoading(); // **確保 Loading 一定會關閉**
+                AppendStatus("發生錯誤"+ex.Message);
+                HideLoading();
+            }
+          
         }
 
 
@@ -315,7 +381,7 @@ namespace WpfApp1
                     Directory.CreateDirectory(backupDir);
 
                     // 執行複製
-                    CopyDirectory(originkIOSK, backupDir, exclude: new[] { ".vs", ".git", ".gitignore" });
+                    InnerCopy(originkIOSK, backupDir, exclude: new[] { ".vs", ".git", ".gitignore" },null);
 
                     // 確保 UI 更新在 UI 執行緒
                     Dispatcher.Invoke(() => AppendStatus($"✅ 備份成功: {backupDir}"));
@@ -448,32 +514,36 @@ namespace WpfApp1
         private void GitPathTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string input = GitPathTextBox.Text.ToLower().Trim(); // 🔍 轉小寫 & 移除前後空格
-            Dictionary<string, string> keywordToButtonText = new Dictionary<string, string>
-    {
-        { "52653760", "42760988" },
-                {"update","Kiosk" },
+    //        Dictionary<string, string> keywordToButtonText = new Dictionary<string, string>
+    //{
+    //    { "52653760", "42760988" },
+    //            {"update","Kiosk" },
                
       
-    };
+    //};
 
-            // 🔍 找出符合的關鍵字
-            string matchedKeyword = keywordToButtonText.Keys.FirstOrDefault(k => input.Contains(k));
+    //        // 🔍 找出符合的關鍵字
+    //        string matchedKeyword = keywordToButtonText.Keys.FirstOrDefault(k => input.Contains(k));
              if (GitPathTextBox.Text == "ff") this.Close();
             if (GitPathTextBox.Text == "Lock")
             {
                 NavigationService.NavigateTo<LoginWindow>(this);
             }
-
-
-            if (matchedKeyword != null)
+            if (GitPathTextBox.Text == "Save")
             {
+               // NavigationService.NavigateTo<Storage>(this);
+            }
+           
+           
+            //if (matchedKeyword != null)
+            //{
                 
-                AssembleKiosk.Visibility = Visibility.Visible; 
-            }
-            else
-            {
-                AssembleKiosk.Visibility = Visibility.Collapsed; 
-            }
+            //    AssembleKiosk.Visibility = Visibility.Visible; 
+            //}
+            //else
+            //{
+            //    AssembleKiosk.Visibility = Visibility.Collapsed; 
+            //}
         }
 
         private void GitPathTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -492,6 +562,107 @@ namespace WpfApp1
                 e.Handled = true;
             }
         }
+
+        private void LoadJsonMenu()
+        {
+            try
+            {
+                string storagePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Storage");
+
+                if (!Directory.Exists(storagePath))
+                {
+                    Directory.CreateDirectory(storagePath);
+                }
+
+                var jsonFiles = Directory.GetFiles(storagePath, "*.json")
+                                         .Select(System.IO.Path.GetFileName)
+                                         .ToList();
+
+                if (jsonFiles.Count == 0)
+                {
+                    // 加一筆假的「無檔案」用項目，當作資料來源顯示用
+                    jsonFiles.Add("-- 尚無儲存檔案 --");
+                    JsonSelector.ItemsSource = jsonFiles;
+                    JsonSelector.SelectedIndex = 0;
+                    JsonSelector.IsEnabled = false; // 不允許選取
+                }
+                else
+                {
+                    JsonSelector.ItemsSource = jsonFiles;
+                    JsonSelector.SelectedIndex = 0;
+                    JsonSelector.IsEnabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"載入 JSON 清單失敗：{ex.Message}");
+            }
+        }
+
+
+        private void SaveCurrentSelection_Click(object sender, RoutedEventArgs e)
+        {
+            string selectedConfig = JsonSelector.SelectedItem?.ToString()?.Trim();
+
+            if (string.IsNullOrEmpty(selectedConfig))
+            {
+                MessageBox.Show("請先從下拉選單選擇一個 Config 名稱");
+                return;
+            }
+
+            // 儲存到 last_config.txt
+            string path = Path.Combine(AppContext.BaseDirectory, "Config", "last_config.txt");
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+            File.WriteAllText(path, selectedConfig);
+
+            // 更新畫面上的顯示
+            CurrentJsonLabel.Text = $"目前使用設定：{selectedConfig}";
+            MessageBox.Show($"已設定為目前使用的 Config：{selectedConfig}", "儲存成功", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        private void SaveLastUsedConfigName(string fileName)
+        {
+            string path = Path.Combine(AppContext.BaseDirectory, "Config", "last_config.txt");
+            File.WriteAllText(path, fileName);
+        }
+
+        private string LoadLastUsedConfigName()
+        {
+            string path = Path.Combine(AppContext.BaseDirectory, "Config", "last_config.txt");
+            return File.Exists(path) ? File.ReadAllText(path) : null;
+        }
+        private void LoadCurrentConfigName()
+        {
+            string path = Path.Combine(AppContext.BaseDirectory, "Config", "last_config.txt");
+            if (File.Exists(path))
+            {
+                string fileName = File.ReadAllText(path);
+                CurrentJsonLabel.Text = $"目前使用設定：{fileName}";
+            }
+            else
+            {
+                CurrentJsonLabel.Text = "目前尚未載入儲存檔案";
+            }
+        }
+
+        private void SaveUpdateLog(List<string> updatedFiles)
+        {
+            string historyFolder = Path.Combine(AppContext.BaseDirectory, "History");
+            if (!Directory.Exists(historyFolder))
+                Directory.CreateDirectory(historyFolder);
+
+            // 用日期時間當檔名
+            string logFileName = $"update_{DateTime.Now:yyyyMMdd_HHmmss}.log";
+            string logPath = Path.Combine(historyFolder, logFileName);
+
+            File.WriteAllLines(logPath, updatedFiles);
+        }
+
+        private void History_Search(object sender, RoutedEventArgs e)
+        {
+            NavigationService.NavigateTo<History>(this);
+        }
+
+
 
 
     }

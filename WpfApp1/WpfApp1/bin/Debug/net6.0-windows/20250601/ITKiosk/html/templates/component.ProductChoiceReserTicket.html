@@ -1,0 +1,157 @@
+<script type="text/x-template" id="template-ProductChoiceReserTicket-main">
+  <div class="container-fluid" style="min-width: 100%;" culture="1">
+    <div class="row my-3">
+      <div class="col-4">
+        <div class="product">
+          <div class="product-con">
+            <div class="con-img">
+              <img :src="imgUri.replace('.webp', '.jpg') + '?a=' + moment().unix()" alt="">
+            </div>
+            <div class="con-text">
+
+              <div class="TicketTitle" @click="initSwiper">
+                <h3>{{saleProductName}}</h3>
+              </div>
+
+              <div class="DetailDate">
+                <!-- <p>■ 2021/4/1-2021/11/14</p> -->
+                <div class="swiper-Detail p_detail" style="width:100%;overflow: hidden; margin-top:0px; position: relative; padding-right: 10px;"
+                  style="width:100%;overflow: hidden; margin-top:0px; position: relative; padding-right: 10px;">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                      <template v-for="featureStr in features">
+                        {{featureStr}}<br>
+                      </template>
+                    </div>
+                  </div>
+                  <div class="swiper-scrollbar" style=""></div>
+                </div>
+              </div>
+
+              <!--  -->
+              <div v-if="selectTicket && !jQuery.isEmptyObject(selectTicket)"
+                @mousedown="kiosk.API.goToNext('ProductDescription')" class="btn btn-detail btn-lg text-light">
+                {{model.ProductDescription}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="ticketItemG" style="background-color: transparent;">
+          <div class="ticketWrap p-0" style="background-color: transparent;">
+            <div class="ticketWeek px-4">
+              <ul class="d-flex my-2 mx-3">
+                <li class="flex-fill">{{model.Mon}}</li>
+                <li class="flex-fill">{{model.Tue}}</li>
+                <li class="flex-fill">{{model.Wed}}</li>
+                <li class="flex-fill">{{model.Thu}}</li>
+                <li class="flex-fill">{{model.Fri}}</li>
+                <li class="flex-fill">{{model.Sat}}</li>
+                <li class="flex-fill">{{model.Sun}}</li>
+              </ul>
+            </div>
+            <div class="ticketDate d-flex py-2 px-4" style="width: 100%;">
+              <div :class="{'calendarL extend-via-pseudo-elem': changeWeek > 0}" @mousedown="reduceWeek()"></div>
+              <ul class="d-flex mx-3" style="margin: 0px;">
+                <!-- <li class="flex-fill align-self-center ou">9/13</li>
+                <li class="flex-fill align-self-center">9/14</li>
+                <li class="flex-fill align-self-center pi">9/15</li>
+                <li class="flex-fill align-self-center">9/16</li>
+                <li class="flex-fill align-self-center ou">9/17</li>
+                <li class="flex-fill align-self-center ou">9/18</li>
+                <li class="flex-fill align-self-center">9/19</li> -->
+                <li
+                  :class="[{'ou' : !item.has},{'pi' : pickDate != null && (item.date.format('MM/DD') === pickDate.format('MM/DD'))}]"
+                  v-for="(item, index) in weekArr" @mousedown="selectItem(item)">
+                  {{item.date.format("MM/DD")}}
+                </li>
+              </ul>
+              <div class="calendarR extend-via-pseudo-elem" @mousedown="addWeek()"></div>
+            </div>
+            <div class="ticketSession" style="width: auto;">
+
+              <div class="swiper-sessionItemSp" style="width: 100%; overflow: hidden; margin-top: 0px;">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide d-flex " style="width: auto;">
+                    <div class="sessionItemSp"  v-for="(item,index) in bookingSpecList" style="min-height: 100px; min-width: 300px;" :class="[{'sell' : !(item.inventory == 0 || (item.isMiniGroup == true && item.isMiniGroupConfirm == false))},
+                        {'pick': selectTicket == item}]" @click="selectTicketBtn(index)">
+                      <div class="sessionTitleSp">
+                        {{item.isMiniGroup == false || (item.isMiniGroup == true && item.isMiniGroupConfirm == true) ? item.inventory === 0 ? model.SoldOut : model.ForSale : model.CommingSoon}}
+                        <!-- 售完 -->
+                      </div>
+
+                      <!-- <div v-if="item.isMiniGroup == false || (item.isMiniGroup == true && item.isMiniGroupConfirm == true)">
+                        庫存: {{item.inventory}}
+                      </div>
+                      <div v-else>
+                        尚未成團
+                      </div> -->
+                      <div class="sessionCont">
+                        <p class="m-0" style="height: 48px; line-height: 24px; overflow: hidden;">{{item.bookingSpecName}}</p>
+                        <p class="small m-0" v-if="item.sessionStartTime">
+                          {{item.sessionStartTime}} ~ {{item.sessionEndTime}}
+                        </p>
+                        <p v-else>-</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="swiper-scrollbar" style=""></div> -->
+              </div>
+            </div>
+
+
+            <div class="swiper-ProductChoiceReserTicket"
+              style="overflow: hidden; background-color: white; height: 100%; border-radius: 20px;">
+              <div class="d-flex" v-if="pickDate == null"
+                style="height: 100%; color: rgb(196, 196, 196); font-size: 42px; font-weight: bold; justify-content: center; align-items: center;">
+                請選擇您需要的日期/預約場次
+              </div>
+              <div class="swiper-wrapper">
+                <div class="swiper-slide" v-if="selectTicket">
+                  <div v-for="(item,index) in selectTicket.ticketType" class="ticketItem">
+                    <div class="ticketNameG d-flex flex-column">
+                      <span class="ticketName m-0 text-truncate" style="">{{item.ticketTypeName}}</span>
+                      <span class="ticketExplaination">{{item.ticketTypeRules.join(',')}}</span>
+                    </div>
+                    <div class="priceQuantityG" style="margin: 0px;">
+                      <div class="ticketPrice">NT${{item.salePrice}}</div>
+                      <div class="choseTicketQuantityG d-flex">
+                        <div class="extend-via-pseudo-elem" style="position: relative;" @click="reduceNum(item,index)">
+                          <i class="icon-diminish" aria-hidden="true"></i>
+                        </div>
+                        <span class="ticketQuantity">{{item.quantity}}</span>
+                        <div class="extend-via-pseudo-elem" style="position: relative;" @click="addNum(item,index)">
+                          <i class="icon-plus" aria-hidden="true"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="priceG d-flex flex-column justify-content-center">
+          <div class="row m-0">
+            <div class="col-6 p-0">
+              <div class="totalTicketAndMoneyG">
+                <div class="totalTicket">{{model.TotalTickets}}：{{kiosk.status.ticketTotalNum}}</div>
+                <div class="totalMoney">{{model.TotalPrice}}：NT${{kiosk.status.ticketTotalAmt}}</div>
+              </div>
+            </div>
+            <div v-if="kiosk.status.isSeatReservation == true && kiosk.status.seatAllocatedMode == 'MANUAL'" class="col-6 p-0 align-self-center text-center">
+              <span @mousedown="goNext()">{{model.ChooseSeats}}</span>
+            </div>
+            <div v-else class="col-6 p-0 align-self-center text-center">
+              <span @mousedown="goNext()">{{model.Check}}</span>
+            </div>
+          </div>
+          <!-- <div class="moneyAndNextG">
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</script>

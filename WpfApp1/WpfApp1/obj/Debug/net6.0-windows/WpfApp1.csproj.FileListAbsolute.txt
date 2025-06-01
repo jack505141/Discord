@@ -50,3 +50,11 @@ C:\Users\Administrator\Desktop\WpfApp1\WpfApp1\bin\Debug\net6.0-windows\Microsof
 C:\Users\Administrator\Desktop\WpfApp1\WpfApp1\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.WinForms.xml
 C:\Users\Administrator\Desktop\WpfApp1\WpfApp1\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.Wpf.xml
 C:\Users\Administrator\Desktop\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\WpfApp1_Content.g.cs
+C:\Users\Administrator\Desktop\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\WpfApp1.csproj.ResolveComReference.cache
+C:\Users\Administrator\Desktop\WpfApp1\WpfApp1\bin\Debug\net6.0-windows\System.Reactive.dll
+C:\Users\Administrator\Desktop\WpfApp1\WpfApp1\bin\Debug\net6.0-windows\System.Reactive.Windows.Forms.dll
+C:\Users\Administrator\Desktop\WpfApp1\WpfApp1\bin\Debug\net6.0-windows\System.Windows.Forms.Ribbon35.dll
+C:\Users\Administrator\Desktop\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\History.g.cs
+C:\Users\Administrator\Desktop\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\History.baml
+C:\Users\Administrator\Desktop\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\FoldConfig.g.cs
+C:\Users\Administrator\Desktop\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\FoldConfig.baml

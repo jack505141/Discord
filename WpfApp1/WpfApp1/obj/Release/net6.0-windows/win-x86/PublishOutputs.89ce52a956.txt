@@ -1,3 +1,8 @@
 D:\release\WpfApp1.pdb
+D:\release\runtimes\win-x86\native\WebView2Loader.dll
 D:\release\git2-3f4182d.dll
+D:\release\WebView2Loader.dll
+D:\release\Microsoft.Web.WebView2.Core.xml
+D:\release\Microsoft.Web.WebView2.WinForms.xml
+D:\release\Microsoft.Web.WebView2.Wpf.xml
 D:\release\WpfApp1.exe

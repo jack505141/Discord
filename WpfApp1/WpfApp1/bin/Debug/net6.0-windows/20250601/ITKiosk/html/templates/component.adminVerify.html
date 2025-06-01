@@ -1,0 +1,38 @@
+<script type="text/x-template" id="template-adminVerify-main">
+  <div class="container">
+     <div class="row justify-content-center mt-4 w-100">
+       <div class="col-4 p-0">
+         <div class="bg-secondary-200 text-center">
+           <h4 class="pt-2 font-weight-bolder" style="color: white;">輸入密碼</h4>
+           <input v-model="keyinValue" type="password" class="w-100 h1 font-weight-bold text-primary text-center bg-transparent border-0"
+           style="background-color: white !important;">
+         </div>
+         <div @mousedown="verify()" class="btn btn-block btn-primary mt-4">
+           <h2 class="mb-0 font-weight-bold">確認</h2>
+         </div>
+         <div class="keyboard mt-3">
+           <div class="d-flex justify-content-between mx-3">
+             <div @mousedown="keyin" class="btn btn-secondary-200 keyboard__num">1</div>
+             <div @mousedown="keyin" class="btn btn-secondary-200 keyboard__num">2</div>
+             <div @mousedown="keyin" class="btn btn-secondary-200 keyboard__num">3</div>
+           </div>
+           <div class="d-flex justify-content-between mx-3">
+             <div @mousedown="keyin" class="btn btn-secondary-200 keyboard__num">4</div>
+             <div @mousedown="keyin" class="btn btn-secondary-200 keyboard__num">5</div>
+             <div @mousedown="keyin" class="btn btn-secondary-200 keyboard__num">6</div>
+           </div>
+           <div class="d-flex justify-content-between mx-3">
+             <div @mousedown="keyin" class="btn btn-secondary-200 keyboard__num">7</div>
+             <div @mousedown="keyin" class="btn btn-secondary-200 keyboard__num">8</div>
+             <div @mousedown="keyin" class="btn btn-secondary-200 keyboard__num">9</div>
+           </div>
+           <div class="d-flex justify-content-between mx-3">
+             <div @mousedown="keyin" class="btn btn-secondary-200 keyboard__num">刪除</div>
+             <div @mousedown="keyin" class="btn btn-secondary-200 keyboard__num">0</div>
+             <div @mousedown="keyin" class="btn btn-secondary-200 keyboard__num">清除</div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+</script>

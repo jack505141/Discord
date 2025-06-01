@@ -1,0 +1,174 @@
+
+.keyboard {
+    /* margin-bottom: 30px; */
+    -webkit-transition: 0.6s;
+    -moz-transition: 0.6s;
+    -ms-transition: 0.6s;
+    -o-transition: 0.6s;
+    transition: 0.6s;
+    visibility: 0;
+    opacity: 0;
+    height: 0; 
+    background-color: #ececec;
+    padding: 10px;
+    border-radius: 10px;
+  }
+.keyboard.active {
+    opacity: 1;
+    visibility: 1;
+    height: 280px;
+}
+
+.keyboardNum {
+  /* margin-bottom: 30px; */
+  -webkit-transition: 0.6s;
+  -moz-transition: 0.6s;
+  -ms-transition: 0.6s;
+  -o-transition: 0.6s;
+  transition: 0.6s;
+  visibility: 0;
+  opacity: 0;
+  height: 0; 
+  z-index: -100;
+  background-color: #ececec;
+  padding: 10px;
+  border-radius: 10px;
+}
+.keyboardNum.active {
+  opacity: 1;
+  visibility: 1;
+  height: 340px;
+  z-index: 100;
+}
+  
+  .keyboard .row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-bottom: 8px;
+  }
+  
+  .keyboard .row div:last-child {
+    margin-right: 0;
+  }
+  
+  .keyboard .key,
+  .keyboard .key-double,
+  .keyboard .key-6,
+  .keyboard .key-gap {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    width: 45px;
+    height: 45px;
+    background: #797777 linear-gradient(127deg, #aca8a8 0%, #737171 100%);
+    color: #FFF;
+    font-size: 25px;
+    line-height: 45px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  
+  .keyboard .key:hover,
+  .keyboard .key:active,
+  .keyboard .key-double:hover,
+  .keyboard .key-double:active,
+  .keyboard .key-6:hover,
+  .keyboard .key-6:active,
+  .keyboard .key-gap:hover,
+  .keyboard .key-gap:active {
+    background: #FD8344 linear-gradient(127deg, #FF9C68 0%, #FD8344 100%);
+  }
+  
+  .keyboard .key img,
+  .keyboard .key-double img,
+  .keyboard .key-6 img,
+  .keyboard .key-gap img {
+    width: 80%;
+  }
+  
+  .keyboard .key-gap {
+    width: 30px;
+  }
+  
+  .keyboard .key {
+    margin-right: 5px;
+  }
+  
+  .keyboard .key-gap {
+    width: 30px;
+  }
+  
+  .keyboard .key-double {
+    -webkit-box-flex: 2;
+    -ms-flex-positive: 2;
+    flex-grow: 2;
+    width: 95px;
+    margin-right: 5px;
+  }
+  
+  .keyboard .key-6 {
+    width: 295px;
+    margin-right: 5px;
+    -webkit-box-flex: 6;
+    -ms-flex-positive: 6;
+    flex-grow: 6;
+    -ms-flex-negative: 6;
+    flex-shrink: 6;
+  }
+  
+  .keyboard .invisible {
+    background: transparent;
+    cursor: default;
+  }
+  
+  .keyboard .invisible:hover,
+  .keyboard .invisible:active {
+    background: transparent;
+  }
+  
+  .keyboard-number {
+    max-width: 360px;
+    margin-bottom: 0;
+  }
+  
+  .keyboard-number .row {
+    padding-bottom: 13px;
+  }
+  
+  .keyboard-number .row .key,
+  .keyboard-number .row .key-double {
+    height: 73px;
+    line-height: 73px;
+    font-size: 30px;
+  }
+  
+  .keyboard-number .row .key {
+    margin-right: 10px;
+  }
+  
+  .keyboard-number .row .key:last-child {
+    margin-right: 0;
+  }
+  
+  .keyboard-number .row .key-double {
+    -webkit-box-flex: 2;
+    -ms-flex-positive: 2;
+    flex-grow: 2;
+  }
+  
+  .keyboard-number .row div:last-child.key-double {
+    margin-right: 0;
+  }
+  

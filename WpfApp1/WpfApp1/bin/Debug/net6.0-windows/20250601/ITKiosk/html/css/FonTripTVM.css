@@ -1,0 +1,60 @@
+/* Olson CSS */
+.title-bg-gray {
+  background-color: #ddd;
+}
+.cashBalanceTable {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: collapse !important;
+}
+
+.cashBalanceTable th,
+.cashBalanceTable td {
+  vertical-align: top;
+  border: 2px solid #dee2e6;
+}
+
+.cashBalanceTable thead th {
+  vertical-align: bottom;
+}
+
+.table-border-gray {
+  border: 2px solid #dee2e6;
+}
+
+tr.table-bg-gray-even th:nth-child(even),
+tr.table-bg-gray-even td:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+tr.table-bg-gray-odd th:nth-child(odd),
+tr.table-bg-gray-odd td:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+tr.table-bg-white-even th:nth-child(even),
+tr.table-bg-white-even td:nth-child(even) {
+  background-color: white;
+}
+tr.table-bg-white-odd th:nth-child(odd),
+tr.table-bg-white-odd td:nth-child(odd) {
+  background-color: white;
+}
+
+.title-left-btn {
+  position: absolute;
+  left: 5%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.title-container {
+  position: relative;
+}
+
+/* 覆蓋bootstrap Class */
+.btn,
+.btn:focus,
+.btn:active {
+  outline: transparent;
+}

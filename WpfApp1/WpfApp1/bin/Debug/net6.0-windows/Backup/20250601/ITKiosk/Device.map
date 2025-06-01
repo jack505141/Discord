@@ -1,0 +1,58 @@
+﻿[ 
+ {
+   //OPOSPrint
+   "TypeName": "OPOSPrint.Thermal",
+   "Path": "DeviceExternal\\OPOSPrint.dll",
+    "DeviceName": "Thermal",
+   "DepenceyDLL": [ "DeviceExternal\\Microsoft.PointOfService.dll","DeviceExternal\\QRCoder.dll" ]
+ },
+ {
+   //中信卡機
+    "TypeName": "FinLibrary.MainClass",
+    "Path": "DeviceExternal\\FinLibrary.dll",
+    "DeviceName": "FIN",
+    "DepenceyDLL": [ "DeviceExternal\\Newtonsoft.Json.dll" ]
+ },
+ {
+   //controlBox
+    "TypeName": "KioSPEC.MainClass",
+    "Path": "DeviceExternal\\CB_Library.dll",
+    "DeviceName": "ControlBox",
+    "DepenceyDLL": [ "DeviceExternal\\ControlBoxLibrary.dll","DeviceExternal\\Tools.dll" ]
+ },
+ {
+   //讀寫卡機EZ710
+    "TypeName": "EZ710Library.MainClass",
+    "Path": "DeviceExternal\\EZ710Library.dll",
+    "DeviceName": "EZ710BU",
+    "DepenceyDLL": ["DeviceExternal\\Tools.dll"]
+ },
+ {
+    //健保卡機
+    "TypeName": "EZM_Library.MainClass",
+    "Path": "DeviceExternal\\EZM_Library.dll",
+    "DeviceName": "EZM",
+    "DepenceyDLL": ["DeviceExternal\\Tools.dll", "DeviceExternal\\GS.Apdu.dll", "GS.HexLibrary.dll"]
+  },
+ //2D Scanner Auto
+ {
+    "TypeName": "Scanner2DLibrary.MainClass",
+    "Path": "DeviceExternal\\Scanner2DLibrary.dll",
+    "DeviceName": "SCANNER2DAUTO",
+    "DepenceyDLL": ["DeviceExternal\\Tools.dll"]
+ },
+ //飛捷卡機
+ {
+    "TypeName": "MD150Library.MainClass",
+    "Path": "DeviceExternal\\MD150Library.dll",
+    "DeviceName": "MD150",
+    "DepenceyDLL": ["DeviceExternal\\Tools.dll"]
+ },
+ //TSC247Lib
+ {
+    "TypeName": "TSC247Lib.MainClass",
+    "Path": "DeviceExternal\\TSC247.dll",
+    "DeviceName": "TSC247Lib",
+    "DepenceyDLL": ["DeviceExternal\\Tools.dll"]
+ }
+]

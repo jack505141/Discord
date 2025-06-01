@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html oncontextmenu="return false;" ontouchmove="return false;">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Athena Kiosk</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/keyboard.min.css" />
+    <link rel="stylesheet" href="css/swiper.min.css" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link
+      href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="css/sweetalert2.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+
+    <!-- 以下為海科這次的刻版css -->
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/fontello.css" />
+    <link rel="stylesheet" href="css/keyboard.css" />
+    <link rel="stylesheet" href="css/mst.css" />
+    <link rel="stylesheet" href="css/cpj.css" />
+    <link rel="stylesheet" href="css/FonTripTVM.css" />
+
+    <style>
+      body {
+        -ms-scroll-chaining: none;
+      }
+
+      html {
+        -ms-content-zooming: none;
+        /* Disables zooming */
+        /*-ms-overflow-style:none;*/
+        -ms-user-select: none;
+        user-select: none;
+        touch-action: none;
+        /* Disable any special actions on tap/touch */
+        -ms-scroll-chaining: none;
+      }
+
+      #candidates {
+        margin-left: 0px;
+      }
+
+      #candidates > li {
+        text-align: center;
+      }
+
+      .candidates-container-warp {
+        width: 850px;
+        /*margin-left: 40px;*/
+      }
+
+      .candidates-container {
+        background-color: #ffcc00;
+        display: none;
+        width: 1000px;
+      }
+
+      .lSAction .lSPrev {
+        left: 0px;
+      }
+
+      .lSAction .lSNext {
+        right: 0px;
+      }
+
+      .keypad-key {
+        font-family: 微軟正黑體;
+      }
+    </style>
+    <script>
+      document.addEventListener(
+        "touchmove",
+        function (e) {
+          var e = e || event;
+          e.preventDefault();
+        },
+        false
+      );
+    </script>
+  </head>
+
+  <body ontouchmove="return false;">
+    <div
+      id="vpp"
+      class="wrap"
+      onmousedown="kiosk.API.resetTimmer();"
+      onmousemove="kiosk.API.resetTimmer();"
+      onmouseout="kiosk.API.resetTimmer();"
+      onmousewheel="kiosk.API.resetTimmer();"
+      onmouseup="kiosk.API.resetTimmer();"
+    >
+      <!-- Static header -->
+      <!-- <component :is="currentNavBar" v-bind:culture="kiosk.culture" v-bind:model="currentModel"></component> -->
+      <component-TVMcommon-navBar
+        :is="currentNavBar"
+        v-bind:culture="kiosk.culture"
+        v-bind:model="currentModel"
+      ></component-TVMcommon-navBar>
+      <component
+        :is="currentPage"
+        v-bind:culture="kiosk.culture"
+        v-bind:model="currentModel"
+      ></component>
+      <component
+        :is="currentFoot"
+        v-bind:culture="kiosk.culture"
+        v-bind:model="currentModel"
+      ></component>
+      <component-common-dailogbox
+        v-if="dailogbox"
+        v-bind:culture="kiosk.culture"
+        v-bind:model="dailogbox"
+      >
+      </component-common-dailogbox>
+      <component-common-loading v-if="isLoading"></component-common-loading>
+    </div>
+   
+    <!-- jQuery -->
+    <script src="scripts/jsFramework/jquery-1.11.3.min.js"></script>
+    <script src="scripts/jquery-ui.min.js"></script>
+    <script src="scripts/jquery.keyboard.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="scripts/bootstrap.min.js "></script>
+    <script src="scripts/moment.js "></script>
+    <script src="scripts/jsFramework/vue.js"></script>
+    <script src="scripts/bootstrap-datetimepicker.min.js"></script>
+
+    <!--設定與Common Library-->
+    <script src="scripts/settings/adsSetting.js"></script>
+    <script src="scripts/settings/systemSetting.js"></script>
+    <script src="scripts/settings/templateSetting.js"></script>
+    <script src="scripts/settings/commonExt.js"></script>
+    <script src="scripts/settings/common.js"></script>
+    <script src="scripts/settings/customLib.js"></script>
+    <script src="scripts/settings/customLibDevice.js"></script>
+    <script src="scripts/settings/PalaceAPI.js"></script>
+    <script src="scripts/settings/BackEnd.js"></script>
+    <script src="scripts/settings/fakeAPIData.js"></script>
+    <script src="scripts/settings/countrySet.js"></script>
+    <script src="scripts/viewModels.js"></script>
+    <script src="scripts/jsFramework/mainApp.js"></script>
+    <script src="scripts/KioskClient.js"></script>
+    <script src="scripts/Device.js"></script>
+    <script type="text/javascript" src="scripts/swiper.min.js"></script>
+    <script type="text/javascript" src="scripts/sweetalert2-IE.js"></script>
+    <script type="text/javascript" src="scripts/sweetalert2.js"></script>
+    <script src="scripts/axios.min.js"></script>
+	<script src="scripts/auto-loader.js"></script>
+    <script>
+      /**
+       * $.disablescroll
+       * Author: Josh Harrison - aloofdesign.com
+       *
+       * Disables scroll events from mousewheels, touchmoves and keypresses.
+       * Use while jQuery is animating the scroll position for a guaranteed super-smooth ride!
+       */
+      (function (e) {
+        "use strict";
+
+        function r(t, n) {
+          this.opts = e.extend(
+            {
+              handleKeys: !0,
+              scrollEventKeys: [32, 33, 34, 35, 36, 37, 38, 39, 40],
+            },
+            n
+          );
+          this.$container = t;
+          this.$document = e(document);
+          this.lockToScrollPos = [0, 0];
+          this.disable();
+        }
+        var t, n;
+        n = r.prototype;
+        n.disable = function () {
+          var e = this;
+          e.lockToScrollPos = [
+            e.$container.scrollLeft(),
+            e.$container.scrollTop(),
+          ];
+          e.$container.on(
+            "mousewheel.disablescroll DOMMouseScroll.disablescroll touchmove.disablescroll",
+            e._handleWheel
+          );
+          e.$container.on("scroll.disablescroll", function () {
+            e._handleScrollbar.call(e);
+          });
+          e.opts.handleKeys &&
+            e.$document.on("keydown.disablescroll", function (t) {
+              e._handleKeydown.call(e, t);
+            });
+        };
+        n.undo = function () {
+          var e = this;
+          e.$container.off(".disablescroll");
+          e.opts.handleKeys && e.$document.off(".disablescroll");
+        };
+        n._handleWheel = function (e) {
+          e.preventDefault();
+        };
+        n._handleScrollbar = function () {
+          this.$container.scrollLeft(this.lockToScrollPos[0]);
+          this.$container.scrollTop(this.lockToScrollPos[1]);
+        };
+        n._handleKeydown = function (e) {
+          for (var t = 0; t < this.opts.scrollEventKeys.length; t++)
+            if (e.keyCode === this.opts.scrollEventKeys[t]) {
+              e.preventDefault();
+              return;
+            }
+        };
+        e.fn.disablescroll = function (e) {
+          !t && (typeof e == "object" || !e)
+            ? (t = new r(this, e))
+            : t && t[e] && t[e].call(t);
+        };
+        window.UserScrollDisabler = r;
+        String.prototype.format = function () {
+          var args = arguments;
+          return this.replace(/{([0-9]+)}/g, function (match, index) {
+            // check if the argument is there
+            return typeof args[index] == "undefined" ? match : args[index];
+          });
+        };
+      })(jQuery);
+
+      $("body").disablescroll();
+    </script>
+  </body>
+</html>

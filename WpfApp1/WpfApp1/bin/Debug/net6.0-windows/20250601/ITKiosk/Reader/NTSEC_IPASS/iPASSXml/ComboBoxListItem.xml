@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ComboBoxListParm>
+  <CMD_TYPE>
+    <Item DataValue="0002">結班</Item>
+    <Item DataValue="000E">快速詢卡交易</Item>
+    <Item DataValue="000F">離線詢卡交易</Item>
+    <Item DataValue="0010">連線詢卡交易</Item>
+    <Item DataValue="0011">扣值交易</Item>
+    <Item DataValue="0020">前台自動加值交易</Item>
+    <Item DataValue="0021">現金加值交易</Item>
+    <Item DataValue="0022">退貨加值交易</Item>
+    <Item DataValue="0023">溢扣返還加值交易</Item>
+    <Item DataValue="0030">取消現金加值交易</Item>
+    <Item DataValue="0031">取消扣值交易</Item>
+
+    <Item DataValue="0012">社福扣點扣值交易</Item>
+    <Item DataValue="0032">社福取消扣點扣值交易</Item>
+    <Item DataValue="0024">社福退貨交易</Item>
+
+    <Item DataValue="0040">離線鎖卡</Item>
+    <Item DataValue="0041">上傳離線交易資料</Item>
+    <Item DataValue="0042">離線現金加值交易</Item>
+    <Item DataValue="0043">查詢離線加值資訊</Item>
+
+    <Item DataValue="0011">轉乘扣值交易</Item>
+  </CMD_TYPE>
+  <QUERY_TICKET_FAST_MODE>
+    <Item DataValue="00">IP_QUERY_TYPE_EN_POLL_0</Item>
+    <Item DataValue="01">IP_QUERY_TYPE_EN_POLL_1</Item>
+    <Item DataValue="02">IP_QUERY_TYPE_UN_POLL_0</Item>
+    <Item DataValue="03">IP_QUERY_TYPE_UN_POLL_1</Item>
+  </QUERY_TICKET_FAST_MODE>
+  <CSN_LEN>
+    <Item DataValue="00">00</Item>
+    <Item DataValue="04">04</Item>
+    <Item DataValue="07">07</Item>
+    <Item DataValue="10">10</Item>
+  </CSN_LEN>  
+  <TAPS_EXE>
+    <Item DataValue="01">RELEASE_EXE</Item>
+    <Item DataValue="02">DEBUG_EXE</Item>
+	<Item DataValue="00">NO_EXE</Item>
+	<Item DataValue="03">OUTPUT_PARSE</Item>
+  </TAPS_EXE>    
+</ComboBoxListParm>

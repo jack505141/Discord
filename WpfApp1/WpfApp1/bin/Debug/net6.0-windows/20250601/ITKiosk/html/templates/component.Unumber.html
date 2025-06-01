@@ -1,0 +1,82 @@
+<script type="text/x-template" id="template-Unumber-main">
+  <div class="container">
+    <div class="processInfo">
+      <div class="inputTitle">
+
+        <p v-if="kiosk.status.invoice && kiosk.status.invoice.invoiceDeviceType === 'DONATE'">
+          <!-- 請輸入捐贈愛心碼單位 -->
+        </p>
+        <p v-else>
+          <template v-if="kiosk.status.needInvoice">
+            <!-- 發票是否需要統一發票 -->
+            {{model.UniformTitle}}
+          </template>
+          <template v-else>
+            <!-- 交易明細是否需要統一編號 -->
+            {{model.UniformTitleWithoutInv}}
+          </template>
+
+        </p>
+
+      </div>
+      <div class="inputContent">
+
+        <template v-if="kiosk.status.invoice && kiosk.status.invoice.invoiceDeviceType === 'DONATE'">
+          <p>
+            <!-- 請輸入愛心碼  -->
+            {{model.HeartInput}}
+            <!-- <span> -->
+              <!-- **若無捐贈碼，建議捐給喜憨兒基金會 -->
+            <!-- {{model.HeartDesc}}
+            </span> -->
+          </p>
+        </template>
+        <template v-else-if="kiosk.status.needInvoice">
+          <p>
+            <!-- 統一編號  -->
+            {{model.Uniform}}
+            <span>
+              <!-- **發票止記載買方統一編號即不具兌換效力 -->
+            {{model.UniformDesc}}
+            </span>
+          </p>
+        </template>
+        <template v-else>
+          <p>
+            <!-- 統一編號  -->
+            {{model.Uniform}}
+            <span>
+              <!-- **本交易免開統一發票，將備註在交易明細上 -->
+              {{model.UniformDescTitleWithoutInv}}
+            </span>
+          </p>
+        </template>
+        <input type="text" class="form-control bg-light" v-model="keyin" style="color: #003f7b;">
+        <div class="inputKey d-flex flex-wrap justify-content-center">
+          <div class="key" @mousedown="keyDown('7')">7</div>
+          <div class="key" @mousedown="keyDown('8')">8</div>
+          <div class="key" @mousedown="keyDown('9')">9</div>
+          <div class="key" @mousedown="keyDown('4')">4</div>
+          <div class="key" @mousedown="keyDown('5')">5</div>
+          <div class="key" @mousedown="keyDown('6')">6</div>
+          <div class="key" @mousedown="keyDown('1')">1</div>
+          <div class="key" @mousedown="keyDown('2')">2</div>
+          <div class="key" @mousedown="keyDown('3')">3</div>
+          <div class="key_t" @mousedown="backspace()">{{model.Del}}</div>
+          <div class="key" @mousedown="keyDown('0')">0</div>
+          <div class="key_t" @mousedown="keyDownClear()">{{model.Clear}}</div>
+        </div>
+        <div>
+          <button v-if="!(kiosk.status.invoice && kiosk.status.invoice.invoiceDeviceType == 'DONATE')" @mousedown="goSkip()" class="btn btn-outline-secondary btn-lg mr-5">
+            <!-- 跳過 -->
+            {{model.Skip}}
+          </button>
+          <button @mousedown="goNext()" class="btn btn-outline-success btn-lg">
+            <!-- 確認 -->
+            {{model.Confirm}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>

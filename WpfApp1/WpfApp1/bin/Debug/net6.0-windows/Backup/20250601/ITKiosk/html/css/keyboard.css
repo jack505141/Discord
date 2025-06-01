@@ -1,0 +1,145 @@
+/*  Keyboard */
+
+.keyboard {
+  position: relative;
+  font-family: "Myriad Pro", sans-serif;
+}
+
+.keyboard__left,
+.keyboard__right,
+.keyboard__mid,
+.keyboard__p1,
+.keyboard__p2 {
+  margin: 20px 0 0;
+  height: 260px;
+  display: inline-block;
+}
+
+.keyboard__full {
+  position: absolute;
+  top: 0;
+  left: 50px;
+  margin: 30px 0 0;
+  height: 260px;
+  display: inline-block;
+}
+
+.keyboard__right {
+  margin-left: 20px;
+}
+
+.keyboard__mid {
+  right: 270px;
+  left: auto;
+  width: 300px;
+}
+
+.keyboard__p1 {
+  width: 300px;
+}
+
+.keyboard__p2 {
+  margin-left: 10px;
+}
+
+.key-num {
+  background: #f3f3f1;
+  margin: 9px 2px 0;
+  padding: 0 0 5px;
+  width: 55px;
+  height: 50px;
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: normal;
+  border: 1px #636262 solid;
+  border-radius: 6px;
+  display: inline-block;
+  text-align: center;
+  background: #C4C4C4;
+}
+
+.key-num:hover {
+  background: #ccc;
+  width: 55px;
+  height: 50px;
+  border: 1px #636262 solid;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.key {
+  background: #f3f3f1;
+  margin: 9px 2px 0;
+  padding: 0 0 50px 0;
+  width: 80px;
+  height: 63px;
+  color: #ffffff;
+  font-size: 45px;
+  font-weight: normal;
+  /* border: 1px #636262 solid; */
+  border-radius: 6px;
+  display: inline-block;
+  text-align: center;
+  background: #C4C4C4;
+}
+
+.key:hover {
+  background: #ccc;
+ width: 80px;
+  height: 63px;
+  border: 1px #636262 solid;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.keyboard__bottom-line {
+  margin: 0 auto;
+  display: flex;
+}
+
+.keyboard__caplocks,
+.keyboard__space,
+.keyboard__backspace,
+.keyboard__clear,
+.key2 {
+  margin: 1px 1px ;
+  font-weight: bold;
+font-size: 40px;
+}
+
+.keyboard__caplocks {
+  min-width: 100px;
+  font-size: 22px;
+}
+
+.keyboard__space {
+  min-width: 160px;
+  flex-grow: 100;
+}
+
+.keyboard__backspace {
+  min-width: 118px;
+  vertical-align: top;
+}
+
+.keyboard__backspace_cash {
+  min-width: 110px;
+  vertical-align: top;
+}
+
+.keyboard__clear {
+  min-width: 100px;
+  font-size: 22px;
+  padding-top: 10px;
+}
+
+.key2 {
+  min-width: 100px;
+  font-size: 16px;
+  padding-top: 15px;
+}
+
+input::placeholder {
+  color: red;
+  font-size: 1.5em;
+}

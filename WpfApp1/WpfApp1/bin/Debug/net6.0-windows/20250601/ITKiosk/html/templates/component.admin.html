@@ -1,0 +1,558 @@
+<script type="text/x-template" id="template-admin-main">
+  	<div class="container-fluid admin" style="background-color: white;">
+  	<div class="row mt-1">
+  		<div class="col-2 p-0">
+  			<ul class="list-group list-group-flush h5 text-secondary border-right border-secondary-200"
+  				style="height: calc(100vh - 5rem);">
+  				<li :class="{'active':currentList==='deviceInfo'}" class="list-group-item"
+  					@click="setPage('deviceInfo')">
+  					<!-- <i class="fas fa-heart mr-2"></i> -->
+  					設備資訊</li>
+  				<li :class="{'active':currentList==='syncPaymentInfo'}" class="list-group-item"
+  					@click="setPage('syncPaymentInfo')">
+  					<!-- <i class="fas fa-search-dollar mr-2"></i> -->
+  					同步付款資訊</li>
+  				<!-- <li :class="{'active':currentList==='productList'}" class="list-group-item"
+  					@click="setPage('productList')"> -->
+  					<!-- <i class="fas fa-list mr-2"></i> -->
+  					<!-- 商品清單</li> -->
+  				<li v-if="kiosk.systemSetting.useICTCash" :class="{'active':currentList==='cashBalance'}" class="list-group-item"
+  		    		@click="setPage('cashBalance')">
+  		    		<!-- <i class="fas fa-window-restore mr-2"></i> -->
+  		    		現金水位</li>
+  				<li :class="{'active':currentList==='orderList' || currentList ==='orderListDetail'}" class="list-group-item"
+  					@click="setPage('orderList')">
+  					<!-- <i class="fas fa-window-restore mr-2"></i> -->
+  					訂單管理</li>
+  				<!-- <li :class="{'active':currentList==='deviceSetting'}" class="list-group-item"
+  					@click="setPage('deviceSetting')"> -->
+  					<!-- <i class="fas fa-tablet-alt mr-2"></i> -->
+  					<!-- 收款設備</li> -->
+  				<li class="list-group-item mt-auto" style="z-index: 2;">
+  					<div @click="handleMouseDown('PrintLogoutReport')" class="btn btn-block btn-lg btn-outline-primary font-weight-bold py-3">列印交班表</div>
+  					<div @click="handleMouseDown('Idle')" class="btn btn-block btn-lg btn-outline-primary font-weight-bold py-3">重開APP</div>
+  					<div @click="handleMouseDown('ShotDownApp')" class="btn btn-block btn-lg btn-outline-primary font-weight-bold py-3">關閉APP</div>
+  				</li>
+  			</ul>
+  		</div>
+  		<div class="col-10 p-0">
+  			<div v-if="currentList==='deviceInfo'" style="">
+  				<div class="swiper-posAdmin-deviceInfo" style="width:100%; overflow: hidden; height: 700px; position: relative;">
+  					<div class="swiper-wrapper">
+  						<div class="swiper-slide">
+  							<table class="table">
+  								<thead>
+  									<tr class="text-center font-weight-bold bg-secondary-200 h4">
+  										<th colspan="3" scope="col">設備資訊</th>
+  									</tr>
+  								</thead>
+  								<tbody>
+  									<tr class="h4">
+  										<th width="40%" scope="row">所屬站點</th>
+  										<td width="30%" class="text-center">{{merchantCode}}</td>
+  										<td width="30%" class="text-right">{{merchantName}}/{{merchantSiteName}}</td>
+  									</tr>
+  									<tr class="h4">
+  										<th width="40%" scope="row">銷售群組</th>
+  										<td width="30%" class="text-center"></td>
+  										<td width="30%" class="text-right"> {{merchantSiteGroupName}}</td>
+  									</tr>
+  									<tr class="h4">
+  										<th width="40%" scope="row">設備編號</th>
+  										<td colspan="2" width="60%" class="text-right">{{deviceId}} / {{deviceName}}</td>
+  										<!-- <td width="30%" class="text-right">{{deviceId}} / {{deviceName}}</td> -->
+  									</tr>
+  									<tr class="h4">
+  										<th width="40%" scope="row">
+  											<div class="d-flex justify-content-between align-items-baseline">
+  												<span>票卡機連線狀態</span>
+  												<span style="color: rgb(0, 123, 255) !important; font-size: 16px;">{{kiosk.BESync.TicketPrinterName}}</span>
+  											</div>
+  										</th>
+  										<td width="30%" class="text-success font-weight-bold"
+  										:style="{'color' : (PRINTERSTATUE === '1') ? '#28a745' : 'red'}">
+  										{{(TSCSTATUS === '1') ? '連線正常' : (TSCSTATUS === '2') ? '紙張將盡' : '設備異常'}}
+  										</td>
+  										<td width="30%" class="text-right">
+  											<div class="btn btn-primary px-4 btn-lg" @click="checkTSC()">測試列印</div>
+  											<div class="btn btn-primary px-4 btn-lg" @click="checkTSCStatus(true)">測試連線</div>
+  										</td>
+  									</tr>
+  									<tr class="h4">
+  										<th width="40%" scope="row">
+  											<div class="d-flex justify-content-between align-items-baseline">
+  												<span>熱感機連線狀態</span>
+  												<span style="color: rgb(0, 123, 255) !important; font-size: 16px;">{{kiosk.BESync.ReveivePrinterName}}</span>
+  											</div>
+  										</th>
+  										<td width="30%" class="text-success font-weight-bold"
+  										:style="{'color' : (TSCSTATUS === '1') ? '#28a745' : 'red'}">
+  										{{(PRINTERSTATUE === '1') ? '連線正常' : (PRINTERSTATUE === '2') ? '紙張將盡' : '設備異常'}}
+  										</td>
+  										<td width="30%" class="text-right">
+  											<div class="btn btn-primary px-4 btn-lg" @click="checkDetails()">測試列印</div>
+  											<div class="btn btn-primary px-4 btn-lg" @click="checkDetailsStatus(true)">測試連線</div>
+  										</td>
+  									</tr>
+  									<tr class="h4">
+  										<th width="40%" scope="row">票卡印製數量(TTP 247限定)</th>
+  										<td width="30%" class="text-center">
+  											<div class="d-flex justify-content-center align-items-center" style="margin-left: 30px;">
+  												{{kiosk.systemSetting.printCount}}次/{{kiosk.systemSetting.TSCLimit}}
+  											</div>
+  										</td>
+  										<td width="30%" class="text-right">
+  											<div>
+  												<div class="btn btn-primary px-4 btn-lg" @click="setTSCLimit()">可用張數設定</div>
+  												<div class="btn btn-primary px-4 btn-lg" @click="resetTSCPrintCount()">重新計數</div>
+  											</div>
+  										</td>
+  									</tr>
+  									<tr class="h4">
+  										<th width="40%" scope="row">熱感印表機低紙量後 預期可再印製張數</th>
+  										<td width="30%" class="text-center">
+  											<div class="d-flex justify-content-center align-items-center" style="margin-left: 30px;">
+  												{{kiosk.systemSetting.ReceiptPrinterNearEndPrintCount}}張/{{kiosk.systemSetting.ReceiptPrinterNearEndPrintLimit}}
+  											</div>
+  										</td>
+  										<td width="30%" class="text-right">
+  											<div>
+  												<div class="btn btn-primary px-4 btn-lg" @click="setReceiptPrinterNearEndPrintLimit()">預期張數設定</div>
+  												<div class="btn btn-primary px-4 btn-lg" @click="resetReceiptPrinterNearEndPrintCount()">重新計數</div>
+  											</div>
+  										</td>
+  									</tr>
+  									<tr class="h4">
+  										<th width="40%" scope="row">網路連線狀態</th>
+  										<td width="30%" class="text-success font-weight-bold"
+  											:style="{'color' : CONNECTSTATUS ? '#28a745' : 'red'}">
+  											{{(CONNECTSTATUS) ? '連線正常' : '連線異常'}}
+  										</td>
+  										<td width="30%" class="text-right">
+  											<div class="btn btn-primary px-4 btn-lg" @click="checkConnStatus()">測試連線</div>
+  										</td>
+  									</tr>
+  									<tr class="h4">
+  										<th width="40%" scope="row">閒置時間設定</th>
+  										<td width="30%" class="text-center"></td>
+  										<td width="30%" class="text-right">60秒</td>
+  									</tr>
+  									<tr class="h4">
+  										<th width="40%" scope="row">維修中</th>
+  										<td width="30%" class="text-center"></td>
+  										<td width="30%" class="text-right">
+  											<div class="d-inline-block font-weight-bold text-success mr-5"
+  											:style="{'color': maintenance ? 'red' : '#28a745'}">
+  												{{maintenance ? '維修中' : '正常使用'}}
+  											</div>
+  											<div class="d-inline-block custom-control custom-switch custom-switch-lg"
+  												style="vertical-align: middle;width">
+  												<input type="checkbox" class="custom-control-input" id="customSwitch1" v-model="maintenance">
+  												<label class="custom-control-label" for="customSwitch1"></label>
+  											</div>
+  										</td>
+  									</tr>
+  									<tr class="h4">
+  										<th width="40%" scope="row">設備管理平台</th>
+  										<td width="60%" class="text-center" colspan="2">
+  											<div class="d-flex justify-content-between">
+  												<div style="margin-left: 20px;">
+  													上次更新時間: {{moment(kiosk.BESync.LastTime).format("YYYY/MM/DD HH:mm")}}
+  												</div>
+  												<div>
+  													<div class="btn btn-primary px-4 btn-lg" @click="kmsSync()">重新載入</div>
+  												</div>
+  											</div>
+  										</td>
+  									</tr>
+  									<tr class="h4">
+  										<th width="40%" scope="row">營業時間設定</th>
+  										<td width="60%" class="text-center" colspan="2">
+  											<div class="d-flex justify-content-between">
+  												<div style="margin-left: 20px;">
+  													{{kiosk.systemSetting.openTime}} ~ {{kiosk.systemSetting.closeTime}}
+  												</div>
+  											</div>
+  										</td>
+  									</tr>
+  									<tr class="h4">
+  										<th width="40%" scope="row">系統管理密碼</th>
+  										<td width="60%" class="text-center" colspan="2">
+  											<div class="d-flex justify-content-between">
+  												<div style="margin-left: 20px;"></div>
+  												<div>
+  													<div class="btn btn-primary px-4 btn-lg" @click="setAdminPassword()">變更密碼</div>
+  												</div>
+  											</div>
+  										</td>
+  									</tr>
+  									<!-- <tr class="h4">
+  										<th width="40%" scope="row">取票功能</th>
+  										<td width="30%" class="text-center"></td>
+  										<td width="30%" class="text-right">
+  											<div class="d-inline-block font-weight-bold mr-5">關閉 </div>
+  											<div class="d-inline-block custom-control custom-switch custom-switch-lg"
+  												style="vertical-align: middle;width">
+  												<input type="checkbox" class="custom-control-input" id="customSwitch2">
+  												<label class="custom-control-label" for="customSwitch2"></label>
+  											</div>
+  										</td>
+  									</tr>
+  									<tr class="h4">
+  										<th width="40%" scope="row">購票</th>
+  										<td width="30%" class="text-center"></td>
+  										<td width="30%" class="text-right">
+  											<div class="d-inline-block font-weight-bold text-success mr-5">開啟 </div>
+  											<div class="d-inline-block custom-control custom-switch custom-switch-lg"
+  												style="vertical-align: middle;width">
+  												<input type="checkbox" class="custom-control-input" id="customSwitch3">
+  												<label class="custom-control-label" for="customSwitch3"></label>
+  											</div>
+  										</td>
+  									</tr> -->
+  								</tbody>
+  							</table>
+  							<!-- <table class="table">
+  								<thead>
+  									<tr class="text-center font-weight-bold bg-secondary-200 h4">
+  										<th colspan="3" scope="col">系統設定</th>
+  									</tr>
+  								</thead>
+  								<tbody>
+  									<tr class="h4">
+  										<th width="40%" scope="row">目前版本資訊</th>
+  										<td width="30%" class="text-center"></td>
+  										<td width="30%" class="text-right">1.0(最新版本1.0)</td>
+  									</tr>
+  									<tr class="h4">
+  										<th width="40%" scope="row">清除所有資訊</th>
+  										<td width="30%" class="text-center"></td>
+  										<td width="30%" class="text-right">
+  											<div class="btn btn-outline-secondary btn-lg px-4">重設系統</div>
+  										</td>
+  									</tr>
+  								</tbody>
+  							</table> -->
+  						</div>
+  					</div>
+  					<div class="swiper-scrollbar-deviceInfo" style=""></div>
+  				</div>
+  			</div>
+  			<div v-if="currentList==='syncPaymentInfo'">
+  				<table class="table">
+  					<thead>
+  						<tr class="text-center font-weight-bold bg-secondary-200 h4">
+  							<th colspan="3" scope="col">支付卡機</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<!-- <tr class="h4">
+  							<th width="40%" scope="row">訂單數量</th>
+  							<td width="30%" class="text-center"></td>
+  							<td width="30%" class="text-right">99,999</td>
+  						</tr> -->
+  						<tr class="h4">
+  							<th width="40%" scope="row">上次清帳時間</th>
+  							<td width="30%" class="text-center"></td>
+  							<td width="30%" class="text-right">
+  								{{kiosk.systemSetting ? kiosk.systemSetting.settle : ''}}
+  							</td>
+  						</tr>
+  						<tr class="h4">
+  							<th width="40%" scope="row"></th>
+  							<td width="30%" class="text-success font-weight-bold"></td>
+  							<td width="30%" class="text-right">
+  								<div class="btn btn-primary px-4 btn-lg" @click="executeSettle">手動結帳</div>
+  							</td>
+  						</tr>
+
+  					</tbody>
+  				</table>
+  			</div>
+  			<div v-if="currentList==='productList'">
+  				<table class="table">
+  					<thead>
+  						<tr class="text-center font-weight-bold bg-secondary-200 h4">
+  							<th colspan="3" scope="col">重新載入商品清單</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr class="h4">
+  							<th width="40%" scope="row">上次更新時間</th>
+  							<td width="30%" class="text-center"></td>
+  							<td width="30%" class="text-right">2020/12/31 23:55</td>
+  						</tr>
+  						<tr class="h4">
+  							<th width="40%" scope="row"></th>
+  							<td width="30%" class="text-success font-weight-bold"></td>
+  							<td width="30%" class="text-right">
+  								<div class="btn btn-primary px-4 btn-lg">重新載入商品清單</div>
+  							</td>
+  						</tr>
+  					</tbody>
+  				</table>
+  			</div>
+  			<div v-if="currentList==='cashBalance'">
+  				<table class="table">
+  					<thead>
+  						<tr class="text-center font-weight-bold bg-secondary-200 h4">
+  							<th colspan="3" scope="col">現金水位紀錄表</th>
+  						</tr>
+  					</thead>
+  					<!-- <tbody>
+  						<tr class="h4">
+  							<th width="40%" scope="row">上次結帳時間</th>
+  							<td width="30%" class="text-center"></td>
+  							<td width="30%" class="text-right">
+  								{{kiosk.systemSetting ? kiosk.systemSetting.settle : ''}}
+  							</td>
+  						</tr>
+  					</tbody> -->
+  				</table>
+  					<table class="table">
+  						<thead>
+  							<tr class="text-center font-weight-bold bg-secondary-200 h4">
+  								<th width="80%" style="border-color: transparent;">
+  									<table class="cashBalanceTable">
+  										<thead>
+  											<tr class="table-bg-gray-even table-bg-white-odd text-center font-weight-bold bg-secondary-200 h4" style="background-color: #fff;">
+  												<th width="20%" class="text-left" style="background-color: rgba(0, 0, 0, 0.05);" scope="col"></th>
+  												<th width="20%" class="text-left" scope="col">面額</th>
+  												<th width="30%" class="text-left" scope="col">容量上限</th>
+  												<th width="30%" class="text-left" scope="col">剩餘水位數量</th>
+  											</tr>
+  										</thead>
+  										<tbody>
+  											<!-- <tr class="table-bg-gray-even table-bg-white-odd h4" style="background-color: #fff;">
+  												<td width="20%" class="text-left" style="background-color: rgba(0, 0, 0, 0.05);" scope="row" rowspan="4">零錢機</td>
+  												<td width="20%" class="text-left">1元</td>
+  												<td width="30%" class="text-left">144</td>
+  												<td width="30%" class="text-left">{{kiosk.CashBox.cc1_stock_now}}</td>
+  											</tr> -->
+  											<!-- <tr class="table-bg-gray-odd table-bg-white-even h4" style="background-color: #fff;">
+  												<td width="20%" class="text-left">5元</td>
+  												<td width="30%" class="text-left">78</td>
+  												<td width="30%" class="text-left">{{kiosk.CashBox.cc5_stock_now}}</td>
+  											</tr> -->
+  											<tr class="table-bg-gray-even table-bg-white-odd h4" style="background-color: #fff;">
+  												<td width="20%" class="text-left" style="background-color: rgba(0, 0, 0, 0.05);" scope="row" rowspan="2">零錢機</td>
+  												<td width="20%" class="text-left">10元</td>
+  												<td width="30%" class="text-left">122</td>
+  												<td width="30%" class="text-left">{{kiosk.CashBox.cc10_stock_now}}</td>
+  											</tr>
+  											<tr class="table-bg-gray-odd table-bg-white-even h4" style="background-color: #fff;">
+  												<td width="20%" class="text-left">50元</td>
+  												<td width="30%" class="text-left">48</td>
+  												<td width="30%" class="text-left">{{kiosk.CashBox.cc50_stock_now}}</td>
+  											</tr>
+  											<!-- <tr class="table-bg-gray-even table-bg-white-odd h4" style="background-color: #fff;">
+  												<td width="20%" class="text-left"  style="background-color: rgba(0, 0, 0, 0.05);" scope="row">退鈔機</td>
+  												<td width="20%" class="text-left">100元</td>
+  												<td width="30%" class="text-left">{{nd_stock}}</td>
+  												<td width="30%" class="text-left">{{kiosk.CashBox.nd_stock_now}}</td>
+  											</tr> -->
+  										</tbody>
+  									</table>
+  								</th>
+  								<th width="20%" style="border-color: transparent;"></th>
+  							</tr>
+  						</thead>
+  						<tbody>
+  							<tr class="h4">
+  								<td width="80%">
+  									<div class="d-flex justify-content-end">
+  										<div @mousedown="PrintCashBalance()" class="btn btn-block btn-lg btn-outline-primary font-weight-bold py-3" style="width: 40%;">列印水位紀錄表</div>
+  									</div>
+  								</td>
+  								<td width="20%">
+  									<div class="d-flex justify-content-start">
+  										<div @mousedown="resetCashBalance()" class="btn btn-block btn-lg btn-outline-primary font-weight-bold py-3">同步</div>
+  									</div>
+  								</td>
+  							</tr>
+  						</tbody>
+  					</table>
+  			  		<div class="h4 font-weight-bold p-2 pl-5" style="color: #000;">
+  						<span style="line-height: 150%;">操作說明：<br />1.重啟APP時機：若遇到現金收款暫停服務後，請<span style="color: #ff2d55;">重啟APP</span>重置設定。<br />2.同步：若更換零錢機後，欲立即確認數字，請按下<span style="color: #007bff;">同步</span>。</span>
+  					</div>
+  				</div>
+  				<div v-if="currentList==='orderList'" style="">
+  				<!-- <div class="swiper-posAdmin-orderList" style="overflow: hidden; width:100%; height: 700px; position: relative;">
+  				  <div class="swiper-wrapper d-flex">
+  				<div class="swiper-slide"> -->
+  				<table class="table">
+  					<thead>
+  						<tr class="text-center font-weight-bold title-bg-gray h4">
+  							<th class="" style="transform: translate(-2%, 0);" colspan="5" scope="col">訂單資訊</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<!-- <template v-if="history === null || history === undefined || (typeof history === 'object' && history.length === 0)">
+  							<tr class="h4" style="border-bottom-style:dotted">
+   								<th width="5%" scope="row">&emsp;&emsp;</th>
+  								<th width="30%" class="text-center align-middle">訂單時間</th>
+  								<th width="25%" class="text-center">&emsp;&emsp;</th>
+  								<th width="35%" class="text-center align-middle">訂單編號</th>
+  								<th width="5%">&emsp;&emsp;</th>
+  							</tr>
+  						</template> -->
+  				  		<!-- <template v-if="typeof history === 'object' && history.length !== 0">
+  							<tr class="h4" style="border-bottom-style:dotted">
+  						 		<th width="5%" class="text-center px-0 pl-2" scope="row">
+  									<div class="btn btn-primary px-4 m-0 h2 d-flex" @click="prevOrderListPage()"><img src="./img/arrow_left.png" width="10" height="15" alt=""/></div>
+  								</th>
+  								<th width="30%" class="text-center align-middle">訂單時間</th>
+  					  			<th width="25%" class="text-center align-middle font-weight-normal">{{kiosk.status.orderListPage}} / {{kiosk.status.maxOrderListPage}}</th>
+  								<th width="35%" class="text-center align-middle">訂單編號</th>
+  					  			<th width="5%" class="text-center px-0 pr-2">
+  						 			<div class="btn btn-primary px-4 m-0 h2 d-flex" @click="nextOrderListPage()"><img src="./img/arrow_right.png" width="10" height="15" alt=""/></div>
+  					  			</th>
+  							</tr>
+  			  			</template> -->
+  						<tr class="h4" style="border-bottom-style:dotted">
+   							<th width="5%" class="text-center px-0 pl-2" scope="row">
+  						   		<div class="btn btn-primary px-4 m-0 h2 d-flex" @click="prevOrderListPage()"><img src="./img/arrow_left.png" width="10" height="15" alt=""/></div>
+  					   		</th>
+  					   		<th width="30%" class="text-center align-middle">訂單時間</th>
+  					 		<th width="25%" class="text-center align-middle font-weight-normal">{{kiosk.status.orderListPage}} / {{kiosk.status.maxOrderListPage}}</th>
+  					   		<th width="35%" class="text-center align-middle">訂單編號</th>
+  					 		<th width="5%" class="text-center px-0 pr-2">
+  								<div class="btn btn-primary px-4 m-0 h2 d-flex" @click="nextOrderListPage()"><img src="./img/arrow_right.png" width="10" height="15" alt=""/></div>
+  					 		</th>
+  				   		</tr>
+  						<template v-if="history === null">
+  							<tr class="h4" style="border-bottom-style:hidden">
+   								<td width="5%" class="text-center" scope="row"></td>
+  								<td width="30%" class="text-center">訂單資訊異常</td>
+  								<td width="25%" class="text-center"></td>
+  								<td width="35%" class="text-center">訂單資訊異常</td>
+  								<td width="5%" class="text-center"></td>
+  							</tr>
+  						</template>
+  						<template v-if="history === undefined">
+  							<tr class="h4" style="border-bottom-style:hidden">
+   								<td width="5%" class="text-center" scope="row"></td>
+  								<td width="30%" class="text-center">無訂單紀錄</td>
+  								<td width="25%" class="text-center"></td>
+  								<td width="35%" class="text-center">無訂單紀錄</td>
+  								<td width="5%" class="text-center"></td>
+  							</tr>
+  						</template>
+  						<template v-if="typeof history === 'object' && history.length === 0">
+  							<tr class="h4" style="border-bottom-style:hidden">
+   								<td width="5%" class="text-center" scope="row"></td>
+  								<td width="30%" class="text-center">訂單資訊載入中</td>
+  								<td width="25%" class="text-center"></td>
+  								<td width="35%" class="text-center">訂單資訊載入中</td>
+  								<td width="5%" class="text-center"></td>
+  							</tr>
+  						</template>
+  						<template v-if="typeof history === 'object' && history.length !== 0" v-for="(item ,index) in history">
+  							<tr @click="getOrderDetail(index,item.orderNo)" class="h4" style="border-bottom-style:hidden">
+  								<td width="5%" class="text-center" scope="row"></td>
+  								<td width="30%" class="text-center">{{moment(item.orderTime).format('YYYY/MM/DD HH:mm:ss')}}</td>
+  								<td width="25%" class="text-center"></td>
+  								<td width="35%" class="text-center">{{item.orderNo}}</td>
+  								<td width="5%" class="text-center"></td>
+  							</tr>
+  						</template>
+  					</tbody>
+  				</table>
+  			<!-- </div>
+  		  </div>
+  			<div class="swiper-scrollbar-orderList" style=""></div>
+  			</div> -->
+  			</div>
+  			<div v-if="currentList==='orderListDetail'">
+  				<div class="font-weight-bold text-dark h4 py-3 d-flex justify-content-center title-bg-gray title-container">
+  					<button @click="setPage('orderList')" type="button" class="btn btn-light btn-outline-secondary ml-2 mr-0 mb-0 mt-0 title-left-btn">BACK</button>
+  					<div style="transform: translate(-24%, -10%);">訂單詳情</div>
+  				</div>
+  				<table class="table">
+  					<thead>
+  						<tr class="text-center font-weight-bold text-light bg-dark h4 mt-0">
+  							<th style="transform: translate(-2%, 0);" colspan="4" scope="col">訂單資訊</th>
+  						</tr>
+  					</thead>
+  					<tbody style="">
+  						<tr v-if="currentOrderListDetail" class="h4" style="border-bottom-style:hidden">
+  							<td width="40%" class="text-left pt-3 pl-4 pr-4 pb-3" scope="row">
+  								<h5>訂單資訊</h5>
+  								<h5 v-for="(item, key) in currentOrderListDetail.orderDetail" :key="key">{{item[0]}}：{{item[1]}}</h5>
+  							</td>
+  							<td width="30%" class="text-left pt-3 pl-4 pr-4 pb-3" scope="row">
+  								<h5>刷卡資訊</h5>
+  								<h5 v-for="(item, key) in currentOrderListDetail.creditCardDetail" :key="key">{{item[0]}}：{{item[1]}}</h5>
+  							</td>
+  							<td width="30%" class="text-center" scope="row">
+  								<div class="d-flex flex-column">
+  									<button :disabled="paymentData.status == 'SUCCESS' ? false : true" @click="ShowPrint(1)" type="button" class="btn btn-light btn-lg border border-dark mb-2 mt-3">重印交易明細</button>
+  									<button :disabled="paymentData.status == 'SUCCESS' ? false : true" @click="ShowPrint(2)" type="button" class="btn btn-light btn-lg border border-dark mb-2">重印票券</button>
+  								</div>
+  							</td>
+  						</tr>
+  						<!-- <tr class="h4" style="border-bottom-style:hidden">
+  							<td width="25%" class="text-center">2021/01/01/03:08:49</td>
+  							<td width="15%" class="text-center">print</td>
+  							<td width="25%" class="text-center">response收據機</td>
+  							<td width="35%" class="text-center">回傳內容,{call back}</td>
+  						</tr> -->
+  					</tbody>
+  				</table>
+  			</div>
+  			<div v-if="currentList==='deviceSetting'">
+  				<table class="table">
+  					<thead>
+  						<tr class="text-center font-weight-bold bg-secondary-200 h4">
+  							<th colspan="3" scope="col">收款設備</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr class="h4">
+  							<th width="40%" scope="row">信用卡設備</th>
+  							<td width="30%" class="text-center"></td>
+  							<td width="30%" class="text-right">
+  								<div class="d-inline-block font-weight-bold mr-5">關閉 </div>
+  								<div class="d-inline-block custom-control custom-switch custom-switch-lg"
+  									style="vertical-align: middle;width">
+  									<input type="checkbox" class="custom-control-input" id="customSwitch2">
+  									<label class="custom-control-label" for="customSwitch2"></label>
+  								</div>
+  							</td>
+  						</tr>
+  						<tr class="h4">
+  							<th width="40%" scope="row">悠遊卡設備</th>
+  							<td width="30%" class="text-center"></td>
+  							<td width="30%" class="text-right">
+  								<div class="d-inline-block font-weight-bold mr-5">關閉 </div>
+  								<div class="d-inline-block custom-control custom-switch custom-switch-lg"
+  									style="vertical-align: middle;width">
+  									<input type="checkbox" class="custom-control-input" id="customSwitch3">
+  									<label class="custom-control-label" for="customSwitch3"></label>
+  								</div>
+  							</td>
+  						</tr>
+  					</tbody>
+  				</table>
+  			</div>
+  		</div>
+  	</div>
+
+  </div>
+  <!-- <div class="container">
+  			<h3>System</h3>
+  			<button class="admin-btn button btn-danger"@mousedown="handleMouseDown('Cancel')">取消</button>
+  			<button class="admin-btn button btn-danger"@mousedown="handleMouseDown('ShotDownApp')">關閉程式</button>
+  			<button v-if="maintenance===false" class="admin-btn button btn-danger" @mousedown="switchSystemSetting('maintenance',true)">系統維護ON</button>
+  			<button v-if="maintenance===true" class="admin-btn button btn-danger" @mousedown="switchSystemSetting('maintenance',false)">系統維護OFF</button>
+  			<h3>2D Scanner</h3>
+  			<button class="admin-btn button btn-warning" @mousedown="Scanner2DAuto_Open()">Open</button>
+  			<button class="admin-btn button btn-warning" @mousedown="Scanner2DAuto_Close()">Close</button>
+  			<button class="admin-btn button btn-warning" @mousedown="Scanner2DAuto_Start()">GetData</button>
+  			<button class="admin-btn button btn-warning" @mousedown="Scanner2DAuto_Stop()">StopGet</button>
+  			<button class="admin-btn button btn-warning" @mousedown="Scanner2DAuto_Status()">Status</button>
+  			<h3>EZM</h3>
+  			<button class="admin-btn button btn-success" @mousedown="EZM_getData()">GetData</button>
+  			<button class="admin-btn button btn-success" @mousedown="EZM_StopGet()">StopGet</button>
+  		</div> -->
+</script>

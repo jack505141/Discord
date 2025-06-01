@@ -1,0 +1,91 @@
+<!-- 頁首 -->
+<script type="text/x-template" id="template-TVMcommon-navBar">
+  <div>
+      <header>
+          <div v-if="!CONNECTSTATUS" class="networkStatusPrompt">網路不穩中，請稍候再試</div>
+          <div class="d-flex" style="width: 250px;" @mousedown="goBack()" :style="[{visibility: isShowBack ? 'visible' : 'hidden'}]">
+              <i class="icon-back" aria-hidden="true"></i>
+              {{Back}}
+          </div>
+          <div class="logo">
+              <img height="52px" src="img/logo.png">
+          </div>
+          <div class="d-flex" style="width: 250px;">
+              <div class="text-right">
+                  <div>{{clockT}}</div>
+                  <div class="date">{{clockD}}</div>
+              </div>
+              <i
+              :style="[{visibility: isShowHome ? 'visible' : 'hidden'}]"
+              @mousedown="goHome()" class="icon-home" aria-hidden="true"></i>
+          </div>
+      </header>
+  </div>
+</script>
+<!-- 頁首 -->
+<script type="text/x-template" id="template-common-navBar">
+  <div>
+      <header>
+          <div v-if="CONNECTSTATUS" class="networkStatusPrompt">網路不穩中，請稍候再試</div>
+          <div class="d-flex">
+              <i @mousedown="goBack()" class="icon-back" aria-hidden="true"></i>
+              BACK
+          </div>
+          <div class="logo">
+              <img src="img/logo.png" class="w-100">
+          </div>
+          <div class="d-flex">
+              <div class="text-right">
+                  <div>10:23</div>
+                  <div class="date">2021-09-11 (三)</div>
+              </div>
+              <i @mousedown="goHome()" class="icon-home" aria-hidden="true"></i>
+          </div>
+      </header>
+  </div>
+</script>
+
+<script type="text/x-template" id="template-admin-navBar">
+  <nav class="navbar navbar-light bg-primary p-2 justify-content-center position-relative">
+      <h2 class="text-white mb-0 font-weight-bold">系統管理</h2>
+      <div @mousedown="kiosk.API.goToNext('mainMenu')" class="position-absolute" style="right:10px;top:10px;">
+          <div class="border-left border-white px-5">
+          <div class="text-white h3">
+              <!-- <i class="fas fa-sign-out-alt"></i> -->
+              離開
+          </div>
+          </div>
+      </div>
+  </nav>
+</script>
+
+<script type="text/x-template" id="template-common-loading">
+  <div class="overlay" style="display:block;">
+      <div class="loading">
+          <img src="img/Transitions.gif">
+      </div>
+  </div>
+</script>
+
+<script type="text/x-template" id="template-common-dailogbox">
+      <div id="popup-component" class="overlay" style="display:block;">
+      <div class="loading animated zoomIn" style="animation-duration: 0.3s;animation-iteration-count:1">
+          <div class="row">
+              <div class="col-sm-12" style="background:white">
+                  <div class="card-img">
+                      <a href="#">
+                          <img :src="('img/'+model.img)" class="img-responsive center-block" style="margin-top:30px;margin-bottom:20px;">
+                      </a>
+                  </div>
+                  <div class="card card-price">
+                      <div class="card-body text-center">
+                          <h1>{{model.title}}</h1>
+                          <h2>{{model.message}}</h2>
+                          <a v-for="btn in model.btns" @click="delegate(btn.callback)" href="#" style="margin:30px 10px 20px 10px" class="btn btn-primary btn-lg buy-now">{{btn.title}}</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</script>

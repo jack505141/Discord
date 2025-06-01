@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ErrorMsg>
+  <Item0000>執行正確</Item0000>
+  <ItemFFFF>輸入錯誤</ItemFFFF>
+  <Item8000>卡機未啟用</Item8000>
+  <Item8001>卡機連線失敗</Item8001>
+  <Item8002>卡機指令狀態取得錯誤</Item8002>
+  <Item8003>卡機指令狀態設定錯誤</Item8003>
+  <Item8004>卡機指令設定逾時</Item8004>
+  <Item8005>卡機清除指令錯誤</Item8005>
+  <Item8006>卡機請求DLE包裝錯誤</Item8006>
+  <Item8007>卡機寫入指令失敗</Item8007>
+  <Item8008>卡機讀取指令失敗</Item8008>
+  <Item8009>卡機序號錯誤</Item8009>
+  <Item800A>卡機錯誤DLE回應</Item800A>
+  <Item800B>卡機傳輸逾時</Item800B>
+  <Item800C>卡機取得指令失敗</Item800C>
+  <Item800D>卡機溝通失敗</Item800D>
+  <Item800E>卡機編號取得失敗</Item800E>
+  <Item800F>卡機詢卡無卡.偵測不到票卡</Item800F>
+  <Item8010>卡機回應錯誤</Item8010>
+  <Item8011>卡機詢卡多卡. 偵測到多張票卡</Item8011>
+  <Item8030>CAS錯誤. 命令傳輸錯誤</Item8030>
+  <Item8031>CAS錯誤. 命令傳輸錯誤</Item8031>
+  <Item8032>CAS錯誤. 命令傳輸錯誤</Item8032>
+  <Item8040>Bin轉hex字串失敗. 字串轉換失敗</Item8040>
+  <Item8041>取得時間失敗</Item8041>
+  <Item8050>DES加密資料長度錯誤</Item8050>
+  <Item8051>DES KEY金鑰長度錯誤</Item8051>
+  <Item8052>DES加密未實作</Item8052>
+  <Item8060>票卡ICC安全模組未開啟</Item8060>
+  <Item8061>ICC安全模組取得指令失敗</Item8061>
+  <Item8062>票卡ICC安全模組溝通失敗</Item8062>
+  <Item8063>ICC安全模組解碼指令失敗</Item8063>
+  <Item8080>SAM ICC安全模組未開啟</Item8080>
+  <Item8081>SAM取得指令失敗</Item8081>
+  <Item8082>SAM解碼指令失敗</Item8082>
+  <Item8083>SAM ICC安全模組溝通失敗</Item8083>
+  <Item8084>SAM APDU安全指令溝通失敗</Item8084>
+  <Item8085>SAM模組重啟RESET失敗</Item8085>
+  <Item8086>SAM安全模組未實作</Item8086>
+  <Item8087>SAM APDU安全指令無回應</Item8087>
+  <Item8088>SAM APDU 安全指令狀態無回應</Item8088>
+  <Item8089>SAM BUFFER超載. 安全指令長度錯</Item8089>
+  <Item808A>取得SAM AID失敗. 安全模組選擇錯誤</Item808A>
+  <Item808B>設定SAM PIN碼失敗.業者密碼錯誤</Item808B>
+  <Item808C>取得SAM ID(SAM卡內碼)失敗</Item808C>
+  <Item808D>SAM取得亂數種子失敗</Item808D>
+  <Item808E>SAM驗證失敗</Item808E>
+  <Item808F>SAM加密失敗</Item808F>
+  <Item8090>SAM取得亂數首位失敗</Item8090>
+  <Item8091>SAM重傳失敗</Item8091>
+  <Item8092>SAM未認證</Item8092>
+  <Item8093>SAM認證防偽驗證碼失敗</Item8093>
+  <Item8094>SAM取得mif key失敗</Item8094>
+  <Item8095>SAM RWID錯誤</Item8095>
+  <Item8096>SAM種類錯誤</Item8096>
+  <Item8097>SAM PIN衝突</Item8097>
+  <Item8098>SAM資料長度參數錯誤</Item8098>
+  <Item8099>取得ATRC失敗</Item8099>
+  <Item809A>取得ATAC失敗</Item809A>
+  <Item809B>取得TAC失敗</Item809B>
+  <Item809C>取得AAC失敗</Item809C>
+  <Item8100>取得mif key錯誤</Item8100>
+  <Item8101>取得sector key錯誤</Item8101>
+  <Item8102>認證block失敗</Item8102>
+  <Item8103>讀取block失敗</Item8103>
+  <Item8104>讀取票卡資訊失敗</Item8104>
+  <Item8105>票卡資訊存入record_info失敗</Item8105>
+  <Item8106>Block尚未讀取</Item8106>
+  <Item8107>Block數值比對錯誤</Item8107>
+  <Item8108>票卡資料無效</Item8108>
+  <Item8109>票卡需資料寫入</Item8109>
+  <Item810A>票卡讀取扇區編號錯誤</Item810A>
+  <Item810B>票卡資料狀態尚未待寫</Item810B>
+  <Item810C>票卡寫入失敗.</Item810C>
+  <Item810D>票卡尚未實作</Item810D>
+  <Item810E>票卡mifare restore失敗.票卡寫入失敗.</Item810E>
+  <Item810F>票卡mifare transfer失敗.票卡寫入失敗.</Item810F>
+  <Item8110>票卡錢包操作失敗</Item8110>
+  <Item8111>票卡錢包操作失敗</Item8111>
+  <Item8112>錯誤發卡單位</Item8112>
+  <Item8113>票卡逾期</Item8113>
+  <Item8114>票卡版本錯誤</Item8114>
+  <Item8115>票卡已鎖卡</Item8115>
+  <Item8116>票卡狀態錯誤</Item8116>
+  <Item8117>防偽驗證碼錯誤</Item8117>
+  <Item8118>票卡個人身分效期逾期</Item8118>
+  <Item8119>非消費類的票卡種類</Item8119>
+  <Item811A>票卡主票值格式錯誤</Item811A>
+  <Item811B>票卡備份票值格式錯誤</Item811B>
+  <Item811C>票卡主備票值不符</Item811C>
+  <Item811D>交易金額錯誤</Item811D>
+  <Item811E>交易金額超過單筆最大金額限制/1000元</Item811E>
+  <Item811F>交易金額超過當日累積金額限制/3000元</Item811F>
+  <Item8120>票卡餘額不足</Item8120>
+  <Item8121>交易後票卡票值，大於票卡儲值最大票值設定錯誤/1萬元</Item8121>
+  <Item8122>票卡內碼非同張票卡</Item8122>
+  <Item8123>不合法的自動加值金額</Item8123>
+  <Item8124>票卡身分不符，或自動加值旗標關閉</Item8124>
+  <Item8125>票卡儲值最大票值設定錯誤</Item8125>
+  <Item8126>票卡餘額大於前台自動加值餘額門檻</Item8126>
+  <Item8130>社福交易，票卡種類檢查不合法</Item8130>
+  <Item8131>社福交易，特種票識別單位檢查不合法</Item8131>
+  <Item8132>社福交易，身分識別檢查不合法</Item8132>
+  <Item8134>社福交易，剩餘點數不足</Item8134>
+  <Item8135>社福交易，超過點數上限</Item8135>
+  <Item8136>社福交易，錯誤交易請求</Item8136>
+  <Item8180>讀卡失敗</Item8180>
+  <Item8181>讀卡失敗</Item8181>
+  <Item8182>讀卡失敗</Item8182>
+  <Item8183>讀卡失敗</Item8183>
+  <Item8184>讀卡失敗</Item8184>
+  <Item8185>讀卡失敗</Item8185>
+  <Item8186>讀卡失敗</Item8186>
+  <Item8187>讀卡失敗</Item8187>
+  <Item8188>讀卡失敗</Item8188>
+  <Item8189>讀卡失敗</Item8189>
+  <Item818A>讀卡失敗</Item818A>
+  <Item818B>讀卡失敗</Item818B>
+  <Item818C>讀卡失敗</Item818C>
+  <Item818D>讀卡失敗</Item818D>
+  <Item818E>讀卡失敗</Item818E>
+  <Item818F>讀卡失敗</Item818F>
+  <Item8190>讀卡失敗</Item8190>
+  <Item8191>讀卡失敗</Item8191>
+  <Item8192>讀卡失敗</Item8192>
+  <Item8193>讀卡失敗</Item8193>
+  <Item8194>讀卡失敗</Item8194>
+  <Item8195>讀卡失敗</Item8195>
+  <Item8196>讀卡失敗</Item8196>
+  <Item8197>讀卡失敗</Item8197>
+  <Item8198>讀卡失敗</Item8198>
+  <Item8199>讀卡失敗</Item8199>
+  <Item819A>讀卡失敗</Item819A>
+  <Item819B>讀卡失敗</Item819B>
+  <Item819C>讀卡失敗</Item819C>
+  <Item819D>讀卡失敗</Item819D>
+  <Item819E>讀卡失敗</Item819E>
+  <Item819F>讀卡失敗</Item819F>
+  <Item81A0>讀卡失敗</Item81A0>
+  <Item81A1>讀卡失敗</Item81A1>
+  <Item81A2>讀卡失敗</Item81A2>
+  <Item81A3>讀卡失敗</Item81A3>
+  <Item81A4>讀卡失敗</Item81A4>
+  <Item81A5>讀卡失敗</Item81A5>
+  <Item81A6>讀卡失敗</Item81A6>
+  <Item81A7>讀卡失敗</Item81A7>
+  <Item81A8>讀卡失敗</Item81A8>
+  <Item81A9>讀卡失敗</Item81A9>
+  <Item81AA>讀卡失敗</Item81AA>
+  <Item81AB>讀卡失敗</Item81AB>
+  <Item81AC>讀卡失敗</Item81AC>
+  <Item81AD>讀卡失敗</Item81AD>
+  <Item81AE>讀卡失敗</Item81AE>
+  <Item81AF>讀卡失敗</Item81AF>
+  <Item81B0>讀卡失敗</Item81B0>
+  <Item81B1>讀卡失敗</Item81B1>
+  <Item81B2>讀卡失敗</Item81B2>
+  <Item81BF>讀卡失敗</Item81BF>
+  <Item81C0>寫卡失敗</Item81C0>
+  <Item81C1>寫卡失敗</Item81C1>
+  <Item81C2>寫卡失敗</Item81C2>
+  <Item81C3>寫卡失敗</Item81C3>
+  <Item81C4>寫卡失敗</Item81C4>
+  <Item81C5>寫卡失敗</Item81C5>
+  <Item81C6>寫卡失敗</Item81C6>
+  <Item81C7>寫卡失敗</Item81C7>
+  <Item81C8>寫卡失敗</Item81C8>
+  <Item81C9>寫卡失敗</Item81C9>
+  <Item81CA>寫卡失敗</Item81CA>
+  <Item81CB>寫卡失敗</Item81CB>
+  <Item81CC>寫卡失敗</Item81CC>
+  <Item81CD>寫卡失敗</Item81CD>
+  <Item81CE>寫卡失敗</Item81CE>
+  <Item81CF>寫卡失敗</Item81CF>
+  <Item81D0>寫卡失敗</Item81D0>
+  <Item81D1>寫卡失敗</Item81D1>
+  <Item81D2>寫卡失敗</Item81D2>
+  <Item81D3>寫卡失敗</Item81D3>
+  <Item81D4>寫卡失敗</Item81D4>
+  <Item81D5>寫卡失敗</Item81D5>
+  <Item81D6>寫卡失敗</Item81D6>
+  <Item81D7>寫卡失敗</Item81D7>
+  <Item81D8>寫卡失敗</Item81D8>
+  <Item81D9>寫卡失敗</Item81D9>
+  <Item81DA>寫卡失敗</Item81DA>
+  <Item81DB>寫卡失敗</Item81DB>
+  <Item81DC>寫卡失敗</Item81DC>
+  <Item81DD>寫卡失敗</Item81DD>
+  <Item81DE>寫卡失敗</Item81DE>
+  <Item81DF>寫卡失敗</Item81DF>
+  <Item81E0>寫卡失敗</Item81E0>
+  <Item81E1>寫卡失敗</Item81E1>
+  <Item81E2>寫卡失敗</Item81E2>
+  <Item81E3>寫卡失敗</Item81E3>
+  <Item81E4>寫卡失敗</Item81E4>
+  <Item81E5>寫卡失敗</Item81E5>
+  <Item81E6>寫卡失敗</Item81E6>
+  <Item81E7>寫卡失敗</Item81E7>
+  <Item81E8>寫卡失敗</Item81E8>
+  <Item81E9>寫卡失敗</Item81E9>
+  <Item81EA>寫卡失敗</Item81EA>
+  <Item81EB>寫卡失敗</Item81EB>
+  <Item81EC>寫卡失敗</Item81EC>
+  <Item81ED>寫卡失敗</Item81ED>
+  <Item81EE>寫卡失敗</Item81EE>
+  <Item81EF>寫卡失敗</Item81EF>
+  <Item81F0>寫卡失敗</Item81F0>
+  <Item81F1>寫卡失敗</Item81F1>
+  <Item81F2>寫卡失敗</Item81F2>
+  <Item81FF>寫卡失敗</Item81FF>
+  <Item8200>取得時間失敗</Item8200>
+  <Item8201>取變數失敗</Item8201>
+  <Item8202>系統可用空間不足.需報修設備.</Item8202>
+  <Item8203>無法開啟系統檔.需報修設備.</Item8203>
+  <Item8204>無法讀取系統檔.需報修設備.</Item8204>
+  <Item8205>無法寫入系統檔.需報修設備.</Item8205>
+  <Item8206>無法關閉系統檔.需報修設備.</Item8206>
+  <Item8207>無法刪除系統檔.需報修設備.</Item8207>
+  <Item8208>無法更名系統檔.需報修設備.</Item8208>
+  <Item8209>無法操作系統檔.需報修設備.</Item8209>
+  <Item8210>輸入格式錯誤</Item8210>
+  <Item8240>JSON錯誤</Item8240>
+  <Item8241>JSON錯誤</Item8241>
+  <Item8242>JSON錯誤</Item8242>
+  <Item8243>JSON錯誤</Item8243>
+  <Item8244>JSON錯誤</Item8244>
+  <Item8280>Socket錯誤</Item8280>
+  <Item8281>Socket錯誤</Item8281>
+  <Item8282>Socket錯誤</Item8282>
+  <Item8283>Socket錯誤</Item8283>
+  <Item8284>Socket錯誤</Item8284>
+  <Item8285>Socket錯誤</Item8285>
+  <Item8286>Socket錯誤</Item8286>
+  <Item8287>Socket錯誤</Item8287>
+  <Item82C0>網路錯誤</Item82C0>
+  <Item82C1>網路錯誤</Item82C1>
+  <Item82C2>網路錯誤</Item82C2>
+  <Item82C3>網路錯誤</Item82C3>
+  <Item82C4>網路錯誤</Item82C4>
+  <Item82C5>網路錯誤</Item82C5>
+  <Item82C6>網路錯誤</Item82C6>
+  <Item82C7>網路錯誤</Item82C7>
+  <Item82C8>網路錯誤</Item82C8>
+  <Item82C9>網路錯誤</Item82C9>
+  <Item82CA>網路錯誤</Item82CA>
+  <Item82CB>網路錯誤</Item82CB>
+  <Item82CC>網路錯誤</Item82CC>
+  <Item8300>Taps Response Err</Item8300>
+  <Item8301>Taps Response Err</Item8301>
+  <Item8302>Taps Response Err</Item8302>
+  <Item8303>不合法的店櫃業者/分店/專櫃/端末設備</Item8303>
+  <Item8304>票卡鎖卡</Item8304>
+  <Item8305>票卡驗證碼錯誤</Item8305>
+  <Item8306>其他系統錯誤Other System Error.</Item8306>
+  <Item8307>Taps Response Err</Item8307>
+  <Item8308>Taps Response Err</Item8308>
+  <Item8309>Taps Response Err</Item8309>
+  <Item830A>Taps Response Err</Item830A>
+  <Item830B>交易請求逾時，請確認系統時間設定</Item830B>
+  <Item830C>票卡無此交易功能.或業者無申請此交易功能.</Item830C>
+  <Item830D>Taps Response Err</Item830D>
+  <Item830E>票卡資格不符合</Item830E>
+  <Item830F>Taps Response Err</Item830F>
+  <Item8310>Taps Response Err</Item8310>
+  <Item8311>Taps Response Err</Item8311>
+  <Item8312>Taps Response Err</Item8312>
+  <Item8313>交易重複</Item8313>
+  <Item8314>Taps Response Err</Item8314>
+  <Item8315>Taps Response Err</Item8315>
+  <Item8316>Taps Response Err</Item8316>
+  <Item8317>Taps Response Err</Item8317>
+  <Item8318>Taps Response Err</Item8318>
+  <Item8319>Taps Response Err</Item8319>
+  <Item831A>Taps Response Err</Item831A>
+  <Item831B>Taps Response Err</Item831B>
+  <Item831C>Taps Response Err</Item831C>
+  <Item831D>Taps Response Err</Item831D>
+  <Item831E>訊息格式檢察錯誤</Item831E>
+  <Item831F>Taps Response Err</Item831F>
+  <Item8320>Taps Response Err</Item8320>
+  <Item8321>Taps Response Err</Item8321>
+  <Item8322>Taps Response Err</Item8322>
+  <Item8323>Taps Response Err</Item8323>
+  <Item8324>Taps Response Err</Item8324>
+  <Item8325>Taps Response Err</Item8325>
+  <Item8326>Taps Response Err</Item8326>
+  <Item8327>Taps Response Err</Item8327>
+  <Item8328>刪除系統檔</Item8328>
+  <Item8329>建立新業者</Item8329>
+  <Item832A>Taps Response Err</Item832A>
+  <Item832B>Taps Response Err</Item832B>
+  <Item832C>Taps Response Err</Item832C>
+  <Item832D>Taps Response Err</Item832D>
+  <Item832E>Taps Response Err</Item832E>
+  <Item832F>Taps Response Err</Item832F>
+  <Item8330>Taps Response Err</Item8330>
+  <Item8331>Taps Response Err</Item8331>
+  <Item8332>Taps Response Err</Item8332>
+  <Item8333>額度不足</Item8333>
+  <Item8334>Taps Response Err</Item8334>
+  <Item8335>Taps Response Err</Item8335>
+  <Item8336>Taps Response Err</Item8336>
+  <Item8337>Taps Response Err</Item8337>
+  <Item8338>Taps Response Err</Item8338>
+  <Item8339>Taps Response Err</Item8339>
+  <Item833A>Taps Response Err</Item833A>
+  <Item833B>Taps Response Err</Item833B>
+  <Item833C>Taps Response Err</Item833C>
+  <Item833D>Taps Response Err</Item833D>
+  <Item833E>Taps Response Err</Item833E>
+  <Item833F>Taps Response Err</Item833F>
+  <Item8340>Taps Response Err</Item8340>
+  <Item8341>Taps Response Err</Item8341>
+  <Item8342>Taps Response Err</Item8342>
+  <Item8343>Taps Response Err</Item8343>
+  <Item8344>Taps Response Err</Item8344>
+  <Item8345>Taps Response Err</Item8345>
+  <Item8346>Taps Response Err</Item8346>
+  <Item8347>Taps Response Err</Item8347>
+  <Item8348>Taps Response Err</Item8348>
+  <Item8349>Taps Response Err</Item8349>
+  <Item834A>Taps Response Err</Item834A>
+  <Item834B>Taps Response Err</Item834B>
+  <Item834C>無法找到原始交易</Item834C>
+  <Item834D>Taps Response Err</Item834D>
+  <Item834E>Taps Response Err</Item834E>
+  <Item834F>Taps Response Err</Item834F>
+  <Item8350>Taps Response Err</Item8350>
+  <Item8351>Taps Response Err</Item8351>
+  <Item8352>Taps Response Err</Item8352>
+  <Item8353>Taps Response Err</Item8353>
+  <Item8354>Taps Response Err</Item8354>
+  <Item8355>Taps Response Err</Item8355>
+  <Item8356>Taps Response Err</Item8356>
+  <Item8357>Taps Response Err</Item8357>
+  <Item8358>Taps Response Err</Item8358>
+  <Item8359>Taps Response Err</Item8359>
+  <Item835A>系統滿載中，稍後再試(Queue Is Full or TimeOut)</Item835A>
+  <Item835B>後端主機不在服務狀態，無法提供服務(無法連線BMS or STAN process , 或SSL listen無法連接任一個TAPS process) 授權主機異常.無法進行交易授權.</Item835B>
+  <Item835C>Destination cannot be found for routing(無法找到連線的目的地，連線目的地不存在) 授權主機異常.無法進行交易授權.</Item835C>
+  <Item835D>Taps Response Err</Item835D>
+  <Item835E>MS or STAN process timeout or delay respond.授權主機異常.無法進行交易授權.</Item835E>
+  <Item835F>不平帳. 結班不平帳.端末設備的交易紀錄.與授權主機的交易紀錄不相同.</Item835F>
+  <Item8360>系統發生異常或資料內容有誤</Item8360>
+  <Item8361>HSM error.一卡通安全模組主機異常.</Item8361>
+  <Item8362>Taps Response Err</Item8362>
+  <Item8363>Taps Response Err</Item8363>
+  <Item8380>電文產生失敗</Item8380>
+  <Item8381>電文產生失敗</Item8381>
+  <Item8382>電文產生失敗</Item8382>
+  <Item8383>電文產生失敗</Item8383>
+  <Item8384>電文產生失敗</Item8384>
+  <Item8385>電文產生失敗</Item8385>
+  <Item8386>電文產生失敗</Item8386>
+  <Item8387>電文產生失敗</Item8387>
+  <Item8388>電文產生失敗</Item8388>
+  <Item8389>電文產生失敗</Item8389>
+  <Item838A>電文產生失敗</Item838A>
+  <Item838B>電文產生失敗</Item838B>
+  <Item838C>電文產生失敗</Item838C>
+  <Item838D>電文產生失敗</Item838D>
+  <Item838E>電文產生失敗</Item838E>
+  <Item838F>電文產生失敗</Item838F>
+  <Item8390>電文產生失敗</Item8390>
+  <Item8391>電文產生失敗</Item8391>
+  <Item8392>電文產生失敗</Item8392>
+  <Item8393>電文產生失敗</Item8393>
+  <Item83C0>交易成功.票卡資料產生失敗.記錄交易細節後設備報修</Item83C0>
+  <Item83C1>交易成功.票卡資料產生失敗.記錄交易細節後設備報修.</Item83C1>
+  <Item83C2>票卡已鎖卡</Item83C2>
+  <Item83C3>交易紀錄尚未傳送.需傳送交易紀錄.</Item83C3>
+  <Item83C4>找不到該筆交易紀錄</Item83C4>
+  <Item83C5>交易沖正尚未傳送.需傳送交易沖正</Item83C5>
+  <Item83C6>交易沖正已傳送完成.沒有交易沖正</Item83C6>
+  <Item83C7>尚未端末開機.請進行端末開機</Item83C7>
+  <Item83C8>端末開機已完成.不需再次進行端末開機.</Item83C8>
+  <Item83C9>端末開機密碼錯誤.請重新操作</Item83C9>
+  <Item83CA>系統檔損壞.需報修設備.</Item83CA>
+  <Item83CB>交易輸入資料格式錯誤</Item83CB>
+  <Item83CC>不合法的交易類型</Item83CC>
+  <Item83CD>不合法的交易請求</Item83CD>
+  <Item83CE>尚未Library初始化.請進行端末開機.</Item83CE>
+  <Item83CF>尚未結帳/結班.請進行結帳/結班</Item83CF>
+  <Item83D0>請把票卡放回，交易未完成.寫卡失敗.要求票卡需放回.以繼續完成交易</Item83D0>
+  <Item83D1>交易成功.交易紀錄產生失敗.紀錄交易細節後設備報修.</Item83D1>
+  <Item83D2>重複交易.</Item83D2>
+  <Item83E0>後台下派錯誤或API尚未實作的交易類別</Item83E0>
+  <Item8400>離線加值額度不足，請進行端末開機</Item8400>
+  <Item8800>交易輸入資料格式錯誤</Item8800>
+  <Item8801>交易輸入資料長度錯誤</Item8801>
+  <Item8802>交易輸入資料命令錯誤</Item8802>
+  <Item8803>交易輸入資料BCC錯誤</Item8803>
+  <Item8804>交易輸入資料內容錯誤</Item8804>
+  <Item8810>交易輸出資料內容錯誤</Item8810>
+  <Item8830>交易設定檔位址轉IP錯誤</Item8830>
+  <Item6000>SAM回覆錯誤</Item6000>
+  <Item6FFF>SAM回覆錯誤</Item6FFF>
+
+</ErrorMsg>

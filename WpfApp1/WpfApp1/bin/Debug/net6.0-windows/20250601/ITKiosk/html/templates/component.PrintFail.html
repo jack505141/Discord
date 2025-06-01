@@ -1,0 +1,51 @@
+<script type="text/x-template" id="template-PrintFail-main">
+  <div class="container">
+    <input @click="goAdmin()" value="" readonly
+        style="position:absolute;border:0px solid white;height:60px; width:60px;top:0px;left:0px;background-color:transparent;z-index:2" />
+    <div class="processInfo d-flex flex-column">
+      <div class="processTitle">
+        <p>
+          <!-- 訂單編號：{{orderListSerial}} -->
+          {{model.OrderNo}}：{{orderListSerial}}
+        </p>
+        <p>
+          <!-- 付款方式：{{payName}} -->
+          {{model.PaymentMethod}}：{{payName}}
+        </p>
+      </div>
+      <div class="processContent flex-fill d-flex flex-column">
+        <p style="line-height: 50px;">
+          <!-- 購票失敗 -->
+          {{model.PurchaseFailure}}
+          <br>
+          <!-- 請拍下本畫面洽服務櫃台 -->
+          {{model.PurchaseFailureMsg}}
+        </p>
+
+        <div class="row flex-fill ">
+          <div class="col-4">
+            <div class="d-flex flex-column justify-content-end h-100" style="padding-bottom: 40px;">
+              <p style="font-size: 28px; color: #666666;">
+                #{{kiosk.status.APIresponse.posEnablePayment.apiLogId}}
+              </p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="d-flex flex-column h-100 justify-content-between">
+              <img src="img/p_service.png" alt="" style="align-self: center; width: 220px;">
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="processDetail d-flex flex-column justify-content-end h-100" style="padding-bottom: 40px;">
+              <p>
+                <!-- 支付總額 -->
+                {{model.PayTotal}}
+              </p>
+              <p class="billPrice">NT${{subTotalCash}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>

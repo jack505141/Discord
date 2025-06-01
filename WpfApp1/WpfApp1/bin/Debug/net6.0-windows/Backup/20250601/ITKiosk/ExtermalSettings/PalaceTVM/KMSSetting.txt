@@ -1,0 +1,5 @@
+"VoucherMode" : (PAYMENT/TICKET),
+"Hotline" : (0912345678),
+"V"
+
+recvCustomerInfo

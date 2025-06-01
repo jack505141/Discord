@@ -1,0 +1,83 @@
+<script type="text/x-template" id="template-ProductChoiceTicket-main">
+  <div class="container-fluid">
+    <div class="row my-3">
+      <div class="col-4">
+        <div class="product">
+          <div class="product-con">
+            <div class="con-img">
+              <img :src="imgUri.replace('.webp', '.jpg') + '?a=' + moment().unix()" alt="">
+            </div>
+            <div class="con-text">
+    
+              <div class="TicketTitle">
+                <h3>{{saleProductName}}</h3>
+              </div>
+    
+              <div class="DetailDate">
+                <!-- <p>■ 2021/4/1-2021/11/14</p> -->
+                <div class="swiper-Detail p_detail" style="width:100%;overflow: hidden; margin-top:0px; position: relative; padding-right: 10px;">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                      <template v-for="featureStr in features">
+                        {{featureStr}}<br>
+                      </template>
+                    </div>
+                  </div>
+                  <div class="swiper-scrollbar" style=""></div>
+                </div>
+              </div>
+    
+              <!--  -->
+              <div @mousedown="kiosk.API.goToNext('ProductDescription')" class="btn btn-detail btn-lg text-light">{{model.ProductDescription}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="ticketItemG">
+          <div class="ticketWrap px-0">
+            <div class="swiper-ProductChoiceTicket" style="height: 502px; overflow: hidden; padding-right: 20px; padding-left: 20px;">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div v-for="(item,index) in ticketType" class="ticketItem">
+                    <div class="ticketNameG d-flex flex-column">
+                      <p class="ticketName m-0 text-truncate">{{item.ticketTypeName}}</p>
+                      <p class="ticketExplaination">{{item.ticketTypeRules.join(',')}}</p>
+                    </div>
+                    <div class="priceQuantityG">
+                      <div class="ticketPrice">NT${{item.salePrice}}</div>
+                      <div class="choseTicketQuantityG d-flex">
+                        <div class="extend-via-pseudo-elem" style="position: relative;" @click="reduceNum(item,index)">
+                          <i class="icon-diminish" aria-hidden="true"></i>
+                        </div>
+                        <span class="ticketQuantity">{{item.quantity}}</span>
+                        <div class="extend-via-pseudo-elem" style="position: relative;" @click="addNum(item,index)">
+                          <i class="icon-plus" aria-hidden="true"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="priceG d-flex flex-column justify-content-center">
+          <div class="row m-0">
+            <div class="col-6 p-0">
+              <div class="totalTicketAndMoneyG">
+                <div class="totalTicket">{{model.TotalTickets}}：{{kiosk.status.ticketTotalNum}}</div>
+                <div class="totalMoney">{{model.TotalPrice}}：NT${{kiosk.status.ticketTotalAmt}}</div>
+              </div>
+            </div>
+            <div class="col-6 p-0 align-self-center text-center">
+              <span @mousedown="goNext()">{{model.Check}}</span>
+            </div>
+          </div>
+          <!-- <div class="moneyAndNextG">
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</script>

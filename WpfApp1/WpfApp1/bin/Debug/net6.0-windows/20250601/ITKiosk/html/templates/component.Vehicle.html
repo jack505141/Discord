@@ -1,0 +1,49 @@
+<script type="text/x-template" id="template-Vehicle-main">
+  <div class="container">
+    <div class="processInfo">
+      <div class="inputTitle">
+        <p>
+          <!-- 請出示載具條碼 -->
+          {{model.InvoiceCarrier}}
+
+        </p>
+      </div>
+      <div class="inputContent d-flex flex-column justify-content-between" id="scanner1"  @keydown="scanKeyDown">
+        <div>
+          <p>
+            <!-- 載具條碼 -->
+            {{model.InvoiceBarcode}}
+          </p>
+          
+          
+          <div class="input-group input-group mb-3">
+            <input type="text" class="form-control shadow-none" aria-label="Small" 
+            v-model="keyinValue" aria-describedby="inputGroup-sizing" style="border-right-style: none;" unselectable="on">
+            <div class="input-group-append" style="border: 1px solid #ced4da;">
+              <button :style="[{'visibility': keyinValue.length != 0 ? '' : 'hidden'}]" 
+              @click="keyDownClear('C')" class="btn disabled" type="button" 
+              style="border: none; opacity: 1;">
+                <i class="icon-close d-flex" aria-hidden="true" style="border-radius: 16px;width: 16px;height: 16px;background-color: white;justify-content: center;align-items: center;"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- <input type="text" class="IDinput pl-3 shadow-none w-100" style="margin-left: 0px;"> -->
+          <div class="d-flex" style="justify-content: space-between;">
+            <p style="align-self: center;">
+              <!-- 請將條碼對準掃瞄器 -->
+              {{model.InvoiceDesc}}
+            </p>
+            <img src="img/image 17 1.png" alt="">
+          </div>
+        </div>
+        <div @mousedown="goNext()" class="">
+          <button class="btn btn-outline-success btn-lg">
+            <!-- 確認 -->
+            {{model.Confirm}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>

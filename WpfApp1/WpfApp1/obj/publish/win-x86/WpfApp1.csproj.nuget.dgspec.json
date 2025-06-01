@@ -44,6 +44,18 @@
               "target": "Package",
               "version": "[0.31.0, )"
             },
+            "Microsoft.Web.WebView2": {
+              "target": "Package",
+              "version": "[1.0.3124.44, )"
+            },
+            "System.Reactive.Windows.Forms": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "System.Windows.Forms.Ribbon35": {
+              "target": "Package",
+              "version": "[3.5.8, )"
+            },
             "WpfAnimatedGif": {
               "target": "Package",
               "version": "[2.0.2, )"
