@@ -19,12 +19,14 @@ namespace WpfApp1.ModuelFactory
            
             _commands = new Dictionary<string, Action<string[]>>
         {
-            { "Change", Change },
+            { "d", Change },
             { "check", CheckUpdate },
             { "apply", ApplyUpdate },
             { "config", ListUpdate },
              { "delete", DeleteConfig },
                { "VS", updateVerion },
+                  { "web", Web },
+                { "connect", Connect } 
 
         };
         }
@@ -41,10 +43,30 @@ namespace WpfApp1.ModuelFactory
         }
         private void Change(string[] args)
         {
-           
-            CommandManager.OnLog?.Invoke("[update] 執行測試更新！");
-            // 加入你自己的邏輯
+
+            NavigationService.NavigateTo<Assemble>(Application.Current.Windows
+       .OfType<Window>()
+       .FirstOrDefault(w => w.IsActive));
+
         }
+        private void Connect(string[] args)
+        {
+
+            NavigationService.NavigateTo<MultiConect>(Application.Current.Windows
+       .OfType<MultiConect>()
+       .FirstOrDefault(w => w.IsActive));
+
+        }
+        
+        private void Web(string[] args)
+        {
+           
+            NavigationService.NavigateTo<WebView>(Application.Current.Windows
+       .OfType<Window>()
+       .FirstOrDefault(w => w.IsActive));
+
+        }
+      
         private void DeleteConfig(string[] args)
         {
             string[] targetFolders = {

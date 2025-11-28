@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Git 安裝工具" Height="600" Width="400">
+        Title="Git 安裝工具" Height="600" Width="400"  AllowDrop="True"
+        Drop="Window_Drop"
+        DragEnter="Window_DragEnter">
     <Grid Margin="0,0,0,9">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -24,12 +26,14 @@
             <StackPanel>
                 <TextBlock Text="輸入repo Git路徑:" FontWeight="Bold"/>
                 <StackPanel x:Name="CloneUrlContainer" Orientation="Vertical" />
-                <Button Content="新增" Click="AddCloneUrl_Click" Margin="5"/>
+                <Button Content="新增" Click="AddCloneUrl_Click" Margin="5"  x:Name="AddCloneButton"/>
+                <Button Content="匯入" Click="ImportFromFile_Click" Margin="5"  x:Name="importCloneButton"/>
             </StackPanel>
         </ScrollViewer>
 
         <!-- 一鍵安裝按鈕 -->
         <Button Grid.Row="3" Content="一鍵安裝" Click="InstallAll_Click" Margin="10" HorizontalAlignment="Center" Width="120" x:Name="InstallAll"/>
+        
 
         <!-- 狀態顯示區 -->
         <TextBlock Grid.Row="4" Text="狀態顯示:" FontWeight="Bold" Margin="10"/>

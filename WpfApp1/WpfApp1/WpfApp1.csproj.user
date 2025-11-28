@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_LastSelectedProfileId>C:\Users\Administrator\Desktop\WpfApp1\WpfApp1\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+    <_LastSelectedProfileId>C:\Discord\WpfApp1\WpfApp1\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
     <ApplicationDefinition Update="App.xaml">
@@ -9,6 +9,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Assemble.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="BranchSelectionWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -24,8 +27,17 @@
     <Compile Update="LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MultiConect.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WebView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Assemble.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="BranchSelectionWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

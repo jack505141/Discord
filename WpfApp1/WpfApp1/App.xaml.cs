@@ -13,8 +13,15 @@ namespace WpfApp1
         {
             base.OnStartup(e);
             //Utils.CopyDocument();
-            // ✅ 加這段來設定 IE11 模
+            // ✅ 加這段來設定 IE11 模式
             SetBrowserFeatureControl();
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            // 清理連線資源
+            ConnectionManager.Instance.Cleanup();
+            base.OnExit(e);
         }
 
         private void SetBrowserFeatureControl()

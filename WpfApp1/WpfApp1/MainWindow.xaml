@@ -14,6 +14,8 @@
             <RowDefinition Height="Auto"/>
             <!-- Header -->
             <RowDefinition Height="Auto"/>
+            <!-- Connection Status -->
+            <RowDefinition Height="Auto"/>
             <!-- Input -->
             <RowDefinition Height="Auto"/>
             <!-- Buttons -->
@@ -36,15 +38,29 @@
                    FontSize="12"
                    FontStyle="Italic" Grid.RowSpan="2"/>
 
+        <!-- Connection Status Section -->
+        <Border Grid.Row="1" Background="#E3F2FD" CornerRadius="5" Padding="10" Margin="0,0,0,10">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="🔗 連線狀態：" VerticalAlignment="Center" FontWeight="Bold" Margin="0,0,10,0"/>
+                <TextBlock x:Name="txtConnectionStatus" Text="未連線" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                <CheckBox x:Name="chkAutoSync" Content="自動同步操作" IsChecked="True" 
+                          VerticalAlignment="Center" Margin="0,0,10,0"
+                          ToolTip="勾選後，您的操作會自動同步到所有連線的客戶端"/>
+                <Button x:Name="btnOpenMultiConnect" Content="開啟連線管理" 
+                        Padding="8,4" Click="BtnOpenMultiConnect_Click"
+                        Background="#3F51B5" Foreground="White" BorderThickness="0"/>
+            </StackPanel>
+        </Border>
+
         <!-- Input Section -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,20">
-            <Label Content="Git 路徑：" VerticalAlignment="Center" FontSize="14" FontWeight="Medium"/>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,20">
+            <Label Content="指令：" VerticalAlignment="Center" FontSize="14" FontWeight="Medium"/>
             <TextBox x:Name="GitPathTextBox" Width="300" Height="30" Margin="10,0,0,0" Padding="5"
                      BorderBrush="#3F51B5" BorderThickness="1" TextChanged="GitPathTextBox_TextChanged" KeyDown="GitPathTextBox_KeyDown"/>
         </StackPanel>
 
         <!-- Button Section -->
-        <WrapPanel Grid.Row="2" HorizontalAlignment="Center" Margin="0,0,0,20">
+        <WrapPanel Grid.Row="3" HorizontalAlignment="Center" Margin="0,0,0,20">
             <Button x:Name="InstallGitButton" Content="📥 安裝" Width="150" Height="40" FontSize="14"
                     Background="#4CAF50" Foreground="White" BorderThickness="0" Cursor="Hand"
                     Margin="5" Click="InstallGit_Click"/>
@@ -72,7 +88,7 @@
         </WrapPanel>
 
         <!-- Status Section -->
-        <StackPanel Grid.Row="3" Margin="0,20,0,0">
+        <StackPanel Grid.Row="4" Margin="0,20,0,0">
             <TextBlock Text="狀態：" FontSize="14" FontWeight="Bold" Margin="0,0,0,5"/>
             <TextBox x:Name="StatusTextBox" Height="150" TextWrapping="Wrap"
                      IsReadOnly="True" VerticalScrollBarVisibility="Auto"
@@ -81,7 +97,7 @@
 
         <!-- 回上一頁 -->
         <StackPanel Orientation="Horizontal"
-            Grid.Row="4"
+            Grid.Row="5"
             HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
             Margin="0,10,0,10">
@@ -92,13 +108,13 @@
             Click="SaveCurrentSelection_Click"/>
 
             <ComboBox x:Name="JsonSelector"
-              Width="200"
+              Width="200" VerticalContentAlignment="Center"
              />
         </StackPanel>
 
         <!-- 遮罩處理中 -->
         <Grid Name="LoadingOverlay" Background="#AA000000"
-              Visibility="Collapsed" Panel.ZIndex="999" Margin="-17,-14,-18,-19" Grid.RowSpan="5">
+              Visibility="Collapsed" Panel.ZIndex="999" Margin="-17,-14,-18,-19" Grid.RowSpan="6">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="處理中，請稍候..." FontSize="16" Foreground="White"/>
                 <ProgressBar IsIndeterminate="True" Width="200"/>

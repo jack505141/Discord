@@ -1,28 +1,34 @@
 {
   "version": 2,
-  "dgSpecHash": "WIcaav3eWAuGOhwWHpMT/DhFJ0tGiSsyCs0zIfYu2p0KFAP9Ywcf1JI2TcitxQShMi2eUk/DfRbzUoPotxtROQ==",
+  "dgSpecHash": "Aw2fSPiXETU=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Administrator\\Desktop\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+  "projectFilePath": "C:\\Discord\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Administrator\\.nuget\\packages\\libgit2sharp\\0.31.0\\libgit2sharp.0.31.0.nupkg.sha512",
-    "C:\\Users\\Administrator\\.nuget\\packages\\libgit2sharp.nativebinaries\\2.0.323\\libgit2sharp.nativebinaries.2.0.323.nupkg.sha512",
-    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.web.webview2\\1.0.3124.44\\microsoft.web.webview2.1.0.3124.44.nupkg.sha512",
-    "C:\\Users\\Administrator\\.nuget\\packages\\system.reactive\\6.0.1\\system.reactive.6.0.1.nupkg.sha512",
-    "C:\\Users\\Administrator\\.nuget\\packages\\system.reactive.windows.forms\\6.0.1\\system.reactive.windows.forms.6.0.1.nupkg.sha512",
-    "C:\\Users\\Administrator\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\Administrator\\.nuget\\packages\\system.windows.forms.ribbon35\\3.5.8\\system.windows.forms.ribbon35.3.5.8.nupkg.sha512",
-    "C:\\Users\\Administrator\\.nuget\\packages\\wpfanimatedgif\\2.0.2\\wpfanimatedgif.2.0.2.nupkg.sha512",
-    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.32\\microsoft.netcore.app.runtime.win-x64.6.0.32.nupkg.sha512",
-    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.32\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.32.nupkg.sha512",
-    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.32\\microsoft.aspnetcore.app.runtime.win-x64.6.0.32.nupkg.sha512",
-    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\6.0.32\\microsoft.netcore.app.crossgen2.win-x64.6.0.32.nupkg.sha512"
+    "C:\\Users\\jack0\\.nuget\\packages\\fleck\\1.2.0\\fleck.1.2.0.nupkg.sha512",
+    "C:\\Users\\jack0\\.nuget\\packages\\libgit2sharp\\0.31.0\\libgit2sharp.0.31.0.nupkg.sha512",
+    "C:\\Users\\jack0\\.nuget\\packages\\libgit2sharp.nativebinaries\\2.0.323\\libgit2sharp.nativebinaries.2.0.323.nupkg.sha512",
+    "C:\\Users\\jack0\\.nuget\\packages\\microsoft.net.illink.analyzers\\7.0.100-1.23211.1\\microsoft.net.illink.analyzers.7.0.100-1.23211.1.nupkg.sha512",
+    "C:\\Users\\jack0\\.nuget\\packages\\microsoft.net.illink.tasks\\7.0.100-1.23211.1\\microsoft.net.illink.tasks.7.0.100-1.23211.1.nupkg.sha512",
+    "C:\\Users\\jack0\\.nuget\\packages\\microsoft.web.webview2\\1.0.3124.44\\microsoft.web.webview2.1.0.3124.44.nupkg.sha512",
+    "C:\\Users\\jack0\\.nuget\\packages\\system.reactive\\6.0.1\\system.reactive.6.0.1.nupkg.sha512",
+    "C:\\Users\\jack0\\.nuget\\packages\\system.reactive.windows.forms\\6.0.1\\system.reactive.windows.forms.6.0.1.nupkg.sha512",
+    "C:\\Users\\jack0\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
+    "C:\\Users\\jack0\\.nuget\\packages\\system.windows.forms.ribbon35\\3.5.8\\system.windows.forms.ribbon35.3.5.8.nupkg.sha512",
+    "C:\\Users\\jack0\\.nuget\\packages\\websocketsharp-netstandard\\1.0.1\\websocketsharp-netstandard.1.0.1.nupkg.sha512",
+    "C:\\Users\\jack0\\.nuget\\packages\\wpfanimatedgif\\2.0.2\\wpfanimatedgif.2.0.2.nupkg.sha512",
+    "C:\\Users\\jack0\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.36\\microsoft.netcore.app.runtime.win-x64.6.0.36.nupkg.sha512",
+    "C:\\Users\\jack0\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.36\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.36.nupkg.sha512",
+    "C:\\Users\\jack0\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.36\\microsoft.aspnetcore.app.runtime.win-x64.6.0.36.nupkg.sha512",
+    "C:\\Users\\jack0\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\6.0.36\\microsoft.netcore.app.crossgen2.win-x64.6.0.36.nupkg.sha512"
   ],
   "logs": [
     {
       "code": "NU1701",
       "level": "Warning",
-      "warningLevel": 1,
       "message": "已使用 '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' 而非專案目標架構 'net6.0-windows7.0' 還原了套件 'LibGit2Sharp 0.31.0'。此套件與您的專案並非完全相容。",
+      "projectPath": "C:\\Discord\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Discord\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
       "libraryId": "LibGit2Sharp",
       "targetGraphs": [
         "net6.0-windows7.0"
@@ -31,8 +37,10 @@
     {
       "code": "NU1701",
       "level": "Warning",
-      "warningLevel": 1,
       "message": "已使用 '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' 而非專案目標架構 'net6.0-windows7.0' 還原了套件 'System.Reactive.Windows.Forms 6.0.1'。此套件與您的專案並非完全相容。",
+      "projectPath": "C:\\Discord\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Discord\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
       "libraryId": "System.Reactive.Windows.Forms",
       "targetGraphs": [
         "net6.0-windows7.0"
@@ -41,8 +49,10 @@
     {
       "code": "NU1701",
       "level": "Warning",
-      "warningLevel": 1,
       "message": "已使用 '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' 而非專案目標架構 'net6.0-windows7.0' 還原了套件 'System.Windows.Forms.Ribbon35 3.5.8'。此套件與您的專案並非完全相容。",
+      "projectPath": "C:\\Discord\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Discord\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
       "libraryId": "System.Windows.Forms.Ribbon35",
       "targetGraphs": [
         "net6.0-windows7.0"

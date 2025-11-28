@@ -15,7 +15,7 @@ namespace WpfApp1
         {
             if (!File.Exists(path) && !Directory.Exists(path))
             {
-                MessageBox.Show($"指定的路徑不存在：{path}");
+               
                 return;
             }
 
