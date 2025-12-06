@@ -21,25 +21,34 @@
                 <StackPanel>
                     <!-- 搜尋列和功能按鈕 -->
                     <WrapPanel Margin="0,0,0,10" ItemHeight="30" ItemWidth="Auto">
-                        <TextBox x:Name="SearchBox"
-                                 Width="300"
-                                 Height="30"
-                                 Margin="0,0,10,0"
-                                 VerticalContentAlignment="Center"
-                                 TextChanged="SearchBox_TextChanged"
-                                 Tag="輸入關鍵字搜尋..."/>
+                       
 
                         <Button Content="📤 匯出 JSON" Width="120" Height="30" Click="ExportJson_Click" Margin="0,0,10,0"/>
                         <Button Content="🗑️ 刪除紀錄" Width="120" Height="30" Click="DeleteLog_Click"/>
                     </WrapPanel>
 
+                    <!-- 新增：關鍵字輸入框 (按 Enter 查詢) -->
+                    <WrapPanel Margin="0,0,0,10" VerticalAlignment="Center">
+                        <TextBlock Text="查詢關鍵字:" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="14"/>
+                        <TextBox x:Name="KeywordSearchBox"
+             Width="400"
+             Height="30"
+             FontSize="14"
+             VerticalContentAlignment="Center"
+             KeyDown="KeywordSearchBox_KeyDown"
+             Tag="輸入關鍵字後按 Enter 進行查詢"/>
+                    </WrapPanel>
+
+
                     <!-- 檔案選擇 -->
                     <ComboBox x:Name="LogSelector"
-                              Width="400"
-                              Height="35"
-                              Margin="0,0,0,10"
-                              FontSize="14"
-                              SelectionChanged="LogSelector_SelectionChanged"/>
+          Width="400"
+          Height="35"
+          FontSize="14"
+          VerticalContentAlignment="Center"
+          HorizontalContentAlignment="Left"
+          HorizontalAlignment="Left"
+          SelectionChanged="LogSelector_SelectionChanged"/>
 
                     <!-- 更新摘要 -->
                     <TextBlock x:Name="SummaryText"

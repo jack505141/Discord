@@ -6,12 +6,14 @@ using System.Linq;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace WpfApp1
 {
     public partial class History : Window
     {
         private List<string> currentLogLines = new();
+        private string originalLogContent = "";
 
         public History()
         {
@@ -61,25 +63,70 @@ namespace WpfApp1
             }
         }
 
-        private void GoBack_Click(object sender, RoutedEventArgs e)
+        private void KeywordSearchBox_KeyDown(object sender, KeyEventArgs e)
         {
-            NavigationService.NavigateTo<MainWindow>(this);
-        }
-
-        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (currentLogLines == null || currentLogLines.Count == 0) return;
-
-            string keyword = SearchBox.Text.Trim();
-            if (string.IsNullOrWhiteSpace(keyword))
+            if (e.Key == Key.Enter)
             {
-                LogContentBox.Text = string.Join("\n", currentLogLines);
-                return;
-            }
+                string keyword = KeywordSearchBox.Text.Trim();
 
-            var filtered = currentLogLines.Where(l => l.Contains(keyword, StringComparison.OrdinalIgnoreCase));
-            LogContentBox.Text = string.Join("\n", filtered);
+                // 如果原始內容尚未設定，從 LogContentBox.Text 初始化
+                if (string.IsNullOrEmpty(originalLogContent))
+                {
+                    originalLogContent = LogContentBox.Text;
+                }
+
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    // 顯示全部內容
+                    LogContentBox.Text = originalLogContent;
+
+                    // 顯示總筆數
+                    var lines = originalLogContent.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                    if(originalLogContent!="")
+                    {
+                        SummaryText.Text = $"總共 {lines.Length} 筆紀錄";
+                    }
+                    else
+                    {
+                        SummaryText.Text = $"總共 0 筆紀錄";
+                    }
+                   
+                }
+                else
+                {
+                    // 分割行
+                    var lines = originalLogContent.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                    var filteredLines = lines.Where(line => line.Contains(keyword)).ToList();
+
+                    if (filteredLines.Any())
+                    {
+                        LogContentBox.Text = string.Join(Environment.NewLine, filteredLines);
+                        SummaryText.Text = $"查詢結果：共 {filteredLines.Count} 筆符合";
+                    }
+                    else
+                    {
+                        LogContentBox.Text = $"未找到包含「{keyword}」的內容。";
+                        SummaryText.Text = "查詢結果：共 0 筆符合";
+                    }
+                }
+            }
         }
+
+        
+        //private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    if (currentLogLines == null || currentLogLines.Count == 0) return;
+
+        //    string keyword = SearchBox.Text.Trim();
+        //    if (string.IsNullOrWhiteSpace(keyword))
+        //    {
+        //        LogContentBox.Text = string.Join("\n", currentLogLines);
+        //        return;
+        //    }
+
+        //    var filtered = currentLogLines.Where(l => l.Contains(keyword, StringComparison.OrdinalIgnoreCase));
+        //    LogContentBox.Text = string.Join("\n", filtered);
+        //}
 
         private void ExportJson_Click(object sender, RoutedEventArgs e)
         {
@@ -109,6 +156,13 @@ namespace WpfApp1
                 if (result == MessageBoxResult.Yes)
                 {
                     File.Delete(path);
+                    LogContentBox.Text = "";
+
+                    
+                    originalLogContent = "";
+
+                   
+                    SummaryText.Text = "紀錄已刪除";
                     MessageBox.Show("紀錄已刪除。", "刪除成功", MessageBoxButton.OK, MessageBoxImage.Information);
                     LoadLogList();
                     LogContentBox.Clear();
@@ -116,5 +170,11 @@ namespace WpfApp1
                 }
             }
         }
+
+        private void GoBack_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.NavigateTo<MainWindow>(this);
+        }
+        
     }
 }

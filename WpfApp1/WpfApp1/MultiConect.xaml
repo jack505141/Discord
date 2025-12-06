@@ -1,0 +1,133 @@
+﻿<Window x:Class="WpfApp1.MultiConect"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="多台連線 - MultiConnect" Height="650" Width="900"
+        Background="#F5F5F5">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- 快速測試工具列 -->
+        <Border Grid.Row="0" Background="#E3F2FD" CornerRadius="5" Padding="10" Margin="0,0,0,10">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="🚀 快速測試工具：" VerticalAlignment="Center" FontWeight="Bold" Margin="0,0,10,0"/>
+                <Button x:Name="btnOpenNewWindow" Content="開啟新視窗" Width="120" Padding="8" Margin="0,0,10,0"
+                        Click="BtnOpenNewWindow_Click" Background="#3F51B5" Foreground="White" BorderThickness="0"
+                        ToolTip="開啟另一個 MultiConnect 視窗，方便在同一台電腦上測試伺服器與客戶端"/>
+                <Button x:Name="btnQuickTestLocal" Content="同機測試 (本機)" Width="140" Padding="8" Margin="0,0,10,0"
+                        Click="BtnQuickTestLocal_Click" Background="#FF9800" Foreground="White" BorderThickness="0"
+                        ToolTip="自動設定為連線到本機 127.0.0.1:5000"/>
+                <Button x:Name="btnUseLocalIP" Content="跨機連線 (本機IP)" Width="140" Padding="8" Margin="0,0,10,0"
+                        Click="BtnUseLocalIP_Click" Background="#4CAF50" Foreground="White" BorderThickness="0"
+                        ToolTip="自動填入本機的實際IP位址，方便其他電腦連線"/>
+                <Button x:Name="back" Content="🏠 回首頁" Width="120" Padding="8" Margin="0,0,10,0"
+                        Click="Back_Click" Background="#9C27B0" Foreground="White" BorderThickness="0"
+                        ToolTip="返回主視窗"/>
+                <TextBlock Text="💡 提示：可以開啟多個視窗，一個當伺服器，其他當客戶端" 
+                           VerticalAlignment="Center" Margin="10,0,0,0" Foreground="#666" FontStyle="Italic"/>
+            </StackPanel>
+        </Border>
+
+        <!-- 伺服器控制區 -->
+        <GroupBox Header="伺服器設定" Grid.Row="1" Margin="0,0,0,10" Padding="15">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="監聽埠號:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBox x:Name="txtServerPort" Grid.Column="1" Text="5000" 
+                             Width="100" HorizontalAlignment="Left" Padding="5" Margin="0,0,10,0"/>
+                    <Button x:Name="btnStartServer" Grid.Column="2" Content="啟動伺服器" 
+                            Width="120" Padding="8" Margin="0,0,10,0" Click="BtnStartServer_Click"
+                            Background="#4CAF50" Foreground="White" BorderThickness="0"/>
+                    <Button x:Name="btnStopServer" Grid.Column="3" Content="停止伺服器" 
+                            Width="120" Padding="8" IsEnabled="False" Click="BtnStopServer_Click"
+                            Background="#F44336" Foreground="White" BorderThickness="0"/>
+                </Grid>
+
+                <TextBlock x:Name="txtServerStatus" Text="伺服器狀態: 未啟動" 
+                           Margin="0,10,0,0" FontWeight="Bold" Foreground="#666"/>
+                <TextBlock x:Name="txtServerIP" Text="本機IP: 取得中..." 
+                           Margin="0,5,0,0" Foreground="#666" FontSize="13"
+                           ToolTip="其他電腦連線時請使用此IP位址"/>
+                <TextBlock x:Name="txtConnectedClients" Text="已連線客戶端: 0" 
+                           Margin="0,5,0,0" Foreground="#666"/>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- 客戶端控制區 -->
+        <GroupBox Header="客戶端連線" Grid.Row="2" Margin="0,0,0,10" Padding="15">
+            <StackPanel>
+                <TextBlock Text="💡 跨電腦連線：請輸入伺服器的實際IP位址（不是 127.0.0.1）" 
+                           Foreground="#FF9800" Margin="0,0,0,8" FontSize="12"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="伺服器位址:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBox x:Name="txtServerAddress" Grid.Column="1" Text="" 
+                             Padding="5" Margin="0,0,10,0"
+                             ToolTip="輸入伺服器的IP位址，例如：192.168.1.100"
+                             GotFocus="TxtServerAddress_GotFocus"/>
+                    <TextBlock Text="埠號:" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBox x:Name="txtClientPort" Grid.Column="3" Text="5000" 
+                             Padding="5" Margin="0,0,10,0"/>
+                    <Button x:Name="btnConnect" Grid.Column="4" Content="連線" 
+                            Width="100" Padding="8" Margin="0,0,10,0" Click="BtnConnect_Click"
+                            Background="#2196F3" Foreground="White" BorderThickness="0"/>
+                    <Button x:Name="btnDisconnect" Grid.Column="5" Content="斷線" 
+                            Width="100" Padding="8" IsEnabled="False" Click="BtnDisconnect_Click"
+                            Background="#FF9800" Foreground="White" BorderThickness="0"/>
+                </Grid>
+
+                <TextBlock x:Name="txtClientStatus" Text="客戶端狀態: 未連線" 
+                           Margin="0,10,0,0" FontWeight="Bold" Foreground="#666"/>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- 日誌區 -->
+        <GroupBox Header="日誌訊息" Grid.Row="3" Padding="15">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <TextBox x:Name="txtLog" IsReadOnly="True" TextWrapping="Wrap" 
+                             BorderThickness="0" Background="White" 
+                             FontFamily="Consolas" FontSize="12"/>
+                </ScrollViewer>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,0">
+                    <Button Content="清除日誌" Width="100" Padding="8" Click="BtnClearLog_Click"
+                            Background="#607D8B" Foreground="White" BorderThickness="0"/>
+                    <TextBox x:Name="txtTestMessage" Width="400" Margin="10,0,10,0" 
+                             Padding="5" Text="測試訊息"/>
+                    <Button x:Name="btnSendTest" Content="發送測試訊息" Width="120" Padding="8" 
+                            Click="BtnSendTest_Click" IsEnabled="False"
+                            Background="#9C27B0" Foreground="White" BorderThickness="0"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

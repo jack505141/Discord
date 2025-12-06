@@ -21,6 +21,12 @@ namespace WpfApp1
             nextWindow.Show();
             currentWindow?.Close(); // 可選擇是否關閉
         }
+        public static void Navigateblank<T>(Window currentWindow) where T : Window, new()
+        {
+            T nextWindow = new T();
+            nextWindow.Show();
+           
+        }
 
         /// <summary>
         /// 開啟新視窗但不關閉舊的。

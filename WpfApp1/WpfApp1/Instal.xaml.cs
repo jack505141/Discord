@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
+using Microsoft.Win32;
 
 
 namespace WpfApp1
@@ -143,6 +144,97 @@ namespace WpfApp1
             {
                 LoadingOverlay.Visibility = Visibility.Collapsed;
             }, System.Windows.Threading.DispatcherPriority.Render);
+        }
+
+        private void ImportFromFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "文字檔 (*.txt)|*.txt",
+                Title = "選擇包含 Git 連結的 .txt 檔案"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    var lines = File.ReadAllLines(openFileDialog.FileName);
+                    foreach (var line in lines)
+                    {
+                        var trimmedLine = line.Trim();
+                        if (!string.IsNullOrEmpty(trimmedLine))
+                        {
+                            AddCloneUrlTextBox(trimmedLine);
+                        }
+                    }
+                    StatusTextBox.AppendText($"已成功匯入 {lines.Length} 筆連結。\n");
+                    AddCloneButton.Visibility = Visibility.Collapsed;
+                    importCloneButton.Visibility = Visibility.Collapsed;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("讀取檔案時發生錯誤: " + ex.Message);
+                }
+            }
+        }
+
+        private void AddCloneUrlTextBox(string defaultText = "")
+        {
+            var textBox = new TextBox
+            {
+                Margin = new Thickness(0, 10, 0, 10),
+                Text = defaultText
+            };
+            CloneUrlContainer.Children.Add(textBox);
+        }
+
+        private void Window_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                if (files.Length > 0 && System.IO.Path.GetExtension(files[0]).ToLower() == ".txt")
+                {
+                    e.Effects = DragDropEffects.Copy;
+                }
+                else
+                {
+                    e.Effects = DragDropEffects.None;
+                }
+            }
+        }
+
+        private void Window_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                foreach (var file in files)
+                {
+                    if (System.IO.Path.GetExtension(file).ToLower() == ".txt")
+                    {
+                        try
+                        {
+                            var lines = File.ReadAllLines(file);
+                            foreach (var line in lines)
+                            {
+                                var trimmedLine = line.Trim();
+                                if (!string.IsNullOrEmpty(trimmedLine))
+                                {
+                                    AddCloneUrlTextBox(trimmedLine);
+                                }
+                            }
+
+                            AddCloneButton.Visibility = Visibility.Collapsed;
+                            StatusTextBox.AppendText($"已從拖曳檔案匯入 {lines.Length} 筆連結。\n");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("讀取拖曳檔案時發生錯誤: " + ex.Message);
+                        }
+                    }
+                }
+            }
         }
 
 

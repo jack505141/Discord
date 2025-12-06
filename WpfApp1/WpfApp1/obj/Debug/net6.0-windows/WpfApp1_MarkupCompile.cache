@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Administrator\Desktop\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\
+C:\Discord\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\
 WpfApp1
 none
 false
-TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\Administrator\Desktop\WpfApp1\WpfApp1\App.xaml
-6-652951551
-3-344687543
-16-2098403659
-202670675707
-BranchSelectionWindow.xaml;FoldConfig.xaml;History.xaml;Instal.xaml;LoginWindow.xaml;MainWindow.xaml;
+TRACE;DEBUG;NET;NET6_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
+C:\Discord\WpfApp1\WpfApp1\App.xaml
+956720434
+31206437048
+20-768925421
+2041288182702
+Assemble.xaml;BranchSelectionWindow.xaml;FoldConfig.xaml;History.xaml;Instal.xaml;LoginWindow.xaml;MainWindow.xaml;MultiConect.xaml;WebView.xaml;
 
 False
 

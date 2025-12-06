@@ -18,11 +18,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Fleck" Version="1.2.0" />
     <PackageReference Include="LibGit2Sharp" Version="0.31.0" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3124.44" />
     <PackageReference Include="System.Reactive.Windows.Forms" Version="6.0.1" />
     <PackageReference Include="System.Windows.Forms.Ribbon35" Version="3.5.8" />
+    <PackageReference Include="WebSocketSharp-netstandard" Version="1.0.1" />
     <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include=".github\wpf_主從同步系統_給_ai_的_markdown_規格.md" />
   </ItemGroup>
 
 </Project>
