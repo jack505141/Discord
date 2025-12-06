@@ -1,0 +1,7 @@
+﻿################################################################################
+# 這個 .gitignore 檔案由 Microsoft(R) Visual Studio 自動建立。
+################################################################################
+
+/WpfApp1/.vs/WpfApp1
+/WpfApp1/.vs/WpfApp1
+/WpfApp1/WpfApp1/obj/Debug/net6.0-windows/WpfApp1_MarkupCompile.i.lref
